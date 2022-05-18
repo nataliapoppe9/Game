@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    public float speed,turnSpeed;
     Rigidbody rig;
 
     private void Start()
@@ -25,6 +25,21 @@ public class PlayerMovement : MonoBehaviour
 
         input = input.normalized;
 
-        rig.velocity = ((Vector3.right * input.x) + (Vector3.forward * input.y) * speed * Time.deltaTime);
-    }   
+        rig.velocity = ((Vector3.forward * input.y)  * speed * Time.deltaTime);
+        transform.Rotate((Vector3.up * input.x) * turnSpeed * Time.deltaTime);
+
+        if (input.y !=0)
+        {
+            GetComponent<Animator>().SetBool("IsWalking", true);
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("IsWalking", false);
+        }
+
+
+    
+    }  
+    
+ 
 }
