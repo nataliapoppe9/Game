@@ -25,9 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
         input = input.normalized;
 
-        rig.velocity = ((Vector3.forward * input.y)  * speed * Time.deltaTime);
+        rig.velocity = ((this.transform.forward * input.y)  * speed * Time.deltaTime);
         transform.Rotate((Vector3.up * input.x) * turnSpeed * Time.deltaTime);
 
+        
         if (input.y !=0)
         {
             GetComponent<Animator>().SetBool("IsWalking", true);
