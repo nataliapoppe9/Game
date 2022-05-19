@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed,turnSpeed;
     Rigidbody rig;
 
+
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
