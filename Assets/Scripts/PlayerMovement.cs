@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public static PlayerMovement gm;
+    //Movement
     public float speed,turnSpeed;
     Rigidbody rig;
+
+    //Camera
     [SerializeField] Camera myCamera;
     [SerializeField] Camera cameraView;
-
-    public GameObject plant;
     int count = 0;
 
+    //Rewards
+    public int numCoins;
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
+        gm = this;
 
         cameraView.enabled = false;
         myCamera.enabled = true;
@@ -29,9 +35,10 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void Update()
+   public void AddCoin()
     {
-        
+        numCoins += 1;
+        print(numCoins);
     }
 
     private void CameraControl()

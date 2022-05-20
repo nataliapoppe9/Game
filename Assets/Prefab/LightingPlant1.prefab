@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6578f748b6f3a114fa212cea1e9ce83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 9025378378410177910, guid: caedec78cb63b0c4b81716fdc49c79c4, type: 3}
 --- !u!95 &69410755
 Animator:
   serializedVersion: 3
