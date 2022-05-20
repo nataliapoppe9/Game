@@ -8,15 +8,17 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rig;
     [SerializeField] Camera myCamera;
     [SerializeField] Camera cameraView;
-    int count = 0;
 
+    public GameObject plant;
+    int count = 0;
 
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
 
         cameraView.enabled = false;
-        Camera.main.enabled = true;
+        myCamera.enabled = true;
+
     }
    
     private void FixedUpdate()
@@ -24,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
         Movement();
 
         CameraControl();
+        
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void CameraControl()
@@ -73,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     
-    }  
-    
- 
+    }
+
+   
 }
