@@ -6,18 +6,41 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed,turnSpeed;
     Rigidbody rig;
+    [SerializeField] Camera myCamera;
+    [SerializeField] Camera cameraView;
+    int count = 0;
 
 
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
-    }
 
-    private void Update()
+        cameraView.enabled = false;
+        Camera.main.enabled = true;
+    }
+   
+    private void FixedUpdate()
     {
         Movement();
+
+        CameraControl();
     }
 
+    private void CameraControl()
+    {
+        if ((Input.GetKeyDown(KeyCode.C)) && (count == 0))
+        {
+            cameraView.enabled = true;
+            myCamera.enabled = false;
+            count++;
+        }
+        else if((Input.GetKeyDown(KeyCode.C)) && (count == 1))
+        {
+            cameraView.enabled = false;
+            myCamera.enabled = true;
+            count = 0;
+        }
+    }
     private void Movement()
     {
         // creamos una variable vector2 para guardar el input de flechas < > y ^u
@@ -31,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
         //-> NO VALE PQ SINO NO SE HUNDE
         //velocidad constante hacia delante con flecha alante * speed 
-        // rig.velocity = ((this.transform.forward * input.y)  * speed * Time.deltaTime);
+        //rig.velocity = ((this.transform.forward * input.y)  * speed * Time.deltaTime);
 
 
         rig.AddForce((this.transform.forward * input.y) * speed * Time.deltaTime);
