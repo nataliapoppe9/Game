@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.60122824, g: 0.6392157, b: 0.83137256, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a6c8bcc045582be47b06f708578d8c90, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.58831567, g: 0.6312438, b: 0.6278187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,15 +153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8505968726708940748, guid: caedec78cb63b0c4b81716fdc49c79c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000232
+      value: -0.00023
       objectReference: {fileID: 0}
     - target: {fileID: 8505968726708940748, guid: caedec78cb63b0c4b81716fdc49c79c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.001908
+      value: -0.00191
       objectReference: {fileID: 0}
     - target: {fileID: 8505968726708940748, guid: caedec78cb63b0c4b81716fdc49c79c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.02125
+      value: -0.01934
       objectReference: {fileID: 0}
     - target: {fileID: 8505968726708940748, guid: caedec78cb63b0c4b81716fdc49c79c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3492,15 +3492,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a9379581c4d6a754dafe3fda0e27c297, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00026396
+      value: -0.00026
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a9379581c4d6a754dafe3fda0e27c297, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0018727
+      value: -0.00187
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a9379581c4d6a754dafe3fda0e27c297, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.010748
+      value: -0.01013
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a9379581c4d6a754dafe3fda0e27c297, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13753,8 +13753,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.9117074, y: 0.6412617, z: 4.7959294}
-  m_Center: {x: 0.22566746, y: 4.5816913, z: -0.6065918}
+  m_Size: {x: 4.207704, y: 0.6412618, z: 4.222176}
+  m_Center: {x: -0.12633337, y: 4.5816913, z: -0.3197152}
 --- !u!54 &1873806839
 Rigidbody:
   m_ObjectHideFlags: 0
