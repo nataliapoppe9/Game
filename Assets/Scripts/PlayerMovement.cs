@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     Rigidbody rig;
 
+    int i = 0;
+
     //Camera
     [SerializeField] Camera myCamera;
     [SerializeField] Camera cameraView;
@@ -68,6 +70,19 @@ public class PlayerMovement : MonoBehaviour
         print(numCoins);
     }
 
+    public void MoveWithWater()
+    {
+        print("movewithwater");
+        if (i < 80)
+        {
+            Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+
+            transform.position = end;
+            i++;
+
+        }
+        
+    }
  public int GiveCoinNum() { return numCoins; }
     private void Movement()
     {

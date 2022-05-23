@@ -8,18 +8,31 @@ public class GotaManager : MonoBehaviour
     public static PlayerMovement gm;
     int numero;
     int i=0;
+    bool move = false;
 
 
-    private void Start()
+    private void FixedUpdate()
     {
-
+        if (move)
+        {
+            Moving();
+            PlayerMovement.gm.MoveWithWater();
+        }
         
     }
 
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-       
+        print("moveON");
+        move= true;
+
+        Vector3 yo = new Vector3(collision.transform.position.x, collision.transform.position.y, collision.gameObject.transform.position.z);
+
+
     }
+
+   
+
 
     private void Moving()
     {
@@ -31,6 +44,7 @@ public class GotaManager : MonoBehaviour
             i++;
 
         }
+        else { move = false; }
     }
     
 
