@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
        // print("yo" +yo.y +"suelo"+ suelo.y +"dist" + distancia);
         //if (distancia <= 26)
-        print(hit.collider.name+ distancia);
+       // print(hit.collider.name+ distancia);
         if(hit.collider.name.Contains("ISLA") && distancia<=26)
         {
 
@@ -176,44 +176,16 @@ public class PlayerMovement : MonoBehaviour
         if (hit.collider.name.Contains("Seta") && distancia <= 5)
         {
             // Dar extra fuerza
-            // activar animación
+           
             rig.AddForce(this.transform.up * jumpForce*2, ForceMode.Impulse);
             isJumping = false;
 
+            // activar animación
+
         }
 
-        // if (hit.collider.name.Contains("ISLA")) { isJumping = false; }
-
-
-        //NO LO USO PARA NADA DE MOMENTO
-        /* if (isJumping)
-         {
-             Vector3 suelo = new Vector3(0, hit.transform.position.y, 0);
-             Vector3 yo = new Vector3(0, pies.transform.position.y, 0);
-             yo.y = yo.y - 25 + 0.11215f;
-             float distancia = yo.y - suelo.y;
-         }*/
-
-        /*  if (distancia < 1.5f)
-          {
-
-              // print("grounded"+ "yo:" + yo.y + "suelo:" + suelo.y + "dist" +distancia);
-              grounded = true;
-
-          }*/
-
-
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
+    Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
        // print("El nombre es: " + hit.collider.name);
     }
-
-  /*  private void OnCollisionEnter(Collision collision)
-    {
-      //  print("choco con "+ collision.collider.name);
-        if (collision.collider.name == "Seta")
-        {
-          //  Debug.Log("Choco con Seta SEGURO");
-        }
-    }*/
 
 }
