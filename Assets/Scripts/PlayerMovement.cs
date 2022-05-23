@@ -56,14 +56,22 @@ public class PlayerMovement : MonoBehaviour
         CameraControl();
 
         Grounded();
-        
-        if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-           Jump();
+            Jump();
+            // GetComponent<Animator>().SetBool("IsJump", true);
+
+
         }
 
+        AnimationJump();
+
     }
-   
+   public void AnimationJump()
+    {
+       
+    }
    public void AddCoin() // mejor en game manager???
     {
         numCoins += 1;
@@ -157,6 +165,8 @@ public class PlayerMovement : MonoBehaviour
         inputC = inputC.normalized;
 
         //he dejado solo rotacion de camara hacia arriba/abajo
+        //Quiero que el otro boton sea el ZOOM mas adelante
+
        // cameraView.transform.Rotate((Vector3.up * inputC.x) * turnCamSpeed);
        cameraView.transform.Rotate((Vector3.right * inputC.y) * turnCamSpeed);
 
@@ -168,12 +178,18 @@ public class PlayerMovement : MonoBehaviour
         //Con grounded() modifico if jumping para que pueda volver a saltar
         isJumping = false;
 
+
+        GetComponent<Animator>().SetTrigger("Jumping");
+        GetComponent<Animator>().SetBool("IsWalking", false);
+
         //fuerza de salto
-        rig.AddForce(this.transform.up * jumpForce, ForceMode.Impulse);      
+        rig.AddForce(this.transform.up * jumpForce, ForceMode.Impulse);   
+        
     }
 
     void Grounded()
     {
+        
         //ORIGEN Y DIRECCION DEL RAYCAST
         ray.origin = pies.transform.position;
         ray.direction = -Vector3.up;
@@ -194,30 +210,42 @@ public class PlayerMovement : MonoBehaviour
         
         // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
-
+        print(hit.collider.name + " " + distancia);
        //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
        //y puedo volver a saltar
         if(hit.collider.name.Contains("ISLA") && distancia<=26)
         {
             //puedo saltar de nuevo
-            isJumping = false;
-
+            IsJumpingToFalse();
         }
 
         //si choco con la isla, en collision estoy a 4aprox, mientras esta altura sea menor a 5 puedo saltar
         // ademas añado un impulso para llegar a la moneda
-        if (hit.collider.name.Contains("Seta") && distancia <= 5)
+        else if (hit.collider.name.Contains("Seta") && distancia <= 6)
         {
             // Dar extra fuerza
             rig.AddForce(this.transform.up * jumpForce*2, ForceMode.Impulse);
-            isJumping = false;
+            IsJumpingToFalse();
 
-            // activar animación (HELPPP)
+
+            // activar animación seta(HELPPP)
 
         }
-    //pinto el rayo en el editor
-    Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
+      
+
+        //animacion salto
+
+
+        //pinto el rayo en el editor
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
        
+    }
+
+    //Sera llamada desde la animacion FLIP
+    public void IsJumpingToFalse()
+    {
+        isJumping = false;
+        
     }
 
 }
