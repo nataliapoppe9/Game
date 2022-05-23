@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShakePlant : MonoBehaviour
 {
     //Spawn Coins
-    private GameObject coin;
+    public GameObject coin;
     private Vector3 offset;
 
     //Animacion
