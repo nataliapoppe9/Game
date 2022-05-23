@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     //Rewards ¿MEjor en GameManager?
-    public int numCoins;
+    public int numCoins=0;
 
     //raycast
     Ray ray;
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         print(numCoins);
     }
 
-  
+ public int GiveCoinNum() { return numCoins; }
     private void Movement()
     {
         // creamos una variable vector2 para guardar el input de flechas < > y ^u
