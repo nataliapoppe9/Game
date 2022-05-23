@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class GotaManager : MonoBehaviour
 {
-    //condicion coins
+    //Acceso a PlayerMovement para mover al personaje a la vez que el plano hielo
     public static PlayerMovement gm;
-    int numero;
+
+    //auxiliares
     int i=0;
     bool move = false;
 
 
     private void FixedUpdate()
     {
+        //Si la gota collisiona conmigo activara move y podre entrar al if
         if (move)
         {
+            //Muevo el plano
             Moving();
+            //Muevo al character desde PlayerMovement
             PlayerMovement.gm.MoveWithWater();
         }
         
@@ -23,12 +27,15 @@ public class GotaManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("moveON");
-        move= true;
+        //si la colision es con character
+        if (collision.collider.name.Contains("Character"))
+        {
+            //activo move en update
+            print("moveON");
+            move = true;
 
-        Vector3 yo = new Vector3(collision.transform.position.x, collision.transform.position.y, collision.gameObject.transform.position.z);
-
-
+          
+        }
     }
 
    
@@ -36,11 +43,16 @@ public class GotaManager : MonoBehaviour
 
     private void Moving()
     {
+        //En cada frame del update se ejecutara moving añadiendo 1 a su posición
+        //Se repetirá 80 veces
         if (i < 80)
         {
+            //Muevo en z 1 la posicion del hielo.
+
             Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
 
             transform.position = end;
+            //80veces
             i++;
 
         }

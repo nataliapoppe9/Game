@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement gm;
 
     //Movement
-    public float speed,turnSpeed, turnCamSpeed;
-    public float jumpForce;
+    [SerializeField] float speed, turnSpeed, turnCamSpeed;
+    [SerializeField] float jumpForce;
     Rigidbody rig;
 
     int i = 0;
@@ -17,15 +17,15 @@ public class PlayerMovement : MonoBehaviour
     //Camera
     [SerializeField] Camera myCamera;
     [SerializeField] Camera cameraView;
-    
+
 
     //Rewards ¿MEjor en GameManager?
-    public int numCoins=0;
+    public int numCoins = 0;
 
     //raycast
     Ray ray;
     RaycastHit hit;
-    public Transform pies;
+    [SerializeField] Transform pies;
     [SerializeField] LayerMask layer;
 
 
@@ -63,27 +63,33 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
-   public void AddCoin() // mejor en game manager?
+   
+   public void AddCoin() // mejor en game manager???
     {
         numCoins += 1;
         print(numCoins);
     }
 
+    //Funcion que se activa desde GotaManager
+    //Cuando la gota colisiona conmigo se activa esta función en su update
+    //Con esto me muevo a la vez que el plano de la gota
     public void MoveWithWater()
     {
         print("movewithwater");
+        //Para que cambie su posición en Z HASTA 80
         if (i < 80)
         {
+            //Vector con mi posición +1 en Z en cada update
             Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
 
+            //Instruccion de cambiar mi posicion a +1 en z. Se ejecuta dentro de update 80 veces y deja de ejecutarse
             transform.position = end;
             i++;
 
         }
         
     }
- public int GiveCoinNum() { return numCoins; }
+    
     private void Movement()
     {
         // creamos una variable vector2 para guardar el input de flechas < > y ^u
@@ -150,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         // normalizamos el vector
         inputC = inputC.normalized;
 
+        //he dejado solo rotacion de camara hacia arriba/abajo
        // cameraView.transform.Rotate((Vector3.up * inputC.x) * turnCamSpeed);
        cameraView.transform.Rotate((Vector3.right * inputC.y) * turnCamSpeed);
 
@@ -157,50 +164,60 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
+        //En cuanto salta, deja de poder saltar
+        //Con grounded() modifico if jumping para que pueda volver a saltar
         isJumping = false;
 
+        //fuerza de salto
         rig.AddForce(this.transform.up * jumpForce, ForceMode.Impulse);      
     }
 
     void Grounded()
     {
+        //ORIGEN Y DIRECCION DEL RAYCAST
         ray.origin = pies.transform.position;
         ray.direction = -Vector3.up;
 
-        // Debug.Log("El rayo choca contra el suelo" + hit.transform.position.y + " mi posicion es" + pies.transform.position.y);
-
+        //Inicializo el raycast 
         isJumping = Physics.Raycast(ray, out hit);
        
+        // siempre sale true -> BIEN. está emitiendo el rayo. 
+        // DEBERIA AÑADIR UNA CONDICION PARA  LA CREACION DEL RAYO. pero asi funciona y nose cambiarlo
+
         print(isJumping + hit.collider.name);
 
+
+        //La posición en y de aquello con lo que choca
         Vector3 suelo = new Vector3(0, hit.transform.position.y, 0);
+        //Mi posicion en y
         Vector3 yo = new Vector3(0, pies.transform.position.y, 0);
         
+        // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
 
-       // print("yo" +yo.y +"suelo"+ suelo.y +"dist" + distancia);
-        //if (distancia <= 26)
-       // print(hit.collider.name+ distancia);
+       //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
+       //y puedo volver a saltar
         if(hit.collider.name.Contains("ISLA") && distancia<=26)
         {
-
+            //puedo saltar de nuevo
             isJumping = false;
 
         }
 
+        //si choco con la isla, en collision estoy a 4aprox, mientras esta altura sea menor a 5 puedo saltar
+        // ademas añado un impulso para llegar a la moneda
         if (hit.collider.name.Contains("Seta") && distancia <= 5)
         {
             // Dar extra fuerza
-           
             rig.AddForce(this.transform.up * jumpForce*2, ForceMode.Impulse);
             isJumping = false;
 
-            // activar animación
+            // activar animación (HELPPP)
 
         }
-
+    //pinto el rayo en el editor
     Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
-       // print("El nombre es: " + hit.collider.name);
+       
     }
 
 }
