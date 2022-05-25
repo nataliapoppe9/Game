@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     // variable estática para acceder al script
     public static PlayerMovement gm;
 
+    
+
     //Movement
     [SerializeField] float speed, turnSpeed, turnCamSpeed;
     [SerializeField] float jumpForce;
@@ -17,10 +19,6 @@ public class PlayerMovement : MonoBehaviour
     //Camera
     [SerializeField] GameObject camera1;
     [SerializeField] GameObject cameraAguila;
-
-
-    //Rewards ¿MEjor en GameManager?
-    public int numCoins = 0;
 
     //raycast
     Ray ray;
@@ -37,10 +35,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //inicializo rigidbody
         rig = GetComponent<Rigidbody>();
-        //cojo este script para poder ser accedido desde otro
-        gm = this;
-
-      
+        
+              
     }
    
     private void FixedUpdate()
@@ -59,22 +55,14 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            AnimationJump();
         }
         
         CameraControl();
 
        
     }
-   public void AnimationJump()
-    {
-       
-    }
-   public void AddCoin() // mejor en game manager???
-    {
-        numCoins += 1;
-        print(numCoins);
-    }
+  
+  
 
     //Funcion que se activa desde GotaManager
     //Cuando la gota colisiona conmigo se activa esta función en su update
@@ -139,15 +127,8 @@ public class PlayerMovement : MonoBehaviour
             camera1.SetActive(!camera1.activeInHierarchy);
             cameraAguila.SetActive(!cameraAguila.activeInHierarchy);
 
-
-
         }
-        // si NO pulso C
-        else if (!Input.GetKey(KeyCode.C))
-        {
-
-           
-        }
+       
     }
     
     public void Jump()
@@ -202,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         else if (hit.collider.name.Contains("Seta") && distancia <= 6)
         {
             // Dar extra fuerza
-            rig.AddForce(this.transform.up * jumpForce*2, ForceMode.Impulse);
+            rig.AddForce(this.transform.up * jumpForce, ForceMode.Impulse);
             IsJumpingToFalse();
 
 

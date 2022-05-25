@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-   
+    private void Update()
+    {
+        transform.Rotate(transform.up);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         //si el player colisiona con un Coin
@@ -19,7 +22,7 @@ public class CoinManager : MonoBehaviour
 
             //LLAMAR A UNA FUNCION AddCoin();
             // La función estará en el script PlayerMovement.gm
-            PlayerMovement.gm.AddCoin();
+            CanvasManager.gm.AddCoin();
             
         }
     }

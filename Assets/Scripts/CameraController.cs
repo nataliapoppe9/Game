@@ -6,12 +6,15 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+    //velocidad desplaz cam y vel angular
     public float speed, speedAng;
+    //objeto de camara virtual
     public CinemachineVirtualCamera vcam;
     
     // Start is called before the first frame update
     void Start()
     {
+        //cojo el componente camara de
         vcam = GetComponent<CinemachineVirtualCamera>();
     }
 
