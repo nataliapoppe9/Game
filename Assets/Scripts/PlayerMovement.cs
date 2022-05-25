@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     int i = 0;
 
     //Camera
-    [SerializeField] Camera myCamera;
-    [SerializeField] Camera cameraView;
+    [SerializeField] GameObject camera1;
+    [SerializeField] GameObject cameraAguila;
 
 
     //Rewards ¿MEjor en GameManager?
@@ -40,33 +40,31 @@ public class PlayerMovement : MonoBehaviour
         //cojo este script para poder ser accedido desde otro
         gm = this;
 
-
-        //configuracion inicial de la camara
-        cameraView.enabled = false;
-        myCamera.enabled = true;
-
-       
+      
     }
    
     private void FixedUpdate()
     {
-        Movement();
+        if (camera1.activeInHierarchy)
+        {
+            Movement();
 
+            Grounded();
+
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+            {
+                Jump();
+                // GetComponent<Animator>().SetBool("IsJump", true);
+
+
+            }
+
+            AnimationJump();
+        }
         
         CameraControl();
 
-        Grounded();
-
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-        {
-            Jump();
-            // GetComponent<Animator>().SetBool("IsJump", true);
-
-
-        }
-
-        AnimationJump();
-
+       
     }
    public void AnimationJump()
     {
@@ -135,43 +133,23 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //si pulso C
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
 
-            //cambio config
-            cameraView.enabled = true;
-            myCamera.enabled = false;
-            RotateCam();
-            
+            camera1.SetActive(!camera1.activeInHierarchy);
+            cameraAguila.SetActive(!cameraAguila.activeInHierarchy);
+
+
 
         }
         // si NO pulso C
         else if (!Input.GetKey(KeyCode.C))
         {
 
-            //cambio config
-            cameraView.enabled = false;
-            myCamera.enabled = true;
+           
         }
     }
-    void RotateCam()
-    {
-
-        Vector2 inputC = new Vector2(
-           Input.GetAxis("RotCamH"),
-           Input.GetAxis("RotCamV"));
-
-        // normalizamos el vector
-        inputC = inputC.normalized;
-
-        //he dejado solo rotacion de camara hacia arriba/abajo
-        //Quiero que el otro boton sea el ZOOM mas adelante
-
-       // cameraView.transform.Rotate((Vector3.up * inputC.x) * turnCamSpeed);
-       cameraView.transform.Rotate((Vector3.right * inputC.y) * turnCamSpeed);
-
-                   
-    }
+    
     public void Jump()
     {
         //En cuanto salta, deja de poder saltar

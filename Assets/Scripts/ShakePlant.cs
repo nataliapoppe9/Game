@@ -18,7 +18,7 @@ public class ShakePlant : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
       // Si el player collisiona con la planta
-        if ((collision.gameObject.name.Contains("Character")))
+        if ((collision.gameObject.CompareTag("Player")))
         {
             print("colision");
             //funcion de este mismo script
@@ -26,7 +26,7 @@ public class ShakePlant : MonoBehaviour
 
             //ACTIVAR ANIMACION (no funciona)
             //¿config unity?
-            anim.Play("ShakePlant");
+            anim.SetTrigger("ShakePlant");
 
             //desactivo colider
             GetComponent<Collider>().enabled = false;
