@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //inicializo rigidbody
         rig = GetComponent<Rigidbody>();
-        
+        gm = this;
               
     }
    
@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         else if (hit.collider.name.Contains("Seta") && distancia <= 6)
         {
             // Dar extra fuerza
-            rig.AddForce(this.transform.up * jumpForce, ForceMode.Impulse);
+            rig.AddForce(this.transform.up * jumpForce*2, ForceMode.Impulse);
             IsJumpingToFalse();
 
 
