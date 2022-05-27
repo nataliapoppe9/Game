@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
+
+   
+
+
     private void Update()
     {
         transform.Rotate(transform.up);
     }
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
+       
         //si el player colisiona con un Coin
         if ((collision.gameObject.name.Contains("Character")))
         {
-            print("colisionCOIN");
+
+        
+           // print("colisionCOIN");
 
             //desactivo el collider ¿hace falta?Nose
             //destruyo el objeto

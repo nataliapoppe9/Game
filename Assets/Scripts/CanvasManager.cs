@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager gm;
+
+    AudioSource audioSource;
+    [SerializeField] AudioClip audioCoin;
+
     //Rewards ¿MEjor en GameManager?
     public int numCoins = 0;
     Text textCoins;
@@ -15,6 +19,8 @@ public class CanvasManager : MonoBehaviour
         gm = this;
 
         textCoins = GameObject.Find("TextScore").GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
 
@@ -22,6 +28,12 @@ public class CanvasManager : MonoBehaviour
     {
         numCoins += 1;
         textCoins.text = "S coins: " + numCoins.ToString();
-        print(numCoins);
+
+        // print(numCoins);
+        audioSource.clip = audioCoin;
+        print("Audio: " + audioCoin.name);
+        audioSource.Play();
+
+        // GetComponent<AudioSource>().Play();
     }
 }
