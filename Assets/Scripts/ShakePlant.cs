@@ -13,6 +13,7 @@ public class ShakePlant : MonoBehaviour
    
     private void Start()
     {
+        //inicializo anim
         anim = GetComponent<Animator>();
     }
     private void OnCollisionEnter(Collision collision)
@@ -24,8 +25,7 @@ public class ShakePlant : MonoBehaviour
             //funcion de este mismo script
             SpaunCoins();
 
-            //ACTIVAR ANIMACION (no funciona)
-            //¿config unity?
+            //ACTIVAR ANIMACION 
             anim.SetTrigger("ShakePlant");
 
             //desactivo colider
@@ -42,9 +42,9 @@ public class ShakePlant : MonoBehaviour
         //bucle para instanciar 3 veces
         for(int i=0; i<3; i++)
         {
-            //separo los coins en x & z. Hacia arriba No
+            //separo los coins en x & z. Hacia arriba NO
             offset = new Vector3(-i-1, 0, i+1);
-            
+            //Instancio los coins
             Instantiate(coin, transform.position + offset*10, transform.rotation);
         }
     }

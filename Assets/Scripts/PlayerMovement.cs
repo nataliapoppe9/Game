@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //Movement
     [SerializeField] float speed, turnSpeed, turnCamSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] float setaForce;
     Rigidbody rig;
 
     int i = 0;
@@ -26,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform pies;
     [SerializeField] LayerMask layer;
 
-
+    //Animacion Planta
+    Animator anim;
 
     //salto
     bool isJumping = false;
@@ -36,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
         //inicializo rigidbody
         rig = GetComponent<Rigidbody>();
         gm = this;
-       
-              
+        anim = GetComponent<Animator>();
+
     }
    
     private void FixedUpdate()
@@ -181,20 +183,21 @@ public class PlayerMovement : MonoBehaviour
 
         //si choco con la isla, en collision estoy a 4aprox, mientras esta altura sea menor a 5 puedo saltar
         // ademas añado un impulso para llegar a la moneda
-        else if (hit.collider.name.Contains("Seta") && distancia <= 6)
+        else if (hit.collider.name.Contains("Seta"))
         {
+            // Vector3 fuerza = new Vector3(0,transform.position.y + setaForce,0);
+
             // Dar extra fuerza
-            rig.AddForce(this.transform.up * jumpForce, ForceMode.Impulse);
-           // IsJumpingToFalse();
+            setaForce *= 2;
+           // rig.transform.position = fuerza;
 
 
             // activar animación seta(HELPPP)
 
+           anim.SetTrigger("GrowSeta");
+
         }
       
-
-        //animacion salto
-
 
         //pinto el rayo en el editor
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
