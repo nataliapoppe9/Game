@@ -10,6 +10,13 @@ public class CanvasManager : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip audioCoin;
 
+    [SerializeField] GameObject panelGameOver;
+    [SerializeField] GameObject snowflakes;
+   // GameObject[] newSnowflakes;
+    private Vector3 offset;
+    Rigidbody2D rbSF;
+
+
     //Rewards ¿MEjor en GameManager?
     public int numCoins = 0;
     Text textCoins;
@@ -21,10 +28,11 @@ public class CanvasManager : MonoBehaviour
         textCoins = GameObject.Find("TextScore").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
 
+
     }
 
 
-    public void AddCoin() // mejor en game manager???
+    public void AddCoin() 
     {
         numCoins += 1;
         textCoins.text = "S coins: " + numCoins.ToString();
@@ -35,5 +43,29 @@ public class CanvasManager : MonoBehaviour
         audioSource.Play();
 
         // GetComponent<AudioSource>().Play();
+    }
+
+    public void GameOverPanel()
+    {
+        GameObject[] newSnowFlakes={null,null,null,null,null,null,null,null,null,null,null,null,null,null,null};
+        panelGameOver.SetActive(true);
+
+        
+            for (int i = 0; i < 15; i++)
+        {
+            
+            offset = new Vector3(Random.Range(-400, 400), 220 + Random.Range(0, 30), 0);
+
+
+            //newSnowflakes = Instantiate(snowflakes, transform.position, transform.rotation);
+            newSnowFlakes[i] = Instantiate(snowflakes, panelGameOver.transform.position + offset, panelGameOver.transform.rotation, panelGameOver.transform);
+             rbSF = newSnowFlakes[i].GetComponent<Rigidbody2D>();
+            rbSF.velocity = Random.Range(5, 10) * (-Vector3.up);
+            if (newSnowFlakes[i] != null) { print("okay"); }
+        }
+
+
+       
+        print(newSnowFlakes.Length);
     }
 }

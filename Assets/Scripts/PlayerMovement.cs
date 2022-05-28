@@ -7,7 +7,10 @@ public class PlayerMovement : MonoBehaviour
     // variable estática para acceder al script
     public static PlayerMovement gm;
 
-  
+    //GameOver
+   // public delegate void PlayerDelegate();
+    //public static event PlayerDelegate OnPlayerDie;
+
 
     //Movement
     [SerializeField] float speed, turnSpeed, turnCamSpeed;
@@ -15,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float setaForce;
     Rigidbody rig;
 
+    bool dead = false;
     int i = 0;
 
     //Camera
@@ -36,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         camera1.SetActive(true);
+
+        //GameOver.OnGameOver += OnGameOverPlayer;
     }
     private void Start()
     {
@@ -51,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
        
         
-        if (camera1.activeInHierarchy)
+        if (camera1.activeInHierarchy && !dead)
         {
             Movement();
 
@@ -60,8 +66,6 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
             {
                 Jump();
-                // GetComponent<Animator>().SetBool("IsJump", true);
-
             }
 
         }
@@ -199,7 +203,12 @@ public class PlayerMovement : MonoBehaviour
             animSeta.SetTrigger("GrowSeta");
            // CameraController.cc.CameraJump();
         }
-      
+        else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua"))
+        {
+            dead = true;
+            OnGameOverPlayer();
+        }
+
 
         //pinto el rayo en el editor
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
@@ -213,4 +222,21 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    void OnGameOverPlayer()
+    {
+        print("Drown");
+        GetComponent<Animator>().SetBool("IsWalking", false);//
+        GetComponent<Animator>().SetTrigger("Drown");
+        CanvasManager.gm.GameOverPanel();
+       StartCoroutine(DestroyCharacter());
+       
+    }
+
+    IEnumerator DestroyCharacter()
+    {
+        print("destroy");
+        yield return new WaitForSeconds(5);
+        print("destroy");
+        Destroy(this.gameObject);
+    }
 }
