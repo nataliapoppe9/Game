@@ -6,6 +6,8 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+
+    public static CameraController cc;
     //velocidad desplaz cam y vel angular
     public float speed, speedAng;
     //objeto de camara virtual
@@ -16,6 +18,8 @@ public class CameraController : MonoBehaviour
     {
         //cojo el componente camara de
         vcam = GetComponent<CinemachineVirtualCamera>();
+
+        cc = this;
     }
 
     // Update is called once per frame
@@ -38,6 +42,12 @@ public class CameraController : MonoBehaviour
         
         vcam.m_Lens.FieldOfView += Input.GetAxis("Mouse Y");
         vcam.m_Lens.FieldOfView= Mathf.Clamp(vcam.m_Lens.FieldOfView, 30, 90);
+
+    }
+
+   public void CameraJump()
+    {
+        transform.Rotate(0.5f, 0, 0);
     }
 
     

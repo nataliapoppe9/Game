@@ -27,23 +27,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform pies;
     [SerializeField] LayerMask layer;
 
-    //Animacion Planta
-    Animator anim;
+    //Animacion Seta
+    Animator animSeta;
 
     //salto
     bool isJumping = false;
 
+    private void Awake()
+    {
+        camera1.SetActive(true);
+    }
     private void Start()
     {
         //inicializo rigidbody
         rig = GetComponent<Rigidbody>();
+        //Inicializo el script para que sea acesible por CanvasManager
         gm = this;
-        anim = GetComponent<Animator>();
+
 
     }
    
     private void FixedUpdate()
     {
+       
+        
         if (camera1.activeInHierarchy)
         {
             Movement();
@@ -55,14 +62,13 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
                 // GetComponent<Animator>().SetBool("IsJump", true);
 
-
             }
 
         }
-        
         CameraControl();
 
-       
+
+
     }
   
   
@@ -122,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void CameraControl()
     {
-
+       
         //si pulso C
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -185,17 +191,13 @@ public class PlayerMovement : MonoBehaviour
         // ademas añado un impulso para llegar a la moneda
         else if (hit.collider.name.Contains("Seta"))
         {
-            // Vector3 fuerza = new Vector3(0,transform.position.y + setaForce,0);
 
-            // Dar extra fuerza
-            setaForce *= 2;
-           // rig.transform.position = fuerza;
-
+            // Dar extra fuerza??
 
             // activar animación seta(HELPPP)
-
-           anim.SetTrigger("GrowSeta");
-
+            animSeta = hit.collider.GetComponent<Animator>();
+            animSeta.SetTrigger("GrowSeta");
+           // CameraController.cc.CameraJump();
         }
       
 
