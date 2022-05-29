@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // variable estática para acceder al script
-    public static PlayerMovement gm;
+    public static PlayerMovement pm;
 
     //GameOver
    // public delegate void PlayerDelegate();
@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float setaForce;
     Rigidbody rig;
+
+    GameObject character;
+
+  
 
     bool dead = false;
     int i = 0;
@@ -48,11 +52,27 @@ public class PlayerMovement : MonoBehaviour
         //inicializo rigidbody
         rig = GetComponent<Rigidbody>();
         //Inicializo el script para que sea acesible por CanvasManager
-        gm = this;
+        pm = this;
 
+        character = GetComponent<GameObject>();
 
+        
+
+      /*  if (ChangeScene.cs.loaded)
+        {
+            print("positionLoad");
+            if (PlayerPrefs.HasKey("PositionX") && PlayerPrefs.HasKey("PositionY") && PlayerPrefs.HasKey("PositionZ"))
+            {
+                print(PlayerPrefs.GetFloat("PositionX") + " " + PlayerPrefs.GetFloat("PositionY") + " " + PlayerPrefs.GetFloat("PositionZ"));
+                character.transform.Translate(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"), PlayerPrefs.GetFloat("PositionZ"));
+            }
+        }
+      */
+        
     }
-   
+
+    
+
     private void FixedUpdate()
     {
        
@@ -67,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 Jump();
             }
+
+          
 
         }
         CameraControl();
@@ -228,15 +250,23 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Animator>().SetBool("IsWalking", false);//
         GetComponent<Animator>().SetTrigger("Drown");
         CanvasManager.gm.GameOverPanel();
-       StartCoroutine(DestroyCharacter());
+       
+        StartCoroutine(DestroyCharacter());
        
     }
 
     IEnumerator DestroyCharacter()
     {
+        
         print("destroy");
         yield return new WaitForSeconds(5);
         print("destroy");
         Destroy(this.gameObject);
+    }
+
+    public Vector3 GivePosition()
+    {
+        print(transform.position);
+        return transform.position;
     }
 }

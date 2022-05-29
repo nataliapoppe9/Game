@@ -16,8 +16,9 @@ public class CanvasManager : MonoBehaviour
     private Vector3 offset;
     Rigidbody2D rbSF;
 
+    Vector3 posicion;
 
-    //Rewards ¿MEjor en GameManager?
+    
     public int numCoins = 0;
     Text textCoins;
     private void Start()
@@ -28,7 +29,21 @@ public class CanvasManager : MonoBehaviour
         textCoins = GameObject.Find("TextScore").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
 
+        print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
+        if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded==true)
+        {
+            numCoins = PlayerPrefs.GetInt("numCoins"); // Cuando abrimos partida nueva recuperamos
+            print(numCoins);
+        }
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SaveGame();
+        }
     }
 
 
@@ -67,5 +82,16 @@ public class CanvasManager : MonoBehaviour
 
        
         print(newSnowFlakes.Length);
+    }
+
+    void SaveGame()
+    {
+        PlayerPrefs.SetInt("numCoins",numCoins);
+        posicion = PlayerMovement.pm.GivePosition();
+        PlayerPrefs.SetFloat("PositionX",posicion.x);
+        PlayerPrefs.SetFloat("PositionY", posicion.y);
+        PlayerPrefs.SetFloat("PositionZ", posicion.z);
+        PlayerPrefs.Save();
+        print(posicion);
     }
 }

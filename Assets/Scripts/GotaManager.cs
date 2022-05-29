@@ -20,7 +20,7 @@ public class GotaManager : MonoBehaviour
             //Muevo el plano
             Moving();
             //Muevo al character desde PlayerMovement
-            PlayerMovement.gm.MoveWithWater();
+            PlayerMovement.pm.MoveWithWater();
         }
         
     }
