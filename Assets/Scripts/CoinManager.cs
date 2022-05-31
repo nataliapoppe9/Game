@@ -28,7 +28,7 @@ public class CoinManager : MonoBehaviour
             Destroy(gameObject);
 
             //LLAMAR A UNA FUNCION AddCoin();
-            // La función estará en el script PlayerMovement.gm
+            // La función estará en el script CanvasManager.gm
             CanvasManager.gm.AddCoin();
             
         }

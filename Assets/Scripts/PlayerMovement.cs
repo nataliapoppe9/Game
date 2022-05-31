@@ -18,10 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float setaForce;
     Rigidbody rig;
 
-    GameObject character;
 
-  
-
+    public bool platform = false;
     bool dead = false;
     int i = 0;
 
@@ -45,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     {
         camera1.SetActive(true);
 
+        //NO SE HACER SINGLETON PARA QUE SE COMUNIQUE SOLO CON EL OTRO SCRIPT
+        //Resquicio de intento anterior
         //GameOver.OnGameOver += OnGameOverPlayer;
     }
     private void Start()
@@ -54,47 +54,41 @@ public class PlayerMovement : MonoBehaviour
         //Inicializo el script para que sea acesible por CanvasManager
         pm = this;
 
-        character = GetComponent<GameObject>();
 
         
+        //Recuperar posicion cuando Load Game 
 
-      /*  if (ChangeScene.cs.loaded)
+
+      if (ChangeScene.cs.loaded)
         {
             print("positionLoad");
             if (PlayerPrefs.HasKey("PositionX") && PlayerPrefs.HasKey("PositionY") && PlayerPrefs.HasKey("PositionZ"))
             {
                 print(PlayerPrefs.GetFloat("PositionX") + " " + PlayerPrefs.GetFloat("PositionY") + " " + PlayerPrefs.GetFloat("PositionZ"));
-                character.transform.Translate(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"), PlayerPrefs.GetFloat("PositionZ"));
+                transform.position = new Vector3(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"), PlayerPrefs.GetFloat("PositionZ"));
+                transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("RotX"), PlayerPrefs.GetFloat("RotY"), PlayerPrefs.GetFloat("RotZ")) ;
             }
         }
-      */
+      
         
     }
 
-    
-
-    private void FixedUpdate()
+    private void Update() // cada frame. Atento a los imput
     {
-       
-        
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        {
+            Jump();
+        }
+        CameraControl();
+    }
+
+    private void FixedUpdate() // Es constante. Va bien para el movimiento porque es cada X. No para imput pq quizas te saltes el frame en el q estaba pulsando
+    {
         if (camera1.activeInHierarchy && !dead)
         {
             Movement();
-
             Grounded();
-
-            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-            {
-                Jump();
-            }
-
-          
-
         }
-        CameraControl();
-
-
-
     }
   
   
@@ -108,13 +102,11 @@ public class PlayerMovement : MonoBehaviour
         //Para que cambie su posición en Z HASTA 80
         if (i < 80)
         {
-            //Vector con mi posición +1 en Z en cada update
-            Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+            //Vector con mi posición +1 en Z en cada update ( Para que se mueva a la vez q el suelo)
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
 
             //Instruccion de cambiar mi posicion a +1 en z. Se ejecuta dentro de update 80 veces y deja de ejecutarse
-            transform.position = end;
             i++;
-
         }
         
     }
@@ -161,7 +153,6 @@ public class PlayerMovement : MonoBehaviour
 
             camera1.SetActive(!camera1.activeInHierarchy);
             cameraAguila.SetActive(!cameraAguila.activeInHierarchy);
-
         }
        
     }
@@ -194,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
         // siempre sale true -> BIEN. está emitiendo el rayo. 
         // DEBERIA AÑADIR UNA CONDICION PARA  LA CREACION DEL RAYO. pero asi funciona y nose cambiarlo
 
-        print(isJumping + hit.collider.name);
+        //print(isJumping + hit.collider.name);
 
 
         //La posición en y de aquello con lo que choca
@@ -204,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
         
         // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
-        print(hit.collider.name + " " + distancia);
+        //print(hit.collider.name + " " + distancia);
        //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
        //y puedo volver a saltar
         if(hit.collider.name.Contains("ISLA") && distancia<=26)
@@ -241,7 +232,11 @@ public class PlayerMovement : MonoBehaviour
     public void IsJumpingToFalse()
     {
         isJumping = false;
-        
+        //if (GameObject.Find("Cinematic TimeLine"))
+        //{
+        //    GameObject.Find("Cinematic TimeLine").SetActive(false);
+        //}
+
     }
 
     void OnGameOverPlayer()
@@ -264,9 +259,4 @@ public class PlayerMovement : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public Vector3 GivePosition()
-    {
-        print(transform.position);
-        return transform.position;
-    }
 }

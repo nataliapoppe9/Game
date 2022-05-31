@@ -33,12 +33,21 @@ public class GotaManager : MonoBehaviour
             //activo move en update
             print("moveON");
             move = true;
-
-          
+            PlayerMovement.pm.platform = true;
         }
     }
 
-   
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.name.Contains("Character"))
+        {
+            //activo move en update
+
+            PlayerMovement.pm.platform = false;
+        }
+    }
+
+
 
 
     private void Moving()
@@ -49,9 +58,7 @@ public class GotaManager : MonoBehaviour
         {
             //Muevo en z 1 la posicion del hielo.
 
-            Vector3 end = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-
-            transform.position = end;
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
             //80veces
             i++;
 
