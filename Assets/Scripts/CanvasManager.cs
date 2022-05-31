@@ -29,7 +29,7 @@ public class CanvasManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
 
-        print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
+        //print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
 
         // Si he guardado partida y tengo almacenado el numero de coins
         if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded == true)
