@@ -6,26 +6,32 @@ public class Nintendo : MonoBehaviour
 {
     // variable estática para acceder al script
    public static Nintendo nm;
-
- 
-    // public bool tengoGadget=false;
-    //MochilaItem gadgetItem;
-   // public GameObject gadgetSpritePrefab;
+    //Variable con particular premio
     public GameObject shine;
-
+    //variable para giro de nintendo
     float velocidadGiro = 100;
-    // Start is called before the first frame update
+
+
+    
+    //Animacion
+    Animator anim;
+    bool stopAnim = false;
+
     void Start()
     {
+        //inicializo variable que referencia a este script
         nm = this;
-        //gadgetItem =GetComponentInChildren<MochilaItem>();
+        //inicializo anim
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-
     {
-        transform.Rotate(0, 0, velocidadGiro * Time.deltaTime);
+        if (!stopAnim)
+        {
+            transform.Rotate(0, 0, velocidadGiro * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -33,12 +39,28 @@ public class Nintendo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             print("He colisionado por primera vez");
-            
-            ItemManager.itemMan.SpriteCreator();
-          //  tengoGadget = true;
-          // print( ItemManager.itemMan.SpriteCreator(itemPrefab));
 
-            Destroy(gameObject);
+            //Añadir Sprite al Gestor Mochila
+            ItemManager.itemMan.SpriteCreator();
+           
+            
+            //ACTIVAR ANIMACION 
+            anim.SetTrigger("CollectGadget");
+           
         }
+    }
+
+    public void DestroyGadget()
+    {
+        stopAnim = true;
+        Destroy(gameObject);
+    }
+
+    public void ParticulasGadget()
+    {
+        //Iniciar particulas
+        Instantiate(shine, transform.position, Quaternion.identity);
+        //desactivo collider
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 }

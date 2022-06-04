@@ -5152,8 +5152,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.9647059, g: 0.9607843, b: 0.8352941, a: 0.5411765}
-      maxColor: {r: 0.36862746, g: 0.5019608, b: 0.8862745, a: 0.53333336}
+      minColor: {r: 0.23624577, g: 0.08173726, b: 0.38679248, a: 1}
+      maxColor: {r: 0.8962264, g: 0.240121, b: 0.5116667, a: 0.8862745}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6224,24 +6224,24 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.73333335, g: 0.78039217, b: 1, a: 0}
-        key1: {r: 0.36862746, g: 0.47058824, b: 0.8, a: 0.70980394}
-        key2: {r: 0.36862746, g: 0.47058824, b: 0.8, a: 0.20784314}
+        key0: {r: 0.6886792, g: 0.06756851, b: 0.06756851, a: 1}
+        key1: {r: 0.8113208, g: 0.5936753, b: 0.30922037, a: 1}
+        key2: {r: 0.36862746, g: 0.47058824, b: 0.8, a: 0.5372549}
         key3: {r: 0.73333335, g: 0.78039217, b: 1, a: 0.3372549}
-        key4: {r: 0.36862746, g: 0.47058824, b: 0.8, a: 0.75686276}
-        key5: {r: 0.09803922, g: 0.1254902, b: 0.30588236, a: 0.6627451}
+        key4: {r: 0.89019614, g: 0.5058824, b: 0.9058824, a: 1}
+        key5: {r: 0.09803922, g: 0.1254902, b: 0.30588236, a: 1}
         key6: {r: 0, g: 0, b: 0, a: 0.41960785}
-        key7: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0.84313726}
         ctime0: 0
-        ctime1: 9445
+        ctime1: 65535
         ctime2: 25636
         ctime3: 42791
         ctime4: 57440
         ctime5: 65535
         ctime6: 0
         ctime7: 0
-        atime0: 0
-        atime1: 8288
+        atime0: 13300
+        atime1: 65535
         atime2: 18890
         atime3: 28913
         atime4: 38357
@@ -6249,8 +6249,8 @@ ParticleSystem:
         atime6: 57440
         atime7: 65535
         m_Mode: 0
-        m_NumColorKeys: 6
-        m_NumAlphaKeys: 8
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
