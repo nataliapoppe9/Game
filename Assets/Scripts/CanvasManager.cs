@@ -16,6 +16,9 @@ public class CanvasManager : MonoBehaviour
     private Vector3 offset;
     Rigidbody2D rbSF;
 
+    //Variables Mochila
+    public GameObject panelMiMochila;
+    bool closedBag = true;
 
     public int numCoins = 0;
     Text textCoins;
@@ -49,7 +52,20 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-
+    public void AbrirCerrarMochila()
+    {        
+        if (closedBag)
+        {
+            panelMiMochila.SetActive(true);
+            closedBag = false;
+            return;
+        }
+        if(!closedBag)
+        {  panelMiMochila.SetActive(false); 
+            closedBag = true;
+            return;
+        }
+    }
     public void AddCoin()
     {
         //añade 1 coin y lo muestra en el canvas

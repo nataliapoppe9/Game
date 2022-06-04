@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CameraView
   - Shakeable
+  - Mochila/Gadget
+  - Mochila/Content
   layers:
   - Default
   - TransparentFX

@@ -5,21 +5,25 @@ using UnityEngine;
 public class Nintendo : MonoBehaviour
 {
     // variable estática para acceder al script
-    public static Nintendo nm;
+   public static Nintendo nm;
 
-    GameObject nintendo;
-    public bool tengoGadget=false;
+ 
+    // public bool tengoGadget=false;
+    //MochilaItem gadgetItem;
+   // public GameObject gadgetSpritePrefab;
+    public GameObject shine;
 
     float velocidadGiro = 100;
     // Start is called before the first frame update
     void Start()
     {
-        nintendo = GetComponent<GameObject>();
         nm = this;
+        //gadgetItem =GetComponentInChildren<MochilaItem>();
     }
 
     // Update is called once per frame
     void Update()
+
     {
         transform.Rotate(0, 0, velocidadGiro * Time.deltaTime);
     }
@@ -28,9 +32,13 @@ public class Nintendo : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            tengoGadget = true;
+            print("He colisionado por primera vez");
+            
+            ItemManager.itemMan.SpriteCreator();
+          //  tengoGadget = true;
+          // print( ItemManager.itemMan.SpriteCreator(itemPrefab));
 
+            Destroy(gameObject);
         }
     }
 }
