@@ -218,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua"))
         {
+
             dead = true;
             OnGameOverPlayer();
         }

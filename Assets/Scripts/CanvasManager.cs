@@ -10,6 +10,8 @@ public class CanvasManager : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip audioCoin;
 
+    [SerializeField] GameObject panelSaved;
+
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject snowflakes;
     // GameObject[] newSnowflakes;
@@ -17,6 +19,7 @@ public class CanvasManager : MonoBehaviour
     Rigidbody2D rbSF;
 
     //Variables Mochila
+    [SerializeField] GameObject mochilaButton;
     public GameObject panelMiMochila;
     bool closedBag = true;
 
@@ -49,7 +52,20 @@ public class CanvasManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             SaveGame();
+            panelSaved.SetActive(true);
+           //Time.timeScale=0;         
+           StartCoroutine(DesactivarPanel(panelSaved));
         }
+    }
+
+
+    IEnumerator DesactivarPanel(GameObject panel)
+    {
+        print("off");
+        //Time.timeScale = 1;
+        yield return new WaitForSeconds(0.7f);
+        panel.SetActive(false);
+       
     }
 
     public void AbrirCerrarMochila()
@@ -85,11 +101,11 @@ public class CanvasManager : MonoBehaviour
     {
         GameObject[] newSnowFlakes = new GameObject[15];
         panelGameOver.SetActive(true);
-
-
+        mochilaButton.SetActive(false);
+        
         for (int i = 0; i < 15; i++)
         {
-            offset = new Vector3(Random.Range(-400, 400), 220 + Random.Range(0, 30), 0);
+            offset = new Vector3(Random.Range(-200, 200), 120 + Random.Range(0, 30), 0);
 
 
             //newSnowflakes = Instantiate(snowflakes, transform.position, transform.rotation);

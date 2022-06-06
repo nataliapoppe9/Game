@@ -10,7 +10,8 @@ public class ShakePlant : MonoBehaviour
 
     //Animacion
     Animator anim;
-   
+    //Animator animChar;
+
     private void Start()
     {
         //inicializo anim
@@ -25,8 +26,12 @@ public class ShakePlant : MonoBehaviour
             //funcion de este mismo script
             SpaunCoins();
 
+            //animChar = collision.gameObject.GetComponent<Animator>();
+            //animChar.SetBool("IsWalking", false);
+            //animChar.SetTrigger("ShakeIt");
             //ACTIVAR ANIMACION 
             anim.SetTrigger("ShakePlant");
+
 
             //desactivo colider
             GetComponent<Collider>().enabled = false;
@@ -35,6 +40,8 @@ public class ShakePlant : MonoBehaviour
 
         
     }
+
+
 
     void SpaunCoins()
     {

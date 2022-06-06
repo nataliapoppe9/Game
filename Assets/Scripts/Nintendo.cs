@@ -17,6 +17,8 @@ public class Nintendo : MonoBehaviour
     Animator anim;
     bool stopAnim = false;
 
+    
+
     void Start()
     {
         //inicializo variable que referencia a este script
@@ -46,7 +48,7 @@ public class Nintendo : MonoBehaviour
             
             //ACTIVAR ANIMACION 
             anim.SetTrigger("CollectGadget");
-           
+
         }
     }
 
