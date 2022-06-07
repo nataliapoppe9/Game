@@ -6,18 +6,22 @@ public class Nintendo : MonoBehaviour
 {
     // variable estática para acceder al script
    public static Nintendo nm;
-    //Variable con particular premio
+    //Variable con particulas
     public GameObject shine;
     //variable para giro de nintendo
     float velocidadGiro = 100;
 
-
+    public bool obtained=false;
     
     //Animacion
     Animator anim;
     bool stopAnim = false;
 
-    
+    //Camera with Gadget
+    //Camera
+    [SerializeField] GameObject camera1;
+    [SerializeField] GameObject cameraAguila;
+
 
     void Start()
     {
@@ -41,17 +45,22 @@ public class Nintendo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             print("He colisionado por primera vez");
-
+            GetComponent<CapsuleCollider>().enabled = false;
             //Añadir Sprite al Gestor Mochila
-            ItemManager.itemMan.SpriteCreator();
+            ItemManager.itemMan.SpriteCreator(0);
            
             
             //ACTIVAR ANIMACION 
             anim.SetTrigger("CollectGadget");
 
+            //HELP!!
+            obtained = true;
+            print(obtained);
+
         }
     }
 
+    //Ambas funciones son llamadas como eventos en la animacion collectGadget
     public void DestroyGadget()
     {
         stopAnim = true;
@@ -62,7 +71,14 @@ public class Nintendo : MonoBehaviour
     {
         //Iniciar particulas
         Instantiate(shine, transform.position, Quaternion.identity);
-        //desactivo collider
-        GetComponent<CapsuleCollider>().enabled = false;
+                
     }
+
+    public void OnClickGadget()
+    {
+        camera1.SetActive(false);
+        cameraAguila.SetActive(true);
+    }
+
+
 }

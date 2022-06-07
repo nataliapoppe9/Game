@@ -41,6 +41,7 @@ public class CanvasManager : MonoBehaviour
         if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded == true)
         {
             numCoins = PlayerPrefs.GetInt("numCoins"); // Cuando abrimos partida nueva recuperamos
+            textCoins.text = "S coins: " + numCoins.ToString();
             print(numCoins);
         }
 

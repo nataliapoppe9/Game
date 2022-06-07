@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool platform = false;
     bool dead = false;
-    int i = 0;
 
     //Camera
     [SerializeField] GameObject camera1;
@@ -92,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     }
   
   
-
+    /*
     //Funcion que se activa desde GotaManager
     //Cuando la gota colisiona conmigo se activa esta función en su update
     //Con esto me muevo a la vez que el plano de la gota
@@ -109,8 +108,40 @@ public class PlayerMovement : MonoBehaviour
             i++;
         }
         
+    }*/
+
+    public void MovePlayerWithPlat()
+    {
+        StartCoroutine(MovingWithPlatform());
     }
-    
+
+    IEnumerator MovingWithPlatform()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
+            yield return new WaitForSeconds(0.07f);
+        }
+    }
+
+    public void GoBackWithPlatform()
+    {
+        StartCoroutine(MovingBackWithPlatform());
+      /*  for (int i = 0; i < 30; i++)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
+        }*/
+    }
+
+    IEnumerator MovingBackWithPlatform()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
+            yield return new WaitForSeconds(0.07f);
+        }
+    }
+
     private void Movement()
     {
         // creamos una variable vector2 para guardar el input de flechas < > y ^u
@@ -195,10 +226,17 @@ public class PlayerMovement : MonoBehaviour
         
         // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
+        
         //print(hit.collider.name + " " + distancia);
        //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
        //y puedo volver a saltar
-        if(hit.collider.name.Contains("ISLA") && distancia<=26)
+        if(hit.collider.name.Contains("ISLA1") && distancia<=26)
+        {
+            //puedo saltar de nuevo
+            IsJumpingToFalse();
+        }
+
+        else if (hit.collider.name.Contains("ISLA2") && distancia <= 16)
         {
             //puedo saltar de nuevo
             IsJumpingToFalse();
@@ -209,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         else if (hit.collider.name.Contains("Seta"))
         {
 
-            // Dar extra fuerza??
+            
 
             // activar animación seta(HELPPP)
             animSeta = hit.collider.GetComponent<Animator>();

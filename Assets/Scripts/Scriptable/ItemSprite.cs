@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemSprite : ScriptableObject
 {
     public string nombreGadget;
-    public int priceGarget;
+    public string detailsGadget;
+    public int priceGadget;
     public Sprite imageGadget;
 }
