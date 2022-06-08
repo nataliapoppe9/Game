@@ -7,7 +7,7 @@ public class GotaManager : MonoBehaviour
     //Acceso a PlayerMovement para mover al personaje a la vez que el plano hielo
     public static PlayerMovement gm;
 
-   public int countMoves;
+    public int countMoves;
 
     [SerializeField] GameObject canvasPlatformGo, canvasPlatformGoBack;
     Transform sueloGota;

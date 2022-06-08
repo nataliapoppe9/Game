@@ -24,6 +24,7 @@ public class CanvasManager : MonoBehaviour
     bool closedBag = true;
 
     public int numCoins = 0;
+    public bool boatCoin = false;
     Text textCoins;
     private void Start()
     {
@@ -88,6 +89,19 @@ public class CanvasManager : MonoBehaviour
         //añade 1 coin y lo muestra en el canvas
         numCoins += 1;
         textCoins.text = "S coins: " + numCoins.ToString();
+
+        //reproduce el audio
+        audioSource.clip = audioCoin;
+        print("Audio: " + audioCoin.name);
+        audioSource.Play();
+
+    }
+
+    public void AddBoatCoin()
+    {
+        //añade 1 coin y lo muestra en el canvas
+        boatCoin = true;
+        print("boatcoin");
 
         //reproduce el audio
         audioSource.clip = audioCoin;

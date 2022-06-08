@@ -24,11 +24,12 @@ public class ShakePlant : MonoBehaviour
         {
             print("colision");
             //funcion de este mismo script
-            SpaunCoins();
+            SpawnCoins();
 
             //animChar = collision.gameObject.GetComponent<Animator>();
             //animChar.SetBool("IsWalking", false);
             //animChar.SetTrigger("ShakeIt");
+
             //ACTIVAR ANIMACION 
             anim.SetTrigger("ShakePlant");
 
@@ -43,7 +44,7 @@ public class ShakePlant : MonoBehaviour
 
 
 
-    void SpaunCoins()
+    void SpawnCoins()
     {
      
         //bucle para instanciar 3 veces
