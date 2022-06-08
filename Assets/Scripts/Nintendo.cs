@@ -53,7 +53,7 @@ public class Nintendo : MonoBehaviour
             //ACTIVAR ANIMACION 
             anim.SetTrigger("CollectGadget");
 
-            //HELP!!
+            //HELP!! Obtained para cuando guarde partida?
             obtained = true;
             print(obtained);
 
