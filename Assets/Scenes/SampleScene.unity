@@ -4070,7 +4070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc6f46270dd94445b7661a17b813347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shine: {fileID: 0}
+  shine: {fileID: 163064, guid: da50acfb7a838994d8b8c72470bdba77, type: 3}
+  positionPC: {fileID: 1666698674}
 --- !u!54 &718539027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4085,7 +4086,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &718539028
 CapsuleCollider:
@@ -4101,6 +4102,25 @@ CapsuleCollider:
   m_Height: 3.34255
   m_Direction: 1
   m_Center: {x: -0.1097521, y: 0.3071996, z: -2.0355673}
+--- !u!95 &718539030
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718539025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c236484dd53b4f840889620ac361b9a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &721754418 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 509227dcdd103f148b6bd884eed9ba56, type: 3}
@@ -9574,6 +9594,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3664694, y: 1.2776256, z: 1.2874873}
   m_Center: {x: 0.062372208, y: 0.46794283, z: 0.008111417}
+--- !u!4 &1666698674 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1255605710908113952, guid: 624f65ba6dd79054a8b4133b89ef2f45, type: 3}
+  m_PrefabInstance: {fileID: 718539024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1674144705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23878,7 +23903,6 @@ GameObject:
   - component: {fileID: 6660643849233055942}
   - component: {fileID: 1214431139943705317}
   - component: {fileID: 8246321327272860251}
-  - component: {fileID: 8330901286752822352}
   m_Layer: 3
   m_Name: Cone.002
   m_TagString: Untagged
@@ -23886,18 +23910,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8330901286752822352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8330901286752822351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8acff4cba280c4184ca732de2b1e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8510041669101690706
 GameObject:
   m_ObjectHideFlags: 0

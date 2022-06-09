@@ -8,8 +8,20 @@ public class PcScript : MonoBehaviour
     public static PcScript pcs;
     //Variable con particulas
     public GameObject shine;
-    //variable para giro de nintendo
-    // float velocidadGiro = 100;
+    public Transform positionPC; // Pq el gameObject no esta bien centrado
+
+    //Animacion
+    Animator anim;
+
+    void Start()
+    {
+        //inicializo variable que referencia a este script
+        pcs = this;
+        //inicializo anim
+        anim = GetComponent<Animator>();
+    }
+
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -19,13 +31,23 @@ public class PcScript : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
             //Añadir Sprite al Gestor Mochila
             ItemManager.itemMan.SpriteCreator(1);
+
+            //ACTIVAR ANIMACION 
+            anim.SetTrigger("getPC");
         }
     }
 
     public void ParticulasPC()
     {
+        
         //Iniciar particulas
-        Instantiate(shine, transform.position, Quaternion.identity);
+        Instantiate(shine, positionPC.position, Quaternion.identity);
 
+    }
+
+    public void DestroyPC()
+    {
+        print("destroy");
+        Destroy(this.gameObject);
     }
 }
