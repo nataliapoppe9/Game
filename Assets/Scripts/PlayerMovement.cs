@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
         // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
         
-        //print(hit.collider.name + " " + distancia);
+        print(hit.collider.name + " " + distancia);
        //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
        //y puedo volver a saltar
         if(hit.collider.name.Contains("ISLA1") && distancia<=26)
@@ -260,7 +260,12 @@ public class PlayerMovement : MonoBehaviour
             dead = true;
             OnGameOverPlayer();
         }
-
+        else if (hit.collider.name.Contains("IslaBoat")&& distancia<32)
+        {
+            print("IslaBoat");
+            IsJumpingToFalse();
+        }
+        else { print("no conozco el suelo"); }
 
         //pinto el rayo en el editor
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
@@ -271,6 +276,7 @@ public class PlayerMovement : MonoBehaviour
     public void IsJumpingToFalse()
     {
         isJumping = false;
+
         //if (GameObject.Find("Cinematic TimeLine"))
         //{
         //    GameObject.Find("Cinematic TimeLine").SetActive(false);

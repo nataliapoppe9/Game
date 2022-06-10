@@ -134,6 +134,7 @@ public class GotaManager : MonoBehaviour
     {
         for (int i = 0; i < 30; i++)
         {
+           
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
             yield return new WaitForSeconds(0.07f);
         }
