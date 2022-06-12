@@ -659,8 +659,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3911706263092422653}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.656826, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.37, z: 0}
   m_LocalScale: {x: 0.6568249, y: 0.6568249, z: 0.6568249}
   m_Children:
   - {fileID: 4733892206431104473}
@@ -672,7 +672,7 @@ Transform:
   - {fileID: 8163288995731483040}
   m_Father: {fileID: 9183870574365223947}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3911706263092422650
 Animator:
   serializedVersion: 3
@@ -1474,7 +1474,6 @@ GameObject:
   - component: {fileID: 9183870574365223947}
   - component: {fileID: 9183870574365223946}
   - component: {fileID: 9183870574365223949}
-  - component: {fileID: 9183870574365223948}
   m_Layer: 0
   m_Name: AmoniteAgent
   m_TagString: Untagged
@@ -1490,8 +1489,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9183870574365223951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 664, y: 53.81, z: 60.818153}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 728.6634, y: 48.64, z: 110.32889}
+  m_LocalScale: {x: 0.1993965, y: 0.1993965, z: 0.31008148}
   m_Children:
   - {fileID: 4396354034680413511}
   m_Father: {fileID: 0}
@@ -1521,27 +1520,15 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 6
+  m_BaseOffset: 3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9183870574365223948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9183870574365223951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3edf7d1fdf07dbb45b00b04a7274ce14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

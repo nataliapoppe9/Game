@@ -39,7 +39,9 @@ public class BoatScript : MonoBehaviour
             //player.transform.parent = null;
             print("llegue a la isla");
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            Amonite.am.StartAmonite();
+            collision.collider.GetComponent<BoxCollider>().enabled=false;
+          
+            
 
         }
     }
