@@ -17,6 +17,8 @@ public class ForceField : MonoBehaviour
         }
         else
         {
+            // grabar y  reproducir cinemática
+
             Destroy(gameObject);
         }
     }

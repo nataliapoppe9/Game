@@ -70,7 +70,7 @@ public class Amonite : MonoBehaviour
    public void OneFollowsPlayer(int i)
     {
         agent = amoniteList[i].GetComponent<NavMeshAgent>();
-        agent.transform.LookAt(-1 * (player.transform.position));
+        //agent.transform.LookAt(-1 * (player.transform.position));
         agent.SetDestination(player.position);
         agent.GetComponent<Collider>().enabled = false;
     }
