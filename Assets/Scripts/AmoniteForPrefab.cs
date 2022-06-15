@@ -9,7 +9,6 @@ public class AmoniteForPrefab : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
            // print("he colisionnado con amonite");
-            AmoniteCol();
             switch (transform.name)
             {
                 case "Amonite0":
@@ -31,9 +30,5 @@ public class AmoniteForPrefab : MonoBehaviour
             }
         }
     }
-    
-    public void AmoniteCol()
-    {
-        
-    }
+
 }

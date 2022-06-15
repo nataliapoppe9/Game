@@ -20,10 +20,10 @@ public class Amonite : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-       // agent = GetComponent<NavMeshAgent>();
+       
         am = this;
         start = false;
-       // SpawnAmonite();
+       
     }
 
 
