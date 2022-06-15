@@ -9,7 +9,8 @@ public class PcScript : MonoBehaviour
     //Variable con particulas
     public GameObject shine;
     public Transform positionPC; // Pq el gameObject no esta bien centrado
-
+    bool stopAnim;
+    float velocidadGiro=100;
     //Animacion
     Animator anim;
 
@@ -21,7 +22,14 @@ public class PcScript : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    
+    void Update()
+    {
+        if (!stopAnim)
+        {
+            transform.Rotate(0, -velocidadGiro * Time.deltaTime,0);
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -47,6 +55,7 @@ public class PcScript : MonoBehaviour
 
     public void DestroyPC()
     {
+        stopAnim = true;
         print("destroy");
         Destroy(this.gameObject);
     }
