@@ -23,6 +23,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject panelMiMochila;
     bool closedBag = true;
 
+    public int amoniteCount;
     public int numCoins = 0;
     public bool boatCoin = false;
     Text textCoins;
