@@ -5,8 +5,11 @@ using UnityEngine;
 public class IntroManager : MonoBehaviour
 {
     [SerializeField] private GameObject text;
+    
     public void RevealText()
     {
         text.SetActive(true);
     }
+
+
 }

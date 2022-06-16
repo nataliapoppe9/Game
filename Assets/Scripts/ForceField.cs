@@ -25,7 +25,7 @@ public class ForceField : MonoBehaviour
 
     public void ClosePanel()
     {
-        if(panel.active)
+       // if(panel.active==true)
         panel.SetActive(false);
     }
 
