@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class Amonite : MonoBehaviour
 {
+    public float radius;
+    public Transform force;
+
     Transform player;
 
     [SerializeField] GameObject amonite;
@@ -57,6 +60,15 @@ public class Amonite : MonoBehaviour
             
         }
 
+       
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            start = false;
+            MoveAroundForce(force);
+            
+        }
+
     }
 
     public void StartAmonite(int j)
@@ -85,6 +97,7 @@ public class Amonite : MonoBehaviour
                 agent = amoniteList[i].GetComponent<NavMeshAgent>();
                 agent.transform.LookAt(-1 * (player.transform.position));
                 agent.SetDestination(player.position);
+
             }
             /*foreach(GameObject item in amoniteList)
             {
@@ -93,6 +106,22 @@ public class Amonite : MonoBehaviour
                 agent.transform.LookAt(-1*(player.transform.position));
                 agent.SetDestination(player.position);
             }*/
+    }
+
+   public void MoveAroundForce(Transform forceField)
+    {
+        start = false;
+        print("move Around" + forceField.gameObject.name);
+        for(int i=0; i<amoniteList.Count;i++)
+        {
+
+            amoniteList[i].GetComponent<NavMeshAgent>().SetDestination(
+             new Vector3(
+                forceField.position.x + radius * Mathf.Cos(2 * Mathf.PI * i / amoniteList.Count),
+                player.position.y,
+                forceField.position.z + radius * Mathf.Sin(2 * Mathf.PI * i / amoniteList.Count)));
+            print(amoniteList[i].gameObject.name);
+        }
     }
 
 }

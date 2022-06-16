@@ -29,7 +29,9 @@ public class ForceField : MonoBehaviour
         else
         {
             // grabar y  reproducir cinemática
+            amoniteCountPanel.SetActive(false);
             anim.SetTrigger("DeactivateForce");
+            Amonite.am.MoveAroundForce(transform);
           //  playableDirector.GetComponent<TimelineClip>().start=0;
            // Destroy(gameObject);
         }

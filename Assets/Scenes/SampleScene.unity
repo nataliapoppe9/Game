@@ -2754,8 +2754,8 @@ GameObject:
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &357002645
 SphereCollider:
@@ -6300,7 +6300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0.9977813, z: -0, w: 0.06657753}
-  m_LocalPosition: {x: -78.980865, y: -28.500793, z: 50.83008}
+  m_LocalPosition: {x: 346.01917, y: -28.500793, z: -97.16992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1451968944}
@@ -12011,7 +12011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780320381}
   m_LocalRotation: {x: -0, y: -0.9476424, z: -0, w: -0.31933364}
-  m_LocalPosition: {x: -78.980865, y: -28.500793, z: 50.83008}
+  m_LocalPosition: {x: 346.01917, y: -28.500793, z: -97.16992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1813483543}
@@ -12512,6 +12512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edf7d1fdf07dbb45b00b04a7274ce14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 20
+  force: {fileID: 357002648}
   amonite: {fileID: 1274671986}
   spawnPoint:
   - {fileID: 62409589}
@@ -24012,7 +24014,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &2121565087
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -24593,7 +24595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147909368931}
   m_LocalRotation: {x: -0, y: -0.9977813, z: -0, w: 0.06657753}
-  m_LocalPosition: {x: 261, y: 55.68, z: 323}
+  m_LocalPosition: {x: 686, y: 55.68, z: 175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3705710148890679801}
