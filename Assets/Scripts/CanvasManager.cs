@@ -85,6 +85,12 @@ public class CanvasManager : MonoBehaviour
             return;
         }
     }
+
+    public void SubtractCoins(int i)
+    {
+        numCoins -= i;
+        textCoins.text = "S coins: " + numCoins.ToString();
+    }
     public void AddCoin()
     {
         //añade 1 coin y lo muestra en el canvas

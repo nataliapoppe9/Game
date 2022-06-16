@@ -6,20 +6,11 @@ using UnityEngine.Timeline;
 
 public class TimelineManager : MonoBehaviour
 {
-    public PlayableDirector playableDirector;
-    bool start = false;
+    public PlayableDirector playableDiretor;
     public void PlayMyDirector()
     {
        
-        playableDirector.GetComponent<TimelineClip>();
+       // playableDiretor.GetComponent<TimelineClip>();
     }
 
-    private void Awake()
-    {
-        start = false;
-        if (start)
-        {
-            PlayMyDirector();
-        }
-    }
 }

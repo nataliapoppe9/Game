@@ -76,7 +76,7 @@ public class GotaManager : MonoBehaviour
     {
         if (CanvasManager.gm.numCoins >= 10)
         {
-            CanvasManager.gm.numCoins -= 10;
+            CanvasManager.gm.SubtractCoins(10); 
             //move = true;
             StartCoroutine(Moving());
             PlayerMovement.pm.MovePlayerWithPlat();

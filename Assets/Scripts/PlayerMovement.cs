@@ -278,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
             // print("IslaBoat");
             IsJumpingToFalse();
         }*/
-        else { print("no conozco el suelo"+ hit.collider.name + distancia); }
+        //else { print("no conozco el suelo"+ hit.collider.name + distancia); }
 
         //pinto el rayo en el editor
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);

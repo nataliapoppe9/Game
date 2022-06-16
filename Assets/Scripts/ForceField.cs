@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class ForceField : MonoBehaviour
 {
     [SerializeField] GameObject panel, amoniteCountPanel;
     int amoniteCounter;
+    public PlayableDirector playableDirector;
+
+    Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (amoniteCounter < 5)
@@ -18,8 +29,9 @@ public class ForceField : MonoBehaviour
         else
         {
             // grabar y  reproducir cinemática
-
-            Destroy(gameObject);
+            anim.SetTrigger("DeactivateForce");
+          //  playableDirector.GetComponent<TimelineClip>().start=0;
+           // Destroy(gameObject);
         }
     }
 
