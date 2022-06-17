@@ -2847,7 +2847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 139467056}
   amoniteCountPanel: {fileID: 707919480}
-  playableDirector: {fileID: 1463664943}
+  timeLineForce: {fileID: 1463664943}
 --- !u!95 &357002650
 Animator:
   serializedVersion: 3
@@ -3653,7 +3653,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499964098}
-  - component: {fileID: 499964100}
   - component: {fileID: 499964099}
   m_Layer: 0
   m_Name: GameObject
@@ -3678,18 +3677,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &499964099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499964097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4869535655ca4342a2f4e0e43fcd5a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &499964100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4532,6 +4519,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &666658062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 666658063}
+  - component: {fileID: 666658064}
+  m_Layer: 0
+  m_Name: FFCineManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &666658063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666658062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1463664945}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &666658064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666658062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5165774f2e7e2434891d266c9a0346af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {fileID: 499964097}
 --- !u!1001 &670675613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6299,7 +6330,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0, y: -0.9977813, z: -0, w: 0.06657753}
+  m_LocalRotation: {x: -0, y: -0.9948307, z: -0, w: 0.06657753}
   m_LocalPosition: {x: 346.01917, y: -28.500793, z: -97.16992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7794,50 +7825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1140799079
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1140799081}
-  - component: {fileID: 1140799080}
-  m_Layer: 0
-  m_Name: TimelineManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1140799080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140799079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180da7e0fcc3c5f4f881f2b699ceea96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playableDiretor: {fileID: 0}
---- !u!4 &1140799081
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140799079}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 250.92453, y: 60.291344, z: 140.96045}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145111193
 GameObject:
   m_ObjectHideFlags: 0
@@ -10267,6 +10254,7 @@ GameObject:
   - component: {fileID: 1463664945}
   - component: {fileID: 1463664944}
   - component: {fileID: 1463664943}
+  - component: {fileID: 1463664946}
   m_Layer: 0
   m_Name: Cinematic ForceField
   m_TagString: Untagged
@@ -10291,6 +10279,10 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -8420259673589638873, guid: 0da89dfb07cdf014e97e873ee307c260, type: 2}
     value: {fileID: 963194229}
+  - key: {fileID: -3958581387114543692, guid: 0da89dfb07cdf014e97e873ee307c260, type: 2}
+    value: {fileID: 357002650}
+  - key: {fileID: 7411290448890860856, guid: 0da89dfb07cdf014e97e873ee307c260, type: 2}
+    value: {fileID: 1463664942}
   m_ExposedReferences:
     m_References:
     - c19b0a2462004bf42821b65aba69d6e9: {fileID: 53727621}
@@ -10325,9 +10317,40 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499964098}
+  - {fileID: 666658063}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1463664946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463664942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 288002ff312c0a8449d752cf844a15ba, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 666658064}
+          m_TargetAssemblyTypeName: FFCineManager, Assembly-CSharp
+          m_MethodName: StopRotation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1469878765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12522,6 +12545,7 @@ MonoBehaviour:
   - {fileID: 749484092}
   - {fileID: 1821230629}
   amoniteList: []
+  TimeLine: {fileID: 0}
   startedNum: 
 --- !u!1 &1831182112
 GameObject:

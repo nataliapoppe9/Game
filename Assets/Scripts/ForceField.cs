@@ -9,7 +9,9 @@ public class ForceField : MonoBehaviour
 {
     [SerializeField] GameObject panel, amoniteCountPanel;
     int amoniteCounter;
-    public PlayableDirector playableDirector;
+
+    public PlayableDirector timeLineForce;
+
 
     Animator anim;
 
@@ -22,25 +24,39 @@ public class ForceField : MonoBehaviour
     {
         if (amoniteCounter < 5)
         {
-            panel.SetActive(true);
-            amoniteCountPanel.SetActive(true);
-            amoniteCountPanel.GetComponentInChildren<Text>().text = amoniteCounter.ToString() + " / 5";
+            NeedAmonites(); 
         }
         else
         {
-            // grabar y  reproducir cinemática
-            amoniteCountPanel.SetActive(false);
-            anim.SetTrigger("DeactivateForce");
-            Amonite.am.MoveAroundForce(transform);
-          //  playableDirector.GetComponent<TimelineClip>().start=0;
-           // Destroy(gameObject);
+            DeactivateForceField();
+            
         }
+    }
+
+    void DeactivateForceField()
+    {
+        amoniteCountPanel.SetActive(false);
+        // anim.SetTrigger("DeactivateForce");
+        Amonite.am.MoveAroundForce(transform);
+
+        // reproducir cinemática
+
+
+        timeLineForce.gameObject.SetActive(true);
+        timeLineForce.Play();
+    }
+
+    void NeedAmonites()
+    {
+        panel.SetActive(true);
+        amoniteCountPanel.GetComponentInChildren<Text>().text = amoniteCounter.ToString() + " / 5";
     }
 
     public void ClosePanel()
     {
        // if(panel.active==true)
         panel.SetActive(false);
+        amoniteCountPanel.SetActive(true);
     }
 
     

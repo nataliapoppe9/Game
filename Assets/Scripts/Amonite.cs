@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Timeline;
 
 public class Amonite : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Amonite : MonoBehaviour
     public static Amonite am;
 
     public List<GameObject> amoniteList;
+
+    public GameObject TimeLine;
 
     bool start;
     public List<int> startedNum;
@@ -111,6 +114,9 @@ public class Amonite : MonoBehaviour
    public void MoveAroundForce(Transform forceField)
     {
         start = false;
+
+        //Quiero iniciar Cutscene con Timeline. Play
+       // TimeLine.GetComponent<TimelineAsset>()
         print("move Around" + forceField.gameObject.name);
         for(int i=0; i<amoniteList.Count;i++)
         {
