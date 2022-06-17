@@ -96,18 +96,21 @@ public class GotaManager : MonoBehaviour
 
     public void ReturnPlatform()
     {
-        if(CanvasManager.gm.numCoins >=10)
-        CanvasManager.gm.numCoins -= 10;
+        if (CanvasManager.gm.numCoins >= 10)
+        {
+            CanvasManager.gm.SubtractCoins(10);
+            StartCoroutine(GoingBack());
+            PlayerMovement.pm.GoBackWithPlatform();
+            PlayerMovement.pm.platform = true;
+            canvasPlatformGoBack.SetActive(false);
+            countMoves++;
+        }
         else
         {
             print("not enough");
         }
 
-        StartCoroutine(GoingBack());
-        PlayerMovement.pm.GoBackWithPlatform();
-        PlayerMovement.pm.platform = true;
-        canvasPlatformGoBack.SetActive(false);
-        countMoves++;
+        
 
     }
 
@@ -134,8 +137,8 @@ public class GotaManager : MonoBehaviour
     {
         for (int i = 0; i < 30; i++)
         {
-           
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
+            print("platfMoving");  
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
             yield return new WaitForSeconds(0.07f);
         }
     }

@@ -1519,10 +1519,10 @@ RectTransform:
   m_Father: {fileID: 750955527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05936682, y: 0.68850964}
-  m_AnchorMax: {x: 0.5831834, y: 0.94200003}
-  m_AnchoredPosition: {x: -1.5, y: -14.570557}
-  m_SizeDelta: {x: -1.9779968, y: -1.9960022}
+  m_AnchorMin: {x: 0.05936682, y: 0.625}
+  m_AnchorMax: {x: 0.5806834, y: 0.94200003}
+  m_AnchoredPosition: {x: -0.5, y: -0.07055664}
+  m_SizeDelta: {x: 0.022003174, y: -30.996002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &185471493
 MonoBehaviour:
@@ -4563,6 +4563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation: {fileID: 499964097}
+  sphere: {fileID: 357002644}
 --- !u!1001 &670675613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6206,10 +6207,10 @@ RectTransform:
   m_Father: {fileID: 1156211042}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.38738295, y: 0}
-  m_AnchorMax: {x: 0.6936171, y: 0.23480853}
-  m_AnchoredPosition: {x: -58.035004, y: 11.534378}
-  m_SizeDelta: {x: -6.211197, y: -30.5684}
+  m_AnchorMin: {x: 0.30368897, y: 0.084808506}
+  m_AnchorMax: {x: 0.588, y: 0.22117992}
+  m_AnchoredPosition: {x: -1.5350037, y: -0.46562195}
+  m_SizeDelta: {x: 6.788803, y: 3.4316006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961984247
 MonoBehaviour:
@@ -6330,7 +6331,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0, y: -0.9948307, z: -0, w: 0.06657753}
+  m_LocalRotation: {x: -0, y: -0.9977813, z: -0, w: 0.06657753}
   m_LocalPosition: {x: 346.01917, y: -28.500793, z: -97.16992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7952,7 +7953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1156211039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10286,6 +10287,7 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - c19b0a2462004bf42821b65aba69d6e9: {fileID: 53727621}
+    - c209ef5ddca8e8d46bdc068fe606f9a7: {fileID: 1780320383}
 --- !u!95 &1463664944
 Animator:
   serializedVersion: 3
@@ -10336,12 +10338,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 288002ff312c0a8449d752cf844a15ba, type: 2}
+    - {fileID: 11400000, guid: f0f3e460d4869ad4689f7d197ced5679, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 666658064}
           m_TargetAssemblyTypeName: FFCineManager, Assembly-CSharp
           m_MethodName: StopRotation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 666658064}
+          m_TargetAssemblyTypeName: FFCineManager, Assembly-CSharp
+          m_MethodName: DestroySphere
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10885,10 +10902,10 @@ RectTransform:
   m_Father: {fileID: 1156211042}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.012744682, y: 0.16340427}
-  m_AnchorMax: {x: 0.5, y: 0.347}
-  m_AnchoredPosition: {x: 5.3757935, y: -3.875}
-  m_SizeDelta: {x: -15.248501, y: -15.568399}
+  m_AnchorMin: {x: 0.034483813, y: 0.16340427}
+  m_AnchorMax: {x: 0.5, y: 0.3036537}
+  m_AnchoredPosition: {x: -1.1242065, y: 3.625}
+  m_SizeDelta: {x: -2.2485046, y: -0.5683975}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1523937236
 MonoBehaviour:

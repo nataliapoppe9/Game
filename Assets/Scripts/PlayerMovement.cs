@@ -126,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GoBackWithPlatform()
     {
+        print("Imove");
         StartCoroutine(MovingBackWithPlatform());
       /*  for (int i = 0; i < 30; i++)
         {
@@ -137,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
     {
         for (int i = 0; i < 30; i++)
         {
+            print("im moving");
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
             yield return new WaitForSeconds(0.07f);
         }
