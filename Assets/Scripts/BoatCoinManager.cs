@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoatCoinManager : MonoBehaviour
 {
-    private void Update()
+    private void FixedUpdate()
     {
        // transform.Rotate(transform.up);
     }

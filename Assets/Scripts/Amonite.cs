@@ -63,15 +63,6 @@ public class Amonite : MonoBehaviour
             
         }
 
-       
-
-        if (Input.GetKey(KeyCode.M))
-        {
-            start = false;
-            MoveAroundForce(force);
-            
-        }
-
     }
 
     public void StartAmonite(int j)

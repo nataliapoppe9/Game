@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GotaManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GotaManager : MonoBehaviour
 
     [SerializeField] GameObject canvasPlatformGo, canvasPlatformGoBack;
     Transform sueloGota;
+
+    [SerializeField] GameObject canvasGota;
 
     private void Start()
     {
@@ -29,13 +32,20 @@ public class GotaManager : MonoBehaviour
             if (countMoves % 2 ==0) 
             {
                 canvasPlatformGo.SetActive(true);
-                
+
+                canvasGota.transform.GetChild(2).GetComponent<Text>().text = "Use platform:";
+                canvasGota.transform.GetChild(3).gameObject.SetActive(true);
+
             }
 
             else if (countMoves %2!= 0)
             {
                 canvasPlatformGoBack.SetActive(true);
-             
+
+
+                canvasGota.transform.GetChild(2).GetComponent<Text>().text = "Use Platform";
+                canvasGota.transform.GetChild(3).gameObject.SetActive(false);
+
             }
 
         }
@@ -86,7 +96,8 @@ public class GotaManager : MonoBehaviour
         }
         else
         {
-            //AVISAR QUE NO HAY SUFICIENTE
+            canvasGota.transform.GetChild(2).GetComponent<Text>().text = "Not enough S-Coins!";
+            canvasGota.transform.GetChild(3).gameObject.SetActive(false);
             print("not enough");
         }
 
@@ -96,9 +107,9 @@ public class GotaManager : MonoBehaviour
 
     public void ReturnPlatform()
     {
-        if (CanvasManager.gm.numCoins >= 10)
+        if (CanvasManager.gm.numCoins >= 11)
         {
-            CanvasManager.gm.SubtractCoins(10);
+            CanvasManager.gm.SubtractCoins(11);
             StartCoroutine(GoingBack());
             PlayerMovement.pm.GoBackWithPlatform();
             PlayerMovement.pm.platform = true;

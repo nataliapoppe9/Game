@@ -10,7 +10,6 @@ public class CanvasManager : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip audioCoin;
 
-    [SerializeField] GameObject panelSaved;
 
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject snowflakes;
@@ -35,6 +34,7 @@ public class CanvasManager : MonoBehaviour
         //inicializo textCoins y audiosource
         textCoins = GameObject.Find("TextScore").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
+        textCoins.text = "S coins: " + numCoins.ToString();
 
 
         //print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
@@ -49,27 +49,10 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        //Guardar con la tecla S
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveGame();
-            panelSaved.SetActive(true);
-           //Time.timeScale=0;         
-           StartCoroutine(DesactivarPanel(panelSaved));
-        }
-    }
+    
 
 
-    IEnumerator DesactivarPanel(GameObject panel)
-    {
-        print("off");
-        //Time.timeScale = 1;
-        yield return new WaitForSeconds(0.7f);
-        panel.SetActive(false);
-       
-    }
+  
 
     public void AbrirCerrarMochila()
     {        
@@ -142,19 +125,5 @@ public class CanvasManager : MonoBehaviour
         print(newSnowFlakes.Length);
     }
 
-    void SaveGame()
-    {
-        if (!PlayerMovement.pm.platform)
-        {
-            PlayerPrefs.SetInt("numCoins", numCoins);
-            PlayerPrefs.SetFloat("PositionX", PlayerMovement.pm.transform.position.x);
-            PlayerPrefs.SetFloat("PositionY", PlayerMovement.pm.transform.position.y);
-            PlayerPrefs.SetFloat("PositionZ", PlayerMovement.pm.transform.position.z);
-            PlayerPrefs.SetFloat("RotX", PlayerMovement.pm.transform.rotation.eulerAngles.x);
-            PlayerPrefs.SetFloat("RotY", PlayerMovement.pm.transform.rotation.eulerAngles.y);
-            PlayerPrefs.SetFloat("RotZ", PlayerMovement.pm.transform.rotation.eulerAngles.z);
-            // PlayerPrefs.Save(); No hace falta
-            print("GAME SAVED");
-        }
-    }
+    
 }

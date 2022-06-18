@@ -60,7 +60,7 @@ public class ForceField : MonoBehaviour
     }
 
     
-    private void Update()
+    private void FixedUpdate()
     {
         amoniteCounter  = Amonite.am.startedNum.Count;
         amoniteCountPanel.GetComponentInChildren<Text>().text = amoniteCounter.ToString() + " / 5";

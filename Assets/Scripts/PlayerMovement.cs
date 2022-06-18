@@ -74,11 +74,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update() // cada frame. Atento a los imput
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (!GameManager.gameIsPaused)
         {
-            Jump();
-        }
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+            {
+
+                Jump();
+            }
+        
         CameraControl();
+        }
     }
 
     private void FixedUpdate() // Es constante. Va bien para el movimiento porque es cada X. No para imput pq quizas te saltes el frame en el q estaba pulsando
