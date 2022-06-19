@@ -22,7 +22,7 @@ public class BoatCoinManager : MonoBehaviour
             //desactivo el collider ¿hace falta?Nose
             //destruyo el objeto
             GetComponent<Collider>().enabled = false;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
 
             //LLAMAR A UNA FUNCION AddCoin();
             // La función estará en el script CanvasManager.gm

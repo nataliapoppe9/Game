@@ -7,13 +7,13 @@ public class BoatScript : MonoBehaviour
     public static BoatScript bsm;
    
     [SerializeField] float speed;
-    [SerializeField]Transform destino;
+    [SerializeField] Transform destino,destinoVuelta;
 
     [SerializeField] GameObject boat;
     [SerializeField] GameObject player;
 
     bool startGo=false;
-    public bool startAmonite = false;
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -22,26 +22,27 @@ public class BoatScript : MonoBehaviour
         {
             if (CanvasManager.gm.boatCoin)
             {
-               // GameObject player = GameObject.FindGameObjectWithTag("Player");
                 print("tengo ficha barco");
                 startGo = true;
                
                 CanvasManager.gm.boatCoin = false;
 
             }
-            else { print("no tienes la ficha barco"); }
+            else { 
+                
+                print("no tienes la ficha barco"); }
         }
         if (collision.collider.name.Contains("Destino"))
         {
-            startGo = false;
-            //player.transform.SetParent(null, true);
-            transform.DetachChildren();
-            //player.transform.parent = null;
-            print("llegue a la isla");
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            collision.collider.GetComponent<BoxCollider>().enabled=false;
-          
-            
+
+            SoltarBarco(collision.collider);
+
+
+        }
+        if (collision.collider.name.Contains("DestinoVuelta"))
+        {
+
+            SoltarBarco(collision.collider);
 
         }
     }
@@ -49,16 +50,60 @@ public class BoatScript : MonoBehaviour
    
     private void Update()
     {
+       
         
         if (startGo)
         {
-            print("moving");
-            transform.Translate(-Vector3.forward * speed* Time.deltaTime);
-            player.transform.parent = transform;
-           // player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            ControlColliderDestino();
+        }
+
+    }
+
+    public void SoltarBarco(Collider col)
+    {
+        //player.transform.SetParent(null, true);
+        transform.DetachChildren();
+        //player.transform.parent = null;
+        print("llegue a la islaVuelta");
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        col.GetComponent<BoxCollider>().enabled = false;
+        startGo = false;
+
+    }
+
+    public void MoveBoat()
+    {
+        print("moving");
+        transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+        player.transform.parent = transform;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        // player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    public void BackBoat()
+    {
+        print("moving");
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        player.transform.parent = transform;
+        // player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    public void ControlColliderDestino()
+    {
+        if (destino.gameObject.GetComponent<Collider>().enabled==false)
+        {
+            destinoVuelta.gameObject.GetComponent<Collider>().enabled = true;
+            BackBoat();
+
+        }
+        else if (destinoVuelta.gameObject.GetComponent<Collider>().enabled == false)
+        {
+            destino.gameObject.GetComponent<Collider>().enabled = true;
+            MoveBoat();
         }
     }
 
- 
+
 }
 

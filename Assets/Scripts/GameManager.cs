@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public static bool gameIsPaused;
 
-    [SerializeField] GameObject panelPause, panelSaved;
+    [SerializeField] GameObject panelPause, panelSaved, panelBoat;
     [SerializeField] GameObject canvasPantalla;
     [SerializeField] GameObject hint;
 
@@ -21,15 +21,15 @@ public class GameManager : MonoBehaviour
 
         
 
-        hints.Add("Jump on mushrooms, they always have a surprise");
-        hints.Add("Remember: Save Game from time 2 time");
+        hints.Add("Jump on mushrooms");
+        hints.Add("Save Game from Time 2 Time");
         hints.Add("S-Coins will take you far");
-        hints.Add("Getting back costs more than Going");
+        hints.Add("Comming back costs more than Going");
         hints.Add("Don't leave anything behind..");
         hints.Add("Do you have your Boat Token ready?");
-        hints.Add("Check the boat Timetable with Boat Token");
+        hints.Add("BoatTimetable stored on Nintendo");
         //RECUERDA: hacer que el barco salga solo cada minuto durante medio minuto
-        hints.Add("Have a look in your backpack");
+        hints.Add("Check your backpack");
         hints.Add("Amonites seem friendly, don't they?");
 
         random = Random.Range(0, hints.Count);
@@ -65,14 +65,15 @@ public class GameManager : MonoBehaviour
     }
 
    
-    public void ResumeGame()
+    public void ResumeGame(GameObject panel)
     {
-        panelPause.SetActive(false);
+        panel.SetActive(false);
         canvasPantalla.SetActive(true);
         gameIsPaused = false;
         Time.timeScale = 1;
     }
 
+   
    
 
     public void SaveAplicationGame()
@@ -98,6 +99,8 @@ public class GameManager : MonoBehaviour
        
 
     }
+
+    
 
     void SaveGame()
     {

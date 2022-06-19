@@ -76,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.gameIsPaused)
         {
+            
             if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
             {
 
@@ -91,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         if (camera1.activeInHierarchy && !dead)
         {
             Movement();
+            Rotating();
             Grounded();
         }
     }
@@ -151,26 +153,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        // creamos una variable vector2 para guardar el input de flechas < > y ^u
-        Vector2 input = new Vector2(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical"));
+        float inputY = Input.GetAxis("Vertical");
 
-        // normalizamos el vector
-        input = input.normalized;
 
+      
 
         //-> NO VALE PQ SINO NO SE HUNDE
         //velocidad constante hacia delante con flecha alante * speed 
         //rig.velocity = ((this.transform.forward * input.y)  * speed * Time.deltaTime);
 
         //No necesitamos Time.deltaTime porque esta en FixedUpdate
-        rig.AddForce((this.transform.forward * input.y) * speed );
-        //Rotacion simple con transform
-        transform.Rotate((Vector3.up * input.x) * turnSpeed );
+        rig.AddForce((this.transform.forward * inputY) * speed);
 
         // WALKING ANIMATION -> animator
-        if (input.y !=0)
+        if (inputY != 0)
         {
             GetComponent<Animator>().SetBool("IsWalking", true);
         }
@@ -180,7 +176,33 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-    
+
+    }
+
+    void Rotating()
+    {
+        float inputX = Input.GetAxis("Horizontal");
+
+        //Rotacion simple con transform
+        transform.Rotate((Vector3.up * inputX) * turnSpeed);
+      
+
+  
+        if (inputX > 0)
+        {
+            GetComponent<Animator>().SetBool("IsRotatingRight", true);
+            // GetComponent<Animator>().SetBool("IsRotatingLeft", false);
+        }
+        else if (inputX < 0)
+        {
+            GetComponent<Animator>().SetBool("IsRotatingLeft", true);
+        }
+        else { GetComponent<Animator>().SetBool("IsRotatingRight", false);
+            GetComponent<Animator>().SetBool("IsRotatingLeft", false);
+        }
+       
+      
+
     }
     private void CameraControl()
     {
