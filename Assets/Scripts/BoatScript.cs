@@ -12,25 +12,33 @@ public class BoatScript : MonoBehaviour
     [SerializeField] GameObject boat;
     [SerializeField] GameObject player;
 
-    bool startGo=false;
-   
+    public ParticleSystem lightParticles;
 
+
+    bool startGo=false;
+
+   
     private void OnCollisionEnter(Collision collision)
     {
-        //si la colision es con character
         if (collision.collider.name.Contains("Character"))
         {
-            if (CanvasManager.gm.boatCoin)
-            {
-                print("tengo ficha barco");
-                startGo = true;
-               
-                CanvasManager.gm.boatCoin = false;
+
+             if(BoatInfoTent.canUse)
+              {
+                  startGo = true;
+                  CanvasManager.gm.boatCoin = false;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                PlayerMovement.pm.allowMovement = false;
 
             }
-            else { 
-                
-                print("no tienes la ficha barco"); }
+              else
+              {
+
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                print("Boat on arrival");
+              }
+
+
         }
         if (collision.collider.name.Contains("Destino"))
         {
@@ -57,17 +65,36 @@ public class BoatScript : MonoBehaviour
             ControlColliderDestino();
         }
 
+      
+       
+        if (BoatInfoTent.canUse)
+        {
+
+            lightParticles.gameObject.SetActive(true);
+            
+            print("tengoFichaBarco");
+            
+        }
+        else { 
+            lightParticles.gameObject.SetActive(false);
+        }
+
+        
+
     }
 
     public void SoltarBarco(Collider col)
     {
-        //player.transform.SetParent(null, true);
+        PlayerMovement.pm.allowMovement = true;
         transform.DetachChildren();
-        //player.transform.parent = null;
+
         print("llegue a la islaVuelta");
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         col.GetComponent<BoxCollider>().enabled = false;
         startGo = false;
+
+        BoatInfoTent.canUse = false;
+
 
     }
 
@@ -91,13 +118,13 @@ public class BoatScript : MonoBehaviour
 
     public void ControlColliderDestino()
     {
-        if (destino.gameObject.GetComponent<Collider>().enabled==false)
+        if (destino.gameObject.GetComponent<Collider>().enabled==false && BoatInfoTent.canUse)
         {
             destinoVuelta.gameObject.GetComponent<Collider>().enabled = true;
             BackBoat();
 
         }
-        else if (destinoVuelta.gameObject.GetComponent<Collider>().enabled == false)
+        else if (destinoVuelta.gameObject.GetComponent<Collider>().enabled == false && BoatInfoTent.canUse)
         {
             destino.gameObject.GetComponent<Collider>().enabled = true;
             MoveBoat();

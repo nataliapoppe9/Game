@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject canvasPantalla;
     [SerializeField] GameObject hint;
 
-    int random;
+    int rand;
+    int doneRandom;
 
     [SerializeField] List<string> hints;
     private void Start()
@@ -24,25 +25,35 @@ public class GameManager : MonoBehaviour
         hints.Add("Jump on mushrooms");
         hints.Add("Save Game from Time 2 Time");
         hints.Add("S-Coins will take you far");
-        hints.Add("Comming back costs more than Going");
+        hints.Add("Each journey is different");
         hints.Add("Don't leave anything behind..");
-        hints.Add("Do you have your Boat Token ready?");
-        hints.Add("BoatTimetable stored on Nintendo");
-        //RECUERDA: hacer que el barco salga solo cada minuto durante medio minuto
-        hints.Add("Check your backpack");
+        hints.Add("Is your Boat Token ready?");
+        hints.Add("Boat Time info at Tent");
+        hints.Add("Check backpack");
         hints.Add("Amonites seem friendly, don't they?");
 
-        random = Random.Range(0, hints.Count);
+
         
-        hint.GetComponent<Text>().text=hints[random] ; 
-            //""text=hints[random];
+        rand = Random.Range(0, hints.Count);
+        hint.GetComponent<Text>().text=hints[rand] ; 
+            
 
     }
 
     public void ChangeHint()
     {
-        random = Random.Range(0, hints.Count);
-        hint.GetComponent<Text>().text = hints[random];
+        doneRandom = rand;
+        rand = Random.Range(0, hints.Count);
+        print("doneRand"+doneRandom+"rand"+rand);
+
+        while (rand==doneRandom)
+        {
+            rand = Random.Range(0, hints.Count);
+        }
+
+        print("AFTERCHECK");
+        print(doneRandom + "   " + rand);
+        hint.GetComponent<Text>().text = hints[rand];
     }
     
     public void QuitGame()

@@ -26,6 +26,8 @@ public class CanvasManager : MonoBehaviour
     public int numCoins = 0;
     public bool boatCoin = false;
     Text textCoins;
+
+    [SerializeField] Transform particles, boat;
     private void Start()
     {
         //cojo este script para poder ser accedido desde otro
@@ -93,6 +95,8 @@ public class CanvasManager : MonoBehaviour
         boatCoin = true;
         print("boatcoin");
 
+        particles.parent = boat;
+
         //reproduce el audio
         audioSource.clip = audioCoin;
         print("Audio: " + audioCoin.name);
@@ -101,12 +105,12 @@ public class CanvasManager : MonoBehaviour
     }
 
 
-    // INICIALIZAR VECTOR AYUDAAAA
     public void GameOverPanel()
     {
         GameObject[] newSnowFlakes = new GameObject[15];
         panelGameOver.SetActive(true);
         mochilaButton.SetActive(false);
+
         
         for (int i = 0; i < 15; i++)
         {

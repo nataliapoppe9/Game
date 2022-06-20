@@ -5,7 +5,19 @@ using UnityEngine.UI;
 public class BoatInfoTent : MonoBehaviour
 {
 
-    public bool canUse;
+    public static bool canUse=false;
+    [SerializeField] Transform player,lightPart;
+    
+
+    public static float TimerLeft;
+    //public bool TimerOn = false;
+
+    public Text TimerTxt;
+
+    private void Start()
+    {
+       // StartCoroutine(CanUseBoat());
+    }
 
     [SerializeField] GameObject panelBoat,canvasPantalla;
     private void OnCollisionEnter(Collision collision)
@@ -16,57 +28,88 @@ public class BoatInfoTent : MonoBehaviour
             canvasPantalla.SetActive(false);
             if (!CanvasManager.gm.boatCoin)
             {
-                //panelBoat.SetActive(true);
+                panelBoat.transform.GetChild(0).gameObject.SetActive(true);
+                panelBoat.transform.GetChild(1).gameObject.SetActive(false);
+                panelBoat.transform.GetChild(2).gameObject.SetActive(false);
             }
 
             if (CanvasManager.gm.boatCoin)
             {
-
-                panelBoat.transform.GetChild(0).gameObject.SetActive(false);
-                panelBoat.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
-
                 if (canUse)
                 {
-                    panelBoat.transform.GetChild(2).gameObject.SetActive(true);
-                    //PrintSec();
-
-                    // Invoke o DObleCorrutina o que para mostrar los segundos que quedan?
+                    panelBoat.transform.GetChild(0).gameObject.SetActive(false);
+                    panelBoat.transform.GetChild(1).gameObject.SetActive(true);
+                    panelBoat.transform.GetChild(2).gameObject.SetActive(false);
                 }
-                if (!canUse)
+                else if(!canUse)
                 {
-                    panelBoat.transform.GetChild(3).gameObject.SetActive(true);
-                   // PrintSec();
+                    panelBoat.transform.GetChild(0).gameObject.SetActive(false);
+                    panelBoat.transform.GetChild(1).gameObject.SetActive(false);
+                    panelBoat.transform.GetChild(2).gameObject.SetActive(true);
                 }
+               
             }
         }
     }
 
     private void Update()
     {
-        StartCoroutine(CantUseBoat());
-       
+        if (CanvasManager.gm.boatCoin)
+        {
+            print(canUse+", "+TimerLeft);
+            if (!canUse)
+            {
+                TimerLeft -= Time.deltaTime;
+                if (TimerLeft > 0)
+                {
+                    panelBoat.transform.GetChild(2).gameObject.SetActive(true);
+                    panelBoat.transform.GetChild(1).gameObject.SetActive(false);
+                    
+                    UpdateTimer(TimerLeft);
+                }
+                else
+                {
+                    print("Time is UP");
+                    TimerLeft = 30;
+                    canUse = true;
+                }
+            }
+            else if (canUse)
+            {
+                TimerLeft -= Time.deltaTime;
+                if (TimerLeft > 0)
+                {
+                    panelBoat.transform.GetChild(2).gameObject.SetActive(false);
+                    panelBoat.transform.GetChild(1).gameObject.SetActive(true);
+
+                    UpdateTimer(TimerLeft);
+                }
+                else
+                {
+                    print("Time is UP");
+                    TimerLeft = 30;
+                    canUse = false;
+                }
+            }
+          
+        }
     }
 
-    IEnumerator CanUseBoat()
+    void UpdateTimer(float currentTime)
     {
-        canUse = true;
-        yield return new WaitForSeconds(30);
-        
+        currentTime += 1;
+
+        float seconds = Mathf.FloorToInt(currentTime % 60);
+
+        TimerTxt.text = seconds.ToString("00");
     }
 
-    IEnumerator CantUseBoat()
+    public void MoveToBoat()
     {
-        canUse = false;
-        yield return new WaitForSeconds(30);
-
+        player.position = lightPart.position;
+        GameManager.gm.ResumeGame(panelBoat);
     }
+   
 
-    IEnumerator PrintSec()
-    {
-        panelBoat.transform.GetChild(2).transform.GetChild(1).GetComponent<Text>().text = Time.deltaTime.ToString("00");
 
-        panelBoat.transform.GetChild(3).transform.GetChild(1).GetComponent<Text>().text = Time.deltaTime.ToString("00");
-        yield return new WaitForSeconds(1);
-        
-    }
 }

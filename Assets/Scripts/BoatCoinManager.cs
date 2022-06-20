@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoatCoinManager : MonoBehaviour
 {
+
+    
     private void FixedUpdate()
     {
        // transform.Rotate(transform.up);
@@ -16,7 +18,7 @@ public class BoatCoinManager : MonoBehaviour
         if ((collision.gameObject.name.Contains("Character")))
         {
 
-
+           
             // print("colisionCOIN");
 
             //desactivo el collider ¿hace falta?Nose

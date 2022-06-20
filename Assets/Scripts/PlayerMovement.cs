@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float setaForce;
     Rigidbody rig;
 
+    public bool allowMovement = true;
 
     public bool platform = false;
     bool dead = false;
@@ -89,10 +90,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate() // Es constante. Va bien para el movimiento porque es cada X. No para imput pq quizas te saltes el frame en el q estaba pulsando
     {
-        if (camera1.activeInHierarchy && !dead)
+        if (camera1.activeInHierarchy && !dead )
         {
-            Movement();
-            Rotating();
+            if (allowMovement)
+            {
+                Movement();
+                Rotating();
+            }
             Grounded();
         }
     }
