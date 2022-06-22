@@ -49,6 +49,11 @@ public class CanvasManager : MonoBehaviour
             print(numCoins);
         }
 
+        if (PlayerPrefs.HasKey("BoatBool")&& ChangeScene.cs.loaded == true)
+        {
+            boatCoin = (PlayerPrefs.GetInt("BoatBool") != 0);
+        }
+
     }
 
     

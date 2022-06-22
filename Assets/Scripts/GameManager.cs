@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,29 @@ public class GameManager : MonoBehaviour
     int doneRandom;
 
     [SerializeField] List<string> hints;
+
+    public PlayableDirector timeLineEntry;
+    bool enabled;
+
+    //REVISARLO
+    //AÑADIR UNA SEÑAL EN TIMELINE PARA ENABLED == FALSE CUADNO ACABA
+    private void Awake()
+    {
+        while (timeLineEntry.enabled==true) {
+            if (Input.GetKey(KeyCode.Return) && enabled)
+            {
+                timeLineEntry.Stop();
+                enabled = false;
+            }
+            if (Input.GetKey(KeyCode.Return) && !enabled)
+            {
+                timeLineEntry.Play();
+                enabled = true;
+            }
+        }
+    }
+
+   
     private void Start()
     {
         gm = this;
@@ -117,6 +142,7 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayerMovement.pm.platform)
         {
+            
             PlayerPrefs.SetInt("numCoins", CanvasManager.gm.numCoins);
             PlayerPrefs.SetFloat("PositionX", PlayerMovement.pm.transform.position.x);
             PlayerPrefs.SetFloat("PositionY", PlayerMovement.pm.transform.position.y);
@@ -124,8 +150,14 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("RotX", PlayerMovement.pm.transform.rotation.eulerAngles.x);
             PlayerPrefs.SetFloat("RotY", PlayerMovement.pm.transform.rotation.eulerAngles.y);
             PlayerPrefs.SetFloat("RotZ", PlayerMovement.pm.transform.rotation.eulerAngles.z);
+            PlayerPrefs.SetInt("BoatBool", (CanvasManager.gm.boatCoin ? 1 : 0));
+
+            // PlayerPrefs.SetInt("CountGota", GotaManager.gotm.countMoves);
+
+
             // PlayerPrefs.Save(); No hace falta
             print("GAME SAVED");
+
         }
     }
 

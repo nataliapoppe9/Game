@@ -5,22 +5,34 @@ using UnityEngine.UI;
 
 public class GotaManager : MonoBehaviour
 {
+    public static GotaManager gotm;
     //Acceso a PlayerMovement para mover al personaje a la vez que el plano hielo
-    public static PlayerMovement gm;
+    //public static PlayerMovement gm;
 
     public int countMoves;
 
     [SerializeField] GameObject canvasPlatformGo, canvasPlatformGoBack;
     Transform sueloGota;
+   
 
     [SerializeField] GameObject canvasGota;
 
+
     private void Start()
     {
+
         sueloGota = GetComponent<Transform>();
         countMoves = 0;
+
+        if (PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaZ") && ChangeScene.cs.loaded == true)
+        {
+           // print(PlayerPrefs.GetFloat("GotaX") + " " + PlayerPrefs.GetFloat("GotaY") + " " + PlayerPrefs.GetFloat("GotaZ"));
+            sueloGota.position = new Vector3(PlayerPrefs.GetFloat("GotaX"), PlayerPrefs.GetFloat("GotaY"), PlayerPrefs.GetFloat("GotaZ"));
+
+           // countMoves = PlayerPrefs.GetInt("CountGota");
+           
+        }
     }
-  
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -35,18 +47,21 @@ public class GotaManager : MonoBehaviour
 
                 canvasGota.transform.GetChild(2).GetComponent<Text>().text = "Use platform:";
                 canvasGota.transform.GetChild(3).gameObject.SetActive(true);
-
             }
 
             else if (countMoves %2!= 0)
             {
                 canvasPlatformGoBack.SetActive(true);
 
-
+               
                 canvasGota.transform.GetChild(2).GetComponent<Text>().text = "Use Platform";
                 canvasGota.transform.GetChild(3).gameObject.SetActive(false);
-
+                
             }
+
+            PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
+            PlayerPrefs.SetFloat("GotaY", sueloGota.position.y);
+            PlayerPrefs.SetFloat("GotaZ", sueloGota.position.z);
 
         }
     }
@@ -93,6 +108,7 @@ public class GotaManager : MonoBehaviour
             PlayerMovement.pm.platform = true;
             canvasPlatformGo.SetActive(false);
             countMoves++;
+           
         }
         else
         {
@@ -105,7 +121,7 @@ public class GotaManager : MonoBehaviour
 
     }
 
-    public void ReturnPlatform()
+   /* public void ReturnPlatform()
     {
         if (CanvasManager.gm.numCoins >= 11)
         {
@@ -125,7 +141,7 @@ public class GotaManager : MonoBehaviour
 
     }
 
-  /*  public void MovePlat()
+    public void MovePlat()
     {
         for (int i = 0; i < 30; i++)
         {
@@ -141,7 +157,11 @@ public class GotaManager : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
             yield return new WaitForSeconds(0.07f);
         }
-        
+
+        PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
+        PlayerPrefs.SetFloat("GotaY", sueloGota.position.y);
+        PlayerPrefs.SetFloat("GotaZ", sueloGota.position.z);
+
     }
 
     IEnumerator GoingBack()
@@ -152,15 +172,21 @@ public class GotaManager : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
             yield return new WaitForSeconds(0.07f);
         }
+
+        PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
+        PlayerPrefs.SetFloat("GotaY", sueloGota.position.y);
+        PlayerPrefs.SetFloat("GotaZ", sueloGota.position.z);
+
     }
-    public void GoBack()
+  /*  public void GoBack()
     {
 
         for(int i=0; i< 80; i++)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
         }
-    }
+        
+    }*/
 
 
     public void ExitText()

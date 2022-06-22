@@ -9,21 +9,32 @@ public class BoatScript : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Transform destino,destinoVuelta;
 
-    [SerializeField] GameObject boat;
+ 
     [SerializeField] GameObject player;
 
     public ParticleSystem lightParticles;
 
+   
 
     bool startGo=false;
 
-   
+
+    private void Start()
+    {
+        if(PlayerPrefs.HasKey("BoatX") && PlayerPrefs.HasKey("Boaty") && PlayerPrefs.HasKey("Boatz") && ChangeScene.cs.loaded)
+        {
+            print("positionBoatLoaded");
+            transform.position = new Vector3(PlayerPrefs.GetFloat("BoatX"),PlayerPrefs.GetFloat("BoatY"), PlayerPrefs.GetFloat("BoatZ"));
+               
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.name.Contains("Character"))
         {
-
-             if(BoatInfoTent.canUse)
+            
+            if (BoatInfoTent.canUse)
               {
                   startGo = true;
                   CanvasManager.gm.boatCoin = false;
@@ -44,17 +55,26 @@ public class BoatScript : MonoBehaviour
         {
 
             SoltarBarco(collision.collider);
-
+            SaveBoat(gameObject);
 
         }
         if (collision.collider.name.Contains("DestinoVuelta"))
         {
 
             SoltarBarco(collision.collider);
-
+            SaveBoat(gameObject);
         }
-    }
 
+        
+    }
+    
+    public void SaveBoat(GameObject boat)
+    {
+        print("saved Boat");
+        PlayerPrefs.SetFloat("BoatX", boat.transform.position.x);
+        PlayerPrefs.SetFloat("BoatY", boat.transform.position.y);
+        PlayerPrefs.SetFloat("BoatZ", boat.transform.position.z);
+    }
    
     private void Update()
     {
@@ -129,6 +149,9 @@ public class BoatScript : MonoBehaviour
             destino.gameObject.GetComponent<Collider>().enabled = true;
             MoveBoat();
         }
+
+        
+
     }
 
 

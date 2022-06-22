@@ -54,23 +54,28 @@ public class PlayerMovement : MonoBehaviour
         //Inicializo el script para que sea acesible por CanvasManager
         pm = this;
 
-
+        RecuperarPosicion();
+   
+      
         
+    }
+
+    void RecuperarPosicion()
+    {
+
         //Recuperar posicion cuando Load Game 
 
 
-      if (ChangeScene.cs.loaded)
+        if (ChangeScene.cs.loaded)
         {
             print("positionLoad");
             if (PlayerPrefs.HasKey("PositionX") && PlayerPrefs.HasKey("PositionY") && PlayerPrefs.HasKey("PositionZ"))
             {
-                print(PlayerPrefs.GetFloat("PositionX") + " " + PlayerPrefs.GetFloat("PositionY") + " " + PlayerPrefs.GetFloat("PositionZ"));
+               // print(PlayerPrefs.GetFloat("PositionX") + " " + PlayerPrefs.GetFloat("PositionY") + " " + PlayerPrefs.GetFloat("PositionZ"));
                 transform.position = new Vector3(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"), PlayerPrefs.GetFloat("PositionZ"));
-                transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("RotX"), PlayerPrefs.GetFloat("RotY"), PlayerPrefs.GetFloat("RotZ")) ;
+                transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("RotX"), PlayerPrefs.GetFloat("RotY"), PlayerPrefs.GetFloat("RotZ"));
             }
         }
-      
-        
     }
 
     private void Update() // cada frame. Atento a los imput
@@ -95,8 +100,9 @@ public class PlayerMovement : MonoBehaviour
             if (allowMovement)
             {
                 Movement();
-                Rotating();
+                
             }
+            Rotating();
             Grounded();
         }
     }

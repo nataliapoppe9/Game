@@ -21,6 +21,8 @@ public class Amonite : MonoBehaviour
 
     public GameObject TimeLine;
 
+    
+
     bool start;
     public List<int> startedNum;
     private void Start()
@@ -29,6 +31,8 @@ public class Amonite : MonoBehaviour
        
         am = this;
         start = false;
+
+
        
     }
 
@@ -71,6 +75,8 @@ public class Amonite : MonoBehaviour
         start = true;
        // startNum = j;
         startedNum.Add(j);
+
+
         
     }
    public void OneFollowsPlayer(int i)

@@ -17,11 +17,7 @@ public class Nintendo : MonoBehaviour
     Animator anim;
     bool stopAnim = false;
 
-    //Camera with Gadget
-    //Camera
-    [SerializeField] GameObject camera1;
-    [SerializeField] GameObject cameraAguila;
-
+  
 
     void Start()
     {
@@ -74,11 +70,7 @@ public class Nintendo : MonoBehaviour
                 
     }
 
-    public void OnClickGadget()
-    {
-        camera1.SetActive(false);
-        cameraAguila.SetActive(true);
-    }
+
 
 
 }

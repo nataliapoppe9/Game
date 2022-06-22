@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class AmoniteForPrefab : MonoBehaviour
 {
+    Animator anim;
+
     [SerializeField] int numAmonitFollow=0;
-      private void OnCollisionEnter(Collision collision)
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+    private void OnCollisionEnter(Collision collision)
      {
         if (collision.gameObject.CompareTag("Player"))
         {
+            anim.SetTrigger("Start");
            // print("he colisionnado con amonite");
             switch (transform.name)
             {

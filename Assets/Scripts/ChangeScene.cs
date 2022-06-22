@@ -10,6 +10,10 @@ public class ChangeScene : MonoBehaviour
     // Funcion que llamo desde el panel de inicio con NewGame
     //Cuando llamo a la funcion en el boton del canvas, INTRODUZCO PARAMETRO nameScene alli
     public bool loaded=false;
+
+    
+
+
     private void Start()
     {
         cs = this;
@@ -24,6 +28,8 @@ public class ChangeScene : MonoBehaviour
     {
         loaded = true;
         SceneManager.LoadScene(nameMyScene);
-               
+
+       
+
     }
 }
