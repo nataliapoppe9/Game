@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-
-   
-
-
     private void Update()
     {
         transform.Rotate(transform.up);

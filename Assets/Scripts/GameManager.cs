@@ -20,27 +20,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<string> hints;
 
     public PlayableDirector timeLineEntry;
-    bool enabled;
+   
 
     //REVISARLO
     //AÑADIR UNA SEÑAL EN TIMELINE PARA ENABLED == FALSE CUADNO ACABA
-    private void Awake()
+   public void ControlEntryTL()
     {
-        while (timeLineEntry.enabled==true) {
-            if (Input.GetKey(KeyCode.Return) && enabled)
+        
+            if (Input.GetButton("Stop"))
             {
+                print("escape");
+
                 timeLineEntry.Stop();
-                enabled = false;
+                timeLineEntry.enabled = false;
             }
-            if (Input.GetKey(KeyCode.Return) && !enabled)
-            {
-                timeLineEntry.Play();
-                enabled = true;
-            }
-        }
+        
     }
 
-   
+    private void Update()
+    {
+         if (timeLineEntry.enabled == true)
+         { ControlEntryTL(); }
+
+    }
+
+
     private void Start()
     {
         gm = this;
@@ -52,10 +56,12 @@ public class GameManager : MonoBehaviour
         hints.Add("S-Coins will take you far");
         hints.Add("Each journey is different");
         hints.Add("Don't leave anything behind..");
-        hints.Add("Is your Boat Token ready?");
+        hints.Add("Boat Token ready?");
         hints.Add("Boat Time info at Tent");
         hints.Add("Check backpack");
         hints.Add("Amonites seem friendly, don't they?");
+        hints.Add("Is that a boat light?");
+        hints.Add("Gadget sale price: 20 S-coins");
 
 
         
@@ -92,6 +98,7 @@ public class GameManager : MonoBehaviour
         {
             print("paused");
             Time.timeScale = 0f;
+            ChangeHint();
             panelPause.SetActive(true);
             canvasPantalla.SetActive(false);
 

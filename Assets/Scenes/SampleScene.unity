@@ -7952,7 +7952,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1823704650}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SaveAplicationGame
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15750,6 +15750,7 @@ MonoBehaviour:
   container: {fileID: 798267715}
   itemPrefab: {fileID: 3268128696449336757, guid: 32348924d8fab9d41b6a2237d2b0a2c8, type: 3}
   obtainedSprites: 
+  disabled: []
 --- !u!114 &1823704649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15788,10 +15789,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelPause: {fileID: 1453765773}
   panelSaved: {fileID: 1759968677}
-  panelBoat: {fileID: 0}
+  panelBoat: {fileID: 725280499}
   canvasPantalla: {fileID: 387323815}
   hint: {fileID: 1004907718}
   hints: []
+  timeLineEntry: {fileID: 2121565087}
 --- !u!1 &1831182112
 GameObject:
   m_ObjectHideFlags: 3

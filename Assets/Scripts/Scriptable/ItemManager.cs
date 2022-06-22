@@ -15,6 +15,7 @@ public class ItemManager : MonoBehaviour
     public static ItemManager itemMan;
 
     public List<int> obtainedSprites;
+    public List<GameObject> disabled;
 
     private void Start()
     {
@@ -23,6 +24,14 @@ public class ItemManager : MonoBehaviour
 
         if (ChangeScene.cs.loaded)
         {
+            print("disable destroyed Items");
+
+            foreach(GameObject gameObj in disabled)
+            {
+                gameObj.SetActive(false);
+            }
+
+
             print("Loaded BackPack");
            
 
@@ -37,7 +46,7 @@ public class ItemManager : MonoBehaviour
 
 
                 //ERROR NO EXISTE ESE BUTTON
-                objeto.GetComponent<Button>().onClick.AddListener(() => Vender(i, objeto));
+                //objeto.GetComponent<Button>().onClick.AddListener(() => Vender(i, objeto));
             }          
         }
     }

@@ -60,6 +60,10 @@ public class Nintendo : MonoBehaviour
     public void DestroyGadget()
     {
         stopAnim = true;
+        //Save as Disabled for next load
+        ItemManager.itemMan.disabled.Add(gameObject);
+
+        //Delete
         Destroy(gameObject);
     }
 
