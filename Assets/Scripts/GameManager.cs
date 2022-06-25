@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour
     public PlayableDirector timeLineEntry;
    
 
-    //REVISARLO
-    //AÑADIR UNA SEÑAL EN TIMELINE PARA ENABLED == FALSE CUADNO ACABA
+    
    public void ControlEntryTL()
     {
         

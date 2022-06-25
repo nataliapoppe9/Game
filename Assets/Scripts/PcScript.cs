@@ -45,7 +45,7 @@ public class PcScript : MonoBehaviour
         }
     }
 
-    public void ParticulasPC()
+    public void ParticulasPC(GameObject shine)
     {
         
         //Iniciar particulas
@@ -55,9 +55,11 @@ public class PcScript : MonoBehaviour
 
     public void DestroyPC()
     {
+       
         stopAnim = true;
         print("destroy");
         ItemManager.itemMan.disabled.Add(gameObject);
         Destroy(this.gameObject);
+
     }
 }
