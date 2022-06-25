@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public static bool gameIsPaused;
 
     [SerializeField] GameObject panelPause, panelSaved, panelBoat;
-    [SerializeField] GameObject canvasPantalla;
+    public GameObject parachuteInfo;
+    public GameObject canvasPantalla;
     [SerializeField] GameObject hint;
 
     int rand;
@@ -106,7 +107,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
+    public void ParachuteYes()
+    {
+        if (CanvasManager.gm.numCoins < 20)
+        {
+            parachuteInfo.transform.GetChild(3).GetComponent<Text>().text = "You need 20 scoins";
+            parachuteInfo.transform.GetChild(4).GetComponent<Text>().text = CanvasManager.gm.numCoins.ToString() + "  is not enough";
+            parachuteInfo.transform.GetChild(4).GetComponent<Text>().color = Color.red;
+        }
+        else { print("go");
+
+            CanvasManager.gm.SubtractCoins(20);
+            PlayerMovement.pm.usingParachute = true;
+            Destroy(ParachutePrefab.ppm.gameObject);
+            Destroy(parachuteInfo);
+        }
+    }
+
+    public void ParachuteNo()
+    {
+        parachuteInfo.SetActive(false);
+        GameManager.gm.canvasPantalla.SetActive(true);
+    }
+
+
+
     public void ResumeGame(GameObject panel)
     {
         panel.SetActive(false);

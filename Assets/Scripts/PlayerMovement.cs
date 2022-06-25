@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rig;
 
     public bool allowMovement = true;
+    public bool usingParachute = false;
 
     public bool platform = false;
     bool dead = false;
@@ -83,17 +84,22 @@ public class PlayerMovement : MonoBehaviour
         if (!GameManager.gameIsPaused)
         {
             
-            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping && !usingParachute)
             {
 
                 Jump();
             }
-        
-        CameraControl();
+
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping && usingParachute)
+            {
+                ParachuteJump();
+            }
+
+                CameraControl();
         }
     }
-
-    private void FixedUpdate() // Es constante. Va bien para el movimiento porque es cada X. No para imput pq quizas te saltes el frame en el q estaba pulsando
+                               
+    private void FixedUpdate() // Es constante. Va bien para el movimiento porque es cada X. No para imput pq quizas te saltes el frame en el q estaba pulsando // Se para con deltaTime
     {
         if (camera1.activeInHierarchy && !dead )
         {
@@ -106,8 +112,8 @@ public class PlayerMovement : MonoBehaviour
             Grounded();
         }
     }
-  
-  
+
+
     /*
     //Funcion que se activa desde GotaManager
     //Cuando la gota colisiona conmigo se activa esta función en su update
@@ -126,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }*/
+
+  
 
     public void MovePlayerWithPlat()
     {
@@ -226,7 +234,16 @@ public class PlayerMovement : MonoBehaviour
         }
        
     }
-    
+
+    private void ParachuteJump()
+    {
+        //ParachutePrefab.ppm.UseParachute();
+        
+        gameObject.transform.GetChild(14).gameObject.SetActive(true);
+        rig.AddForce(transform.up * jumpForce * 5, ForceMode.Impulse);
+        isJumping = false;
+    }
+
     public void Jump()
     {
         //En cuanto salta, deja de poder saltar
@@ -266,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
         // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
         
-       // print(hit.collider.name + " " + distancia);
+        print(hit.collider.name + " " + distancia);
        
         
         //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
@@ -295,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
             animSeta.SetTrigger("GrowSeta");
            // CameraController.cc.CameraJump();
         }
-        else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua"))
+        else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && !usingParachute)
         {
 
             dead = true;
@@ -311,12 +328,14 @@ public class PlayerMovement : MonoBehaviour
                 Amonite.am.SpawnAmonite();
                 once = true;
             }
+
+          
         }
-       /* else if (hit.collider.name.Contains("ISLA3") && distancia < 32)
+        else if (hit.collider.name.Contains("ISLA3") && distancia < 32)
         {
-            // print("IslaBoat");
+            print("IslaBoat");
             IsJumpingToFalse();
-        }*/
+        }
         //else { print("no conozco el suelo"+ hit.collider.name + distancia); }
 
         //pinto el rayo en el editor
@@ -324,10 +343,19 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
-    //Sera llamada desde la animacion FLIP
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (usingParachute)
+        {
+            gameObject.transform.GetChild(14).gameObject.SetActive(false);
+            isJumping = false;
+        }
+    }
+
     public void IsJumpingToFalse()
     {
         isJumping = false;
+     
 
         //if (GameObject.Find("Cinematic TimeLine"))
         //{
