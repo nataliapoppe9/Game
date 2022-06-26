@@ -21,26 +21,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<string> hints;
 
     public PlayableDirector timeLineEntry;
-   
 
-    
-   public void ControlEntryTL()
+
+
+    public void ControlEntryTL()
     {
-        
-            if (Input.GetButton("Stop"))
-            {
-                print("escape");
 
-                timeLineEntry.Stop();
-                timeLineEntry.enabled = false;
-            }
-        
+        if (Input.GetButton("Stop"))
+        {
+            print("escape");
+
+            timeLineEntry.Stop();
+            timeLineEntry.enabled = false;
+        }
+
     }
 
     private void Update()
     {
-         if (timeLineEntry.enabled == true)
-         { ControlEntryTL(); }
+        if (timeLineEntry.enabled == true)
+        { ControlEntryTL(); }
 
     }
 
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         gm = this;
 
-        
+
 
         hints.Add("Jump on mushrooms");
         hints.Add("Save Game from Time 2 Time");
@@ -64,10 +64,10 @@ public class GameManager : MonoBehaviour
         hints.Add("Gadget sale price: 20 S-coins");
 
 
-        
+
         rand = Random.Range(0, hints.Count);
-        hint.GetComponent<Text>().text=hints[rand] ; 
-            
+        hint.GetComponent<Text>().text = hints[rand];
+
 
     }
 
@@ -75,9 +75,9 @@ public class GameManager : MonoBehaviour
     {
         doneRandom = rand;
         rand = Random.Range(0, hints.Count);
-        print("doneRand"+doneRandom+"rand"+rand);
+        print("doneRand" + doneRandom + "rand" + rand);
 
-        while (rand==doneRandom)
+        while (rand == doneRandom)
         {
             rand = Random.Range(0, hints.Count);
         }
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         print(doneRandom + "   " + rand);
         hint.GetComponent<Text>().text = hints[rand];
     }
-    
+
     public void QuitGame()
     {
         Application.Quit();
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
             canvasPantalla.SetActive(false);
 
             gameIsPaused = true;
-                 
+
         }
     }
 
@@ -115,7 +115,9 @@ public class GameManager : MonoBehaviour
             parachuteInfo.transform.GetChild(4).GetComponent<Text>().text = CanvasManager.gm.numCoins.ToString() + "  is not enough";
             parachuteInfo.transform.GetChild(4).GetComponent<Text>().color = Color.red;
         }
-        else { print("go");
+        else
+        {
+            print("go");
 
             CanvasManager.gm.SubtractCoins(20);
             PlayerMovement.pm.usingParachute = true;
@@ -140,8 +142,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-   
-   
+
+
 
     public void SaveAplicationGame()
     {
@@ -159,21 +161,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         yield return new WaitForSeconds(1);
         print("off");
-        
+
         panel.SetActive(false);
         canvasPantalla.SetActive(true);
-       
-       
+
+
 
     }
 
-    
+
 
     void SaveGame()
     {
         if (!PlayerMovement.pm.platform)
         {
-            
+
             PlayerPrefs.SetInt("numCoins", CanvasManager.gm.numCoins);
             PlayerPrefs.SetFloat("PositionX", PlayerMovement.pm.transform.position.x);
             PlayerPrefs.SetFloat("PositionY", PlayerMovement.pm.transform.position.y);

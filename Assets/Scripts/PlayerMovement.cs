@@ -318,6 +318,12 @@ public class PlayerMovement : MonoBehaviour
             dead = true;
             OnGameOverPlayer();
         }
+        else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && usingParachute&&distancia<66)
+        {
+
+            dead = true;
+            OnGameOverPlayer();
+        }
         else if (hit.collider.name.Contains("IslaBoat")&& distancia<34)
         {
            // print("IslaBoat");
@@ -336,6 +342,11 @@ public class PlayerMovement : MonoBehaviour
             print("IslaBoat");
             IsJumpingToFalse();
         }
+        else if (hit.collider.name.Contains("IslaAlto") && distancia < 27)
+        {
+            print("IslaAlto");
+            IsJumpingToFalse();
+        }
         //else { print("no conozco el suelo"+ hit.collider.name + distancia); }
 
         //pinto el rayo en el editor
@@ -345,10 +356,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (usingParachute)
         {
             gameObject.transform.GetChild(14).gameObject.SetActive(false);
-            isJumping = false;
+         
         }
     }
 
