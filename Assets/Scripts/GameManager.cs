@@ -185,6 +185,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("RotZ", PlayerMovement.pm.transform.rotation.eulerAngles.z);
             PlayerPrefs.SetInt("BoatBool", (CanvasManager.gm.boatCoin ? 1 : 0));
 
+            PlayerPrefs.SetInt("AmonitesQMeSiguen", Amonite.am.startedNum.Count);
+
             // PlayerPrefs.SetInt("CountGota", GotaManager.gotm.countMoves);
 
 

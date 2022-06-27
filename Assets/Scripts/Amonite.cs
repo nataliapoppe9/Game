@@ -23,7 +23,7 @@ public class Amonite : MonoBehaviour
 
     
 
-    bool start;
+    public bool start;
     public List<int> startedNum;
     private void Start()
     {
@@ -75,7 +75,6 @@ public class Amonite : MonoBehaviour
         start = true;
        // startNum = j;
         startedNum.Add(j);
-
 
         
     }

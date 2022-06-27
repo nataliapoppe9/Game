@@ -12,6 +12,7 @@ public class ForceField : MonoBehaviour
 
     public PlayableDirector timeLineForce;
 
+    bool forceDesact;
 
     Animator anim;
 
@@ -44,6 +45,9 @@ public class ForceField : MonoBehaviour
 
         timeLineForce.gameObject.SetActive(true);
         timeLineForce.Play();
+
+        PlayerPrefs.SetInt("FFDesact", (true ? 1 : 0));
+
     }
 
     void NeedAmonites()

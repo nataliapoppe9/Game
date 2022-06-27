@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ItemManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ItemManager : MonoBehaviour
     public ItemSprite[] items;
     public Transform container;
     public GameObject itemPrefab;
+
+    [SerializeField] GameObject FF;
     
 
     public static ItemManager itemMan;
@@ -24,6 +27,24 @@ public class ItemManager : MonoBehaviour
 
         if (ChangeScene.cs.loaded)
         {
+            if (PlayerPrefs.GetInt("Once") == 1) 
+            {
+                Amonite.am.SpawnAmonite();
+                for(int i=0; i<PlayerPrefs.GetInt("AmonitesQMeSiguen"); i++)
+                {
+                    Amonite.am.start = true;
+                    Amonite.am.OneFollowsPlayer(i);
+                }
+            }
+
+
+
+            if (PlayerPrefs.GetInt("FFDesact")==1)
+            {
+                FF.SetActive(false);
+            }
+
+
             print("disable destroyed Items");
 
             foreach(GameObject gameObj in disabled)
@@ -44,21 +65,10 @@ public class ItemManager : MonoBehaviour
                 objeto.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
                 objeto.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = items[i].priceGadget.ToString();
 
-
-                //ERROR NO EXISTE ESE BUTTON
-                //objeto.GetComponent<Button>().onClick.AddListener(() => Vender(i, objeto));
             }          
         }
     }
 
-    // NO SE SI ESTA BIEN
-    public void Vender(int i, GameObject obj)
-    {
-        CanvasManager.gm.numCoins += items[i].priceGadget; // incremento mi saldo con lo que he vendido
-        obtainedSprites.Remove(i);
-       
-        Destroy(obj);
-    }
 
 
     public void SpriteCreator(int i)
@@ -70,6 +80,11 @@ public class ItemManager : MonoBehaviour
         ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
         ItemClone.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = items[i].priceGadget.ToString();
         obtainedSprites.Add(i);
-        
+
+        if (i == 0)
+        {
+            ItemClone.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Game"));
+        }
+
     }
 }

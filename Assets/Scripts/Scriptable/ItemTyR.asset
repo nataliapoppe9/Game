@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e7f7a8ba807a7498e00f93f0b45030, type: 3}
   m_Name: ItemTyR
   m_EditorClassIdentifier: 
-  nombreGadget: Ext. Hardware
-  detailsGadget: Periph.
+  nombreGadget: KeyBoard
+  detailsGadget: 
   priceGadget: 0
   imageGadget: {fileID: 21300000, guid: bf8656a567c7f2b40afd49b5f9e14ead, type: 3}

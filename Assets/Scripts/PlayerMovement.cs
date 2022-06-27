@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public bool platform = false;
     bool dead = false;
 
+    
+
     //Camera
     [SerializeField] GameObject camera1;
     [SerializeField] GameObject cameraAguila;
@@ -333,6 +335,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Amonite.am.SpawnAmonite();
                 once = true;
+                PlayerPrefs.SetInt("Once", (once ? 1 : 0));
             }
 
           
