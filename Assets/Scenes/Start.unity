@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &199912874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 199912876}
+  - component: {fileID: 199912875}
+  m_Layer: 0
+  m_Name: LoadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &199912875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199912874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc46ccdaeee7fa4492733f25a40863a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loaded: 0
+--- !u!4 &199912876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199912874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1920, y: 1080, z: -26.155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &290463556 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8911286157442319181, guid: 133955f3f6ee9e24690abaa1c9c68901, type: 3}
@@ -228,6 +272,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1209311882}
     m_Modifications:
+    - target: {fileID: 4789789292768269104, guid: 7a8cfa07d74960b43940aadb1d7b725a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 199912875}
+    - target: {fileID: 4789789292768269104, guid: 7a8cfa07d74960b43940aadb1d7b725a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMyScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4789789292768269105, guid: 7a8cfa07d74960b43940aadb1d7b725a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -316,7 +368,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonLG
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4789789292768269069, guid: 7a8cfa07d74960b43940aadb1d7b725a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7a8cfa07d74960b43940aadb1d7b725a, type: 3}
 --- !u!224 &1061014999 stripped
 RectTransform:
@@ -704,11 +757,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 556658972522064521, guid: 9f71acdaa09e5c9489b0314309d09896, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 199912875}
+    - target: {fileID: 556658972522064521, guid: 9f71acdaa09e5c9489b0314309d09896, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewScene
+      objectReference: {fileID: 0}
     - target: {fileID: 556658972522064535, guid: 9f71acdaa09e5c9489b0314309d09896, type: 3}
       propertyPath: m_Name
       value: ButtonNG
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 556658972522064524, guid: 9f71acdaa09e5c9489b0314309d09896, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f71acdaa09e5c9489b0314309d09896, type: 3}
 --- !u!1001 &8911286157193813001
 PrefabInstance:

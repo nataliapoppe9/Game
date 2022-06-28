@@ -27,7 +27,7 @@ public class ItemManager : MonoBehaviour
 
         if (ChangeScene.cs.loaded)
         {
-            if (PlayerPrefs.GetInt("Once") == 1) 
+           /* if (PlayerPrefs.GetInt("Once") == 1) 
             {
                 Amonite.am.SpawnAmonite();
                 for(int i=0; i<PlayerPrefs.GetInt("AmonitesQMeSiguen"); i++)
@@ -43,7 +43,7 @@ public class ItemManager : MonoBehaviour
             {
                 FF.SetActive(false);
             }
-
+           */
 
             print("disable destroyed Items");
 

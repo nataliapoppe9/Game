@@ -86,7 +86,7 @@ public class Amonite : MonoBehaviour
         agent.GetComponent<Collider>().enabled = false;
     }
 
-    void AllFollowPlayer()
+   /* void AllFollowPlayer()
     {
         //NO LO ESTOY USANDO
 
@@ -104,8 +104,8 @@ public class Amonite : MonoBehaviour
                 agent= item.GetComponent<NavMeshAgent>();
                 agent.transform.LookAt(-1*(player.transform.position));
                 agent.SetDestination(player.position);
-            }*/
-    }
+            }
+    }*/
 
    public void MoveAroundForce(Transform forceField)
     {
