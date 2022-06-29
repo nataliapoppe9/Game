@@ -5821,6 +5821,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &652193664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652193659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370db39ed8b1d244ab1d711f4605014c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &652475898
 GameObject:
   m_ObjectHideFlags: 0
@@ -6742,6 +6754,18 @@ CapsuleCollider:
   m_Height: 3.4992876
   m_Direction: 1
   m_Center: {x: -0.10975188, y: 0.3071982, z: 0.0051060324}
+--- !u!114 &718539029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718539025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370db39ed8b1d244ab1d711f4605014c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &718539030
 Animator:
   serializedVersion: 3
@@ -8871,7 +8895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0.9977813, z: -0, w: 0.06657753}
-  m_LocalPosition: {x: -72.980865, y: -28.410793, z: 48.83008}
+  m_LocalPosition: {x: -70.980865, y: -28.410793, z: 51.83008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1451968944}
@@ -15894,6 +15918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18135edfee5791b42b90bf3d199064b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGravity: -5
   speed: 20
   turnSpeed: 1
   turnCamSpeed: 0.5
@@ -15961,6 +15986,23 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1699390869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6839052951108667461, guid: 7208062d35d26b24d9031023923aa6c5, type: 3}
+  m_PrefabInstance: {fileID: 1920264108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1699390870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699390869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370db39ed8b1d244ab1d711f4605014c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1709542676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16434,7 +16476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780320381}
   m_LocalRotation: {x: -0, y: -0.9476424, z: -0, w: -0.31933364}
-  m_LocalPosition: {x: -72.980865, y: -28.410793, z: 48.83008}
+  m_LocalPosition: {x: -70.980865, y: -28.410793, z: 51.83008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1813483543}
@@ -30182,7 +30224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147909368931}
   m_LocalRotation: {x: -0, y: -0.9977813, z: -0, w: 0.06657753}
-  m_LocalPosition: {x: 267, y: 55.77, z: 321}
+  m_LocalPosition: {x: 269, y: 55.77, z: 324}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3705710148890679801}
@@ -30301,6 +30343,7 @@ GameObject:
   - component: {fileID: 919132148324885439}
   - component: {fileID: 919132148324885441}
   - component: {fileID: 919132148324885442}
+  - component: {fileID: 919132148324885443}
   m_Layer: 8
   m_Name: pcPantalla2
   m_TagString: Untagged
@@ -30368,6 +30411,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &919132148324885443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148324885438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370db39ed8b1d244ab1d711f4605014c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &977856906122270039
 MeshFilter:
   m_ObjectHideFlags: 0

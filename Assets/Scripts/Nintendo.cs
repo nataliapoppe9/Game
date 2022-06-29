@@ -52,7 +52,7 @@ public class Nintendo : MonoBehaviour
             //HELP!! Obtained para cuando guarde partida?
             obtained = true;
             print(obtained);
-
+           
           //  ParachutePrefab.ppm.ParachuteCheck();
         }
     }

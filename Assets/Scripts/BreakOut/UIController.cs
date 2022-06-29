@@ -29,7 +29,9 @@ public class UIController : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+      //  ChangeScene.cs.LoadMyScene("SampleScene");
+        SceneManager.LoadScene("SampleScene");
+        
     }
 
     public void UpdateUILives(byte currentLives)
