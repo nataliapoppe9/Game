@@ -24,6 +24,8 @@ public class TyRscript : MonoBehaviour
 
             //ACTIVAR ANIMACION 
             anim.SetTrigger("getTeclado");
+
+           // ParachutePrefab.ppm.ParachuteCheck();
         }
     }
 

@@ -53,6 +53,7 @@ public class Nintendo : MonoBehaviour
             obtained = true;
             print(obtained);
 
+          //  ParachutePrefab.ppm.ParachuteCheck();
         }
     }
 

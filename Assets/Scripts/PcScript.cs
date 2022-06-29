@@ -42,6 +42,8 @@ public class PcScript : MonoBehaviour
 
             //ACTIVAR ANIMACION 
             anim.SetTrigger("getPC");
+
+          //  ParachutePrefab.ppm.ParachuteCheck();
         }
     }
 

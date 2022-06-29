@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public static bool gameIsPaused;
 
-    [SerializeField] GameObject panelPause, panelSaved, panelBoat;
+
+    [SerializeField] GameObject panelPause, panelSaved, panelBoat, canvasStart, canvasGame;
     public GameObject parachuteInfo;
     public GameObject canvasPantalla;
     [SerializeField] GameObject hint;
@@ -24,31 +25,11 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void ControlEntryTL()
-    {
-
-        if (Input.GetButton("Stop"))
-        {
-            print("escape");
-
-            timeLineEntry.Stop();
-            timeLineEntry.enabled = false;
-        }
-
-    }
-
-    private void Update()
-    {
-        if (timeLineEntry.enabled == true)
-        { ControlEntryTL(); }
-
-    }
-
-
     private void Start()
     {
         gm = this;
 
+        if (ChangeScene.cs.loaded) { ControlEntryTL(); }
 
 
         hints.Add("Jump on mushrooms");
@@ -71,6 +52,33 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ControlEntryTL()
+    {
+        print("escape");
+
+        timeLineEntry.Stop();
+        timeLineEntry.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (timeLineEntry.enabled == true && Input.anyKey)
+        { ControlEntryTL(); }
+
+    }
+
+    public void NewGame()
+    {
+        canvasStart.SetActive(false);
+        canvasGame.SetActive(true);
+    }
+
+    public void LoadGame()
+    {
+        NewGame();
+       // loaded = true;
+    }
+
     public void ChangeHint()
     {
         doneRandom = rand;
@@ -82,8 +90,8 @@ public class GameManager : MonoBehaviour
             rand = Random.Range(0, hints.Count);
         }
 
-        print("AFTERCHECK");
-        print(doneRandom + "   " + rand);
+        print("changeHint in Pause");
+        //print(doneRandom + "   " + rand);
         hint.GetComponent<Text>().text = hints[rand];
     }
 
@@ -189,7 +197,7 @@ public class GameManager : MonoBehaviour
 
             // PlayerPrefs.SetInt("CountGota", GotaManager.gotm.countMoves);
 
-
+            PlayerPrefs.SetInt("SavedGame", (true ? 1 : 0));
             // PlayerPrefs.Save(); No hace falta
             print("GAME SAVED");
 

@@ -9,27 +9,41 @@ public class ChangeScene : MonoBehaviour
 
     // Funcion que llamo desde el panel de inicio con NewGame
     //Cuando llamo a la funcion en el boton del canvas, INTRODUZCO PARAMETRO nameScene alli
-    public bool loaded=false;
-
+    public bool loaded;
     
 
 
     private void Start()
     {
         cs = this;
+       
+    }
+
+    public void CheckLoad()
+    {
+        print(PlayerPrefs.GetInt("SavedGame"));
+
+        if (PlayerPrefs.GetInt("SavedGame") ==0)
+        {
+            loaded = false;
+            print("NO HAY PARTIDA");
+        }
+        else { loaded = true; }
+
+        print(loaded);
     }
 
     public void NewScene(string nameScene)
     {
+        loaded = false;
         SceneManager.LoadScene(nameScene); // cargar escena
     }
 
     public void LoadMyScene(string nameMyScene)
     {
-        loaded = true;
+        CheckLoad();
         SceneManager.LoadScene(nameMyScene);
 
-       
-
+        
     }
 }

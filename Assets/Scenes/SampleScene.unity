@@ -16926,6 +16926,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5e1e5622a379d14ca79d703ba965e03, type: 2}
   container: {fileID: 798267715}
   itemPrefab: {fileID: 3268128696449336757, guid: 32348924d8fab9d41b6a2237d2b0a2c8, type: 3}
+  obtainedItems: []
   FF: {fileID: 357002644}
   obtainedSprites: 
   disabled: []
@@ -16969,6 +16970,8 @@ MonoBehaviour:
   panelPause: {fileID: 1453765773}
   panelSaved: {fileID: 1759968677}
   panelBoat: {fileID: 725280499}
+  canvasStart: {fileID: 0}
+  canvasGame: {fileID: 0}
   parachuteInfo: {fileID: 1886075641}
   canvasPantalla: {fileID: 387323815}
   hint: {fileID: 1004907718}
@@ -27450,7 +27453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1921763491}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: EntranceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,6 +23,8 @@ public class PcPantalla : MonoBehaviour
 
             //ACTIVAR ANIMACION 
             anim.SetTrigger("getPantalla");
+
+           // ParachutePrefab.ppm.ParachuteCheck();
         }
     }
 

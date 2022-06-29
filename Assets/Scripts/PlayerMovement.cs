@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     // variable estática para acceder al script
     public static PlayerMovement pm;
 
+
+    [SerializeField] int newGravity;
     //GameOver
     // public delegate void PlayerDelegate();
     //public static event PlayerDelegate OnPlayerDie;
@@ -244,8 +246,11 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.GetChild(14).gameObject.SetActive(true);
         rig.AddForce(transform.up * jumpForce * 5, ForceMode.Impulse);
         isJumping = false;
+        Physics.gravity = new Vector3(0, newGravity, 0);
     }
 
+   
+ 
     public void Jump()
     {
         //En cuanto salta, deja de poder saltar
@@ -285,7 +290,7 @@ public class PlayerMovement : MonoBehaviour
         // Distancia entre aquello con lo que choca y yo. MI ALTURA DE LO Q HAYA BAJO MIS PIES
         float distancia = yo.y - suelo.y;
         
-        print(hit.collider.name + " " + distancia);
+        //print(hit.collider.name + " " + distancia);
        
         
         //Si choco con la isla y mi altura es menos a 26 (en collision estoy a 25aprox), considero que ya no estoy saltando
@@ -320,9 +325,9 @@ public class PlayerMovement : MonoBehaviour
             dead = true;
             OnGameOverPlayer();
         }
-        else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && usingParachute&&distancia<66)
+        else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && usingParachute && distancia<66)
         {
-
+            print(distancia);
             dead = true;
             OnGameOverPlayer();
         }
@@ -354,6 +359,8 @@ public class PlayerMovement : MonoBehaviour
 
         //pinto el rayo en el editor
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
+
+       
        
     }
 
@@ -370,8 +377,9 @@ public class PlayerMovement : MonoBehaviour
     public void IsJumpingToFalse()
     {
         isJumping = false;
-     
 
+       
+        Physics.gravity = new Vector3(0, -9.81f, 0);
         //if (GameObject.Find("Cinematic TimeLine"))
         //{
         //    GameObject.Find("Cinematic TimeLine").SetActive(false);
