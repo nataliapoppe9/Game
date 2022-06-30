@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerBreakOut : MonoBehaviour
 {
     [SerializeField] byte bricksOnLevel;
     float gameTime;
+
+    public void CargarEscena(string _scene)
+    {
+        SceneManager.LoadScene(_scene);
+    }
     public byte BricksOnLevel
     {
         get => bricksOnLevel;

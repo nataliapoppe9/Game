@@ -24,6 +24,8 @@ public class ItemManager : MonoBehaviour
     public List<int> obtainedSprites;
     public List<GameObject> disabled;
 
+    [SerializeField] GameObject gamesGadgetPanel;
+
     private void Awake()
     {
         print(ChangeScene.cs.loaded);
@@ -107,7 +109,7 @@ public class ItemManager : MonoBehaviour
 
         if (i == 0)
         {
-            ItemClone.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Game"));
+            ItemClone.GetComponent<Button>().onClick.AddListener(() => gamesGadgetPanel.SetActive(true)) ;
         }
 
     }
