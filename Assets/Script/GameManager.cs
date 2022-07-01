@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static bool gameIsPaused;
 
 
-    [SerializeField] GameObject panelPause, panelSaved, panelBoat, canvasStart, canvasGame;
+    [SerializeField] GameObject panelPause, panelSaved, panelBoat;
     public GameObject parachuteInfo;
     public GameObject canvasPantalla;
     [SerializeField] GameObject hint;
@@ -67,17 +67,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void NewGame()
-    {
-        canvasStart.SetActive(false);
-        canvasGame.SetActive(true);
-    }
+   
 
-    public void LoadGame()
-    {
-        NewGame();
-       // loaded = true;
-    }
+ 
 
     public void ChangeHint()
     {
@@ -105,9 +97,9 @@ public class GameManager : MonoBehaviour
         if (Time.timeScale == 1)
         {
             print("paused");
+            panelPause.SetActive(true);
             Time.timeScale = 0f;
             ChangeHint();
-            panelPause.SetActive(true);
             canvasPantalla.SetActive(false);
 
             gameIsPaused = true;

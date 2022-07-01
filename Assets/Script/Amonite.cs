@@ -21,6 +21,7 @@ public class Amonite : MonoBehaviour
 
     public GameObject TimeLine;
 
+    Animator anim;
     
 
     public bool start;
@@ -81,9 +82,12 @@ public class Amonite : MonoBehaviour
    public void OneFollowsPlayer(int i)
     {
         agent = amoniteList[i].GetComponent<NavMeshAgent>();
+        anim = amoniteList[i].GetComponent<Animator>();
         //agent.transform.LookAt(-1 * (player.transform.position));
         agent.SetDestination(player.position);
         agent.GetComponent<Collider>().enabled = false;
+        anim.SetTrigger("Start");
+        
     }
 
    /* void AllFollowPlayer()

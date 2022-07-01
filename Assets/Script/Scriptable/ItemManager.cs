@@ -26,12 +26,6 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] GameObject gamesGadgetPanel;
 
-    private void Awake()
-    {
-        print(ChangeScene.cs.loaded);
-
-       
-    }
     private void Start()
     {
        
