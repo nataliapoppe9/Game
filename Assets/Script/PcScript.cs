@@ -61,7 +61,7 @@ public class PcScript : MonoBehaviour
         stopAnim = true;
         print("destroy");
         ItemManager.itemMan.disabled.Add(gameObject);
-        Destroy(this.gameObject);
-
+        gameObject.SetActive(false);
+        print(ItemManager.itemMan.disabled.Count);
     }
 }

@@ -47,19 +47,19 @@ public class BoatScript : MonoBehaviour
         {
 
             SoltarBarco(collision.collider);
-            //SaveBoat(gameObject);
+            SaveBoat(gameObject);
 
         }
         if (collision.collider.name.Contains("DestinoVuelta"))
         {
 
             SoltarBarco(collision.collider);
-           // SaveBoat(gameObject);
+            SaveBoat(gameObject);
         }
 
         
     }
-    /* private void Start()
+     private void Start()
     {
         if(PlayerPrefs.HasKey("BoatX") && PlayerPrefs.HasKey("Boaty") && PlayerPrefs.HasKey("Boatz") && ChangeScene.cs.loaded)
         {
@@ -74,7 +74,7 @@ public class BoatScript : MonoBehaviour
         PlayerPrefs.SetFloat("BoatX", boat.transform.position.x);
         PlayerPrefs.SetFloat("BoatY", boat.transform.position.y);
         PlayerPrefs.SetFloat("BoatZ", boat.transform.position.z);
-    }*/
+    }
    
     private void Update()
     {

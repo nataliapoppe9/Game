@@ -65,7 +65,7 @@ public class Nintendo : MonoBehaviour
         ItemManager.itemMan.disabled.Add(gameObject);
 
         //Delete
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void ParticulasGadget()

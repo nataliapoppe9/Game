@@ -11,7 +11,7 @@ public class ChangeScene : MonoBehaviour
     // Funcion que llamo desde el panel de inicio con NewGame
     //Cuando llamo a la funcion en el boton del canvas, INTRODUZCO PARAMETRO nameScene alli
     public bool saved=false;
-    public bool load;
+    public bool loaded=false;
 
   //  public GameObject vid;
    
@@ -40,9 +40,11 @@ public class ChangeScene : MonoBehaviour
 
     public void LoadedScene(string nameMyScene)
     {
-        load = true;
+        loaded = true;
+        // NOO LO PONGAS MAS!! GameManager.gm.Load(); 
+        // con load controlo si hago load en start de game manager
         SceneManager.LoadScene(nameMyScene);
-        //vid.GetComponent<VideoPlayer>().Stop();
+        
     }
 
 
@@ -50,4 +52,6 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(myGame);
     }
+
+
 }

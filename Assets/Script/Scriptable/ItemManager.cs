@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class ItemManager : MonoBehaviour
 {
+    public bool loaded;
 
     public ItemSprite[] items;
 
-    //public List<ItemSprite> items;
     public Transform container;
     public GameObject itemPrefab;
 
@@ -26,59 +26,33 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] GameObject gamesGadgetPanel;
 
+  
     private void Start()
     {
        
         itemMan = this;
-       
-        if (ChangeScene.cs.saved)
-        {
-                       
-
-            if (PlayerPrefs.GetInt("FFDesact")==1)
-            {
-                FF.SetActive(false);
-            }
-           
-
-            print("disable destroyed Items" + disabled.Count);
-
-            foreach(GameObject gameObj in disabled)
-            {
-                gameObj.SetActive(false);
-            }
 
 
-            print("Loaded BackPack");
-
-            print(obtainedItems.Count);
-            
-            for (int i = 0; i < items.Length; i++)
-            {
-                //print(obtainedItems[i].nombreGadget);
-
-                // SpriteCreator(obtainedSprites[i]);
+        /* if (ChangeScene.cs.saved)
+         {
 
 
-                GameObject objeto = Instantiate(itemPrefab, container);
-                objeto.transform.GetChild(0).GetComponent<Image>().sprite = items[i].imageGadget;
-                objeto.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
-                objeto.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
-                objeto.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = items[i].priceGadget.ToString();
+             if (PlayerPrefs.GetInt("FFDesact")==1)
+             {
+                 FF.SetActive(false);
+             }
 
-                /* GameObject objeto = Instantiate(itemPrefab, container);
-                 objeto.transform.GetChild(0).GetComponent<Image>().sprite = items[obtainedSprites[i]].imageGadget;
-                 objeto.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[obtainedSprites[i]].nombreGadget;
-                 objeto.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[obtainedSprites[i]].detailsGadget;
-                 objeto.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = items[obtainedSprites[i]].priceGadget.ToString();*/
-
-
-
-            }          
-        }
+        */
+     
     }
 
-
+    public void RestartSprites()
+    {
+        for(int i=0; i < obtainedSprites.Count; i++)
+        {
+            SpriteCreator(obtainedSprites[i]);
+        }
+    }
 
     public void SpriteCreator(int i)
     {
@@ -88,8 +62,11 @@ public class ItemManager : MonoBehaviour
         ItemClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
         ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
         ItemClone.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = items[i].priceGadget.ToString();
-        obtainedSprites.Add(i);
-        
+       
+        if (!obtainedSprites.Contains(i))
+        {
+            obtainedSprites.Add(i);
+        }
 
         if (i == 0)
         {

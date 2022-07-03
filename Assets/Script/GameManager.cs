@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<string> hints;
 
     public PlayableDirector timeLineEntry;
+    public bool loaded;
 
     private void Awake()
     {
@@ -32,12 +34,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gm = this;
-       // Load();
-        if (ChangeScene.cs.load)
+       
+        if (ChangeScene.cs.loaded)
         {
+            print("start Loading");
             Load();
-            ExitEntryTL(); 
+            ExitEntryTL();
         }
+        else { print("not started Loading"); }
+
+
 
 
         hints.Add("Jump on mushrooms");
@@ -72,6 +78,22 @@ public class GameManager : MonoBehaviour
     {
         if (timeLineEntry.enabled == true && Input.anyKey)
         { ExitEntryTL(); }
+
+        if(Input.GetKeyDown(KeyCode.L)) {
+
+           
+            Load();
+            
+            //print(ItemManager.itemMan.obtainedSprites.Count);
+           
+            
+            // ItemManager.itemMan.RestartSprites();
+
+            /*foreach (GameObject gameObj in ItemManager.itemMan.disabled)
+            {
+                gameObj.SetActive(false);
+            }*/
+        }
 
     }
 
@@ -185,12 +207,16 @@ public class GameManager : MonoBehaviour
         public bool _boatCoin;
         public bool savedGame;
 
-        public Vector3 _positionBarco;
-        public Vector3 _positionGota;
+        //public Vector3 _positionBarco;
+       // public Vector3 _positionGota;
 
         public bool _startAmonite;
         public List<GameObject> _amoniteList;
-        public int _numAmonites;  
+        public int _numAmonites;
+
+        public List<GameObject> _disabled;
+        public List<int> _obtainedSprites;
+        public List<ItemSprite> _obtainedItems;
 
     }
 
@@ -208,7 +234,11 @@ public class GameManager : MonoBehaviour
 
            _startAmonite = Amonite.am.start,
            _amoniteList = Amonite.am.amoniteList,
-           _numAmonites = Amonite.am.startedNum.Count
+           _numAmonites = Amonite.am.startedNum.Count,
+
+           _disabled=ItemManager.itemMan.disabled,
+           _obtainedSprites=ItemManager.itemMan.obtainedSprites,
+           _obtainedItems=ItemManager.itemMan.obtainedItems
             
         };
         string json = JsonUtility.ToJson(saveData);
@@ -216,28 +246,48 @@ public class GameManager : MonoBehaviour
         print("SAVED");
     }
 
-     void Load()
+    void Load()
     {
         string saveString = SaveGame.Load();
         if (saveString != null)
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(saveString);
+
             CanvasManager.gm.numCoins = saveData._numCoins;
             PlayerMovement.pm.transform.position = saveData._positionPlayer;
             PlayerMovement.pm.transform.rotation = Quaternion.Euler(saveData._rotationPlayer);
             CanvasManager.gm.boatCoin = saveData._boatCoin;
 
-           // BoatScript.bsm.gameObject.transform.position = saveData._positionBarco;
-           // GotaManager.gotm.gameObject.transform.position = saveData._positionGota;
+           // ItemManager.itemMan.obtainedItems = saveData._obtainedItems;
+            ItemManager.itemMan.obtainedSprites = saveData._obtainedSprites;
+            ItemManager.itemMan.RestartSprites();
 
-            Amonite.am.start = saveData._startAmonite;
-            Amonite.am.amoniteList=saveData._amoniteList;
+            GotaManager.gotm.used = true;
 
-            for (int i = 0; i < saveData._numAmonites; i++)
-            {
-                Amonite.am.startedNum.Add(i);
-            }
+            //ItemManager.itemMan.disabled = saveData._disabled;
 
+            //print(ItemManager.itemMan.obtainedItems.Count);
+            
+
+            // BoatScript.bsm.gameObject.transform.position = saveData._positionBarco;
+            // GotaManager.gotm.gameObject.transform.position = saveData._positionGota;
+
+
+            //  Amonite.am.amoniteList=saveData._amoniteList;
+
+            // for (int i = 0; i < saveData._numAmonites; i++)
+            // {
+            //    Amonite.am.startedNum.Add(i);
+            // }
+            // Amonite.am.start = saveData._startAmonite;
+
+            // _disabled = ItemManager.itemMan.disabled,
+            //_obtainedSprites = ItemManager.itemMan.obtainedSprites,
+            //_obtainedItems = ItemManager.itemMan.obtainedItems
+
+            //print("disable destroyed Items" + saveData._disabled.Count);
+            
+            
 
             print("LOADED");
         }

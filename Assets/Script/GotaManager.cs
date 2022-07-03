@@ -13,6 +13,8 @@ public class GotaManager : MonoBehaviour
 
     [SerializeField] GameObject canvasPlatformGo, canvasPlatformGoBack;
     Transform sueloGota;
+
+    public bool used = false;
    
 
     [SerializeField] GameObject canvasGota;
@@ -24,14 +26,14 @@ public class GotaManager : MonoBehaviour
         sueloGota = GetComponent<Transform>();
         countMoves = 0;
 
-      /*  if (PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaZ") && ChangeScene.cs.load == true)
+        if (PlayerPrefs.HasKey("GotaX") && PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaZ")&&used)
         {
            // print(PlayerPrefs.GetFloat("GotaX") + " " + PlayerPrefs.GetFloat("GotaY") + " " + PlayerPrefs.GetFloat("GotaZ"));
             sueloGota.position = new Vector3(PlayerPrefs.GetFloat("GotaX"), PlayerPrefs.GetFloat("GotaY"), PlayerPrefs.GetFloat("GotaZ"));
 
            // countMoves = PlayerPrefs.GetInt("CountGota");
            
-        }*/
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,10 +61,6 @@ public class GotaManager : MonoBehaviour
                 
             }
 
-           /* PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
-            PlayerPrefs.SetFloat("GotaY", sueloGota.position.y);
-            PlayerPrefs.SetFloat("GotaZ", sueloGota.position.z);
-           */
         }
     }
 
@@ -70,33 +68,39 @@ public class GotaManager : MonoBehaviour
     {
         if (collision.collider.name.Contains("Character"))
         {
-            //activo move en update
-
+           
             ExitText();
             PlayerMovement.pm.platform = false;
+            PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
+            PlayerPrefs.SetFloat("GotaY", sueloGota.position.y);
+            PlayerPrefs.SetFloat("GotaZ", sueloGota.position.z);
         }
+
+
+         
+        
     }
 
 
 
 
-   /* private void Moving()
-    {
+    /* private void Moving()
+     {
 
-        //En cada frame del update se ejecutara moving añadiendo 1 a su posición
-        //Se repetirá 80 veces
-        if (i < 80)
-        {
-            //Muevo en z 1 la posicion del hielo.
+         //En cada frame del update se ejecutara moving añadiendo 1 a su posición
+         //Se repetirá 80 veces
+         if (i < 80)
+         {
+             //Muevo en z 1 la posicion del hielo.
 
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-            //80veces
-            i++;
+             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+             //80veces
+             i++;
 
-        }
-        else { move = false; }
-    }*/
-    
+         }
+         else { move = false; }
+     }*/
+
     public void StartPlatform()
     {
         if (CanvasManager.gm.numCoins >= 10)
