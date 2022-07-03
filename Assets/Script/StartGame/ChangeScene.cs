@@ -45,4 +45,9 @@ public class ChangeScene : MonoBehaviour
         //vid.GetComponent<VideoPlayer>().Stop();
     }
 
+
+    public void OpenGame(string myGame)
+    {
+        SceneManager.LoadScene(myGame);
+    }
 }
