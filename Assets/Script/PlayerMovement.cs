@@ -9,9 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField] int newGravity;
-    //GameOver
-    // public delegate void PlayerDelegate();
-    //public static event PlayerDelegate OnPlayerDie;
+   
     bool once = false;
 
     //Movement
