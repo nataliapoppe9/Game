@@ -43,14 +43,14 @@ public class GameManager : MonoBehaviour
         hints.Add("Jump on mushrooms");
         hints.Add("Save Game from Time 2 Time");
         hints.Add("S-Coins will take you far");
-        hints.Add("Each journey is different");
+        hints.Add("Press C for skyview");
         hints.Add("Don't leave anything behind..");
         hints.Add("Boat Token ready?");
         hints.Add("Boat Time info at Tent");
         hints.Add("Check backpack");
         hints.Add("Amonites seem friendly, don't they?");
         hints.Add("Is that a boat light?");
-        hints.Add("Gadget sale price: 20 S-coins");
+        hints.Add("Win Coins on Gadget");
 
 
 
@@ -153,20 +153,21 @@ public class GameManager : MonoBehaviour
 
     public void SaveButton()
     {
+        print("activoSaved");
         panelPause.SetActive(false);
         panelSaved.SetActive(true);
-        Save();
+        SaveIt();
         StartCoroutine(DesactivarPanel(panelSaved));
         gameIsPaused = false;
         Time.timeScale = 1;
-        print("activoSaved");
+        
     }
 
 
 
     IEnumerator DesactivarPanel(GameObject panel)
     {
-       
+        print("desactivarPanel");
         yield return new WaitForSeconds(1);
         print("off");
 
@@ -182,7 +183,6 @@ public class GameManager : MonoBehaviour
         public Vector3 _positionPlayer;
         public Vector3 _rotationPlayer;
         public bool _boatCoin;
-        public int _amonitesQMSiguen;
         public bool savedGame;
 
         public Vector3 _positionBarco;
@@ -190,13 +190,11 @@ public class GameManager : MonoBehaviour
 
         public bool _startAmonite;
         public List<GameObject> _amoniteList;
-        public int _numAmonites;
-
-        
+        public int _numAmonites;  
 
     }
 
-    void Save()
+   public void SaveIt()
     {
         SaveData saveData = new SaveData
         {
@@ -205,15 +203,14 @@ public class GameManager : MonoBehaviour
             _rotationPlayer = PlayerMovement.pm.transform.rotation.eulerAngles,
             _boatCoin = CanvasManager.gm.boatCoin,
             
-            _positionBarco = BoatScript.bsm.transform.position,
-            _positionGota = GotaManager.gotm.transform.position,
+           //_positionBarco = BoatScript.bsm.gameObject.transform.position,
+            //_positionGota = GotaManager.gotm.gameObject.transform.position,
 
-            _startAmonite = Amonite.am.start,
-            _amoniteList = Amonite.am.amoniteList,
-            _numAmonites = Amonite.am.startedNum.Count
+           _startAmonite = Amonite.am.start,
+           _amoniteList = Amonite.am.amoniteList,
+           _numAmonites = Amonite.am.startedNum.Count
             
         };
-
         string json = JsonUtility.ToJson(saveData);
         SaveGame.Save(json);
         print("SAVED");
@@ -230,8 +227,8 @@ public class GameManager : MonoBehaviour
             PlayerMovement.pm.transform.rotation = Quaternion.Euler(saveData._rotationPlayer);
             CanvasManager.gm.boatCoin = saveData._boatCoin;
 
-            BoatScript.bsm.gameObject.transform.position = saveData._positionBarco;
-            GotaManager.gotm.gameObject.transform.position = saveData._positionGota;
+           // BoatScript.bsm.gameObject.transform.position = saveData._positionBarco;
+           // GotaManager.gotm.gameObject.transform.position = saveData._positionGota;
 
             Amonite.am.start = saveData._startAmonite;
             Amonite.am.amoniteList=saveData._amoniteList;

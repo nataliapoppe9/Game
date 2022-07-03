@@ -7837,7 +7837,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1823704650}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SaveButton
+        m_MethodName: SaveIt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30832,7 +30832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56.698006, y: 75.5}
+  m_AnchoredPosition: {x: -306, y: 75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!54 &1161192320212932466
@@ -32950,7 +32950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2533000997560607784}
   m_LocalRotation: {x: -0.00000013767878, y: 0.7071068, z: -0.7071067, w: 0.00000013767875}
-  m_LocalPosition: {x: -0, y: 28, z: 0}
+  m_LocalPosition: {x: -0, y: 41, z: 54}
   m_LocalScale: {x: 63.607635, y: 63.607635, z: 17.741817}
   m_Children: []
   m_Father: {fileID: 6465866545618056078}
@@ -33383,7 +33383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2212467828391088148}
   m_LocalRotation: {x: -0.00000013767878, y: 0.7071068, z: -0.7071067, w: 0.00000013767877}
-  m_LocalPosition: {x: -30.688707, y: 66.1, z: 87.29799}
+  m_LocalPosition: {x: -128, y: 152, z: 87.29799}
   m_LocalScale: {x: 37.64719, y: 37.64719, z: 10.500776}
   m_Children: []
   m_Father: {fileID: 6465866545618056078}
