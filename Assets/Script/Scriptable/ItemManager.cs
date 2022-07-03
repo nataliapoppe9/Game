@@ -31,19 +31,9 @@ public class ItemManager : MonoBehaviour
        
         itemMan = this;
        
-        if (ChangeScene.cs.loaded)
+        if (ChangeScene.cs.saved)
         {
-            if (PlayerPrefs.GetInt("Once") == 1) 
-            {
-                Amonite.am.SpawnAmonite();
-                for(int i=0; i<PlayerPrefs.GetInt("AmonitesQMeSiguen"); i++)
-                {
-                    Amonite.am.start = true;
-                    Amonite.am.OneFollowsPlayer(i);
-                }
-            }
-
-            
+                       
 
             if (PlayerPrefs.GetInt("FFDesact")==1)
             {

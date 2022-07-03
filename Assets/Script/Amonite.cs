@@ -87,7 +87,7 @@ public class Amonite : MonoBehaviour
         agent.SetDestination(player.position);
         agent.GetComponent<Collider>().enabled = false;
         anim.SetTrigger("Start");
-        
+                
     }
 
    /* void AllFollowPlayer()

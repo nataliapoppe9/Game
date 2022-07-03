@@ -24,14 +24,14 @@ public class GotaManager : MonoBehaviour
         sueloGota = GetComponent<Transform>();
         countMoves = 0;
 
-        if (PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaZ") && ChangeScene.cs.loaded == true)
+      /*  if (PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaY") && PlayerPrefs.HasKey("GotaZ") && ChangeScene.cs.load == true)
         {
            // print(PlayerPrefs.GetFloat("GotaX") + " " + PlayerPrefs.GetFloat("GotaY") + " " + PlayerPrefs.GetFloat("GotaZ"));
             sueloGota.position = new Vector3(PlayerPrefs.GetFloat("GotaX"), PlayerPrefs.GetFloat("GotaY"), PlayerPrefs.GetFloat("GotaZ"));
 
            // countMoves = PlayerPrefs.GetInt("CountGota");
            
-        }
+        }*/
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,10 +59,10 @@ public class GotaManager : MonoBehaviour
                 
             }
 
-            PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
+           /* PlayerPrefs.SetFloat("GotaX", sueloGota.position.x);
             PlayerPrefs.SetFloat("GotaY", sueloGota.position.y);
             PlayerPrefs.SetFloat("GotaZ", sueloGota.position.z);
-
+           */
         }
     }
 

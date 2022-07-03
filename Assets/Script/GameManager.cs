@@ -23,13 +23,21 @@ public class GameManager : MonoBehaviour
 
     public PlayableDirector timeLineEntry;
 
-
+    private void Awake()
+    {
+        SaveGame.Init();
+        
+    }
 
     private void Start()
     {
         gm = this;
-
-        if (ChangeScene.cs.loaded) { ControlEntryTL(); }
+       // Load();
+        if (ChangeScene.cs.load)
+        {
+            Load();
+            ExitEntryTL(); 
+        }
 
 
         hints.Add("Jump on mushrooms");
@@ -52,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ControlEntryTL()
+    public void ExitEntryTL()
     {
         print("escape");
 
@@ -63,13 +71,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (timeLineEntry.enabled == true && Input.anyKey)
-        { ControlEntryTL(); }
+        { ExitEntryTL(); }
 
     }
 
-   
 
- 
+
+
 
     public void ChangeHint()
     {
@@ -98,12 +106,12 @@ public class GameManager : MonoBehaviour
         {
             print("paused");
             panelPause.SetActive(true);
-            Time.timeScale = 0f;
+            
             ChangeHint();
             canvasPantalla.SetActive(false);
 
             gameIsPaused = true;
-
+           // Time.timeScale = 0f;
         }
     }
 
@@ -143,59 +151,124 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-
-    public void SaveAplicationGame()
+    public void SaveButton()
     {
-
-        SaveGame();
-        print("activoSaved");
-        panelSaved.SetActive(true);
         panelPause.SetActive(false);
-        //Time.timeScale=0;         
+        panelSaved.SetActive(true);
+        Save();
         StartCoroutine(DesactivarPanel(panelSaved));
+        gameIsPaused = false;
+        Time.timeScale = 1;
+        print("activoSaved");
     }
+
+
 
     IEnumerator DesactivarPanel(GameObject panel)
     {
-        Time.timeScale = 1;
+       
         yield return new WaitForSeconds(1);
         print("off");
 
         panel.SetActive(false);
         canvasPantalla.SetActive(true);
-
-
+       
 
     }
 
-
-
-    void SaveGame()
+    private class SaveData
     {
-        if (!PlayerMovement.pm.platform)
+        public int _numCoins;
+        public Vector3 _positionPlayer;
+        public Vector3 _rotationPlayer;
+        public bool _boatCoin;
+        public int _amonitesQMSiguen;
+        public bool savedGame;
+
+        public Vector3 _positionBarco;
+        public Vector3 _positionGota;
+
+        public bool _startAmonite;
+        public List<GameObject> _amoniteList;
+        public int _numAmonites;
+
+        
+
+    }
+
+    void Save()
+    {
+        SaveData saveData = new SaveData
         {
+            _numCoins = CanvasManager.gm.numCoins,
+            _positionPlayer = PlayerMovement.pm.transform.position,
+            _rotationPlayer = PlayerMovement.pm.transform.rotation.eulerAngles,
+            _boatCoin = CanvasManager.gm.boatCoin,
+            
+            _positionBarco = BoatScript.bsm.transform.position,
+            _positionGota = GotaManager.gotm.transform.position,
 
-            PlayerPrefs.SetInt("numCoins", CanvasManager.gm.numCoins);
-            PlayerPrefs.SetFloat("PositionX", PlayerMovement.pm.transform.position.x);
-            PlayerPrefs.SetFloat("PositionY", PlayerMovement.pm.transform.position.y);
-            PlayerPrefs.SetFloat("PositionZ", PlayerMovement.pm.transform.position.z);
-            PlayerPrefs.SetFloat("RotX", PlayerMovement.pm.transform.rotation.eulerAngles.x);
-            PlayerPrefs.SetFloat("RotY", PlayerMovement.pm.transform.rotation.eulerAngles.y);
-            PlayerPrefs.SetFloat("RotZ", PlayerMovement.pm.transform.rotation.eulerAngles.z);
-            PlayerPrefs.SetInt("BoatBool", (CanvasManager.gm.boatCoin ? 1 : 0));
+            _startAmonite = Amonite.am.start,
+            _amoniteList = Amonite.am.amoniteList,
+            _numAmonites = Amonite.am.startedNum.Count
+            
+        };
 
-            PlayerPrefs.SetInt("AmonitesQMeSiguen", Amonite.am.startedNum.Count);
+        string json = JsonUtility.ToJson(saveData);
+        SaveGame.Save(json);
+        print("SAVED");
+    }
 
-            // PlayerPrefs.SetInt("CountGota", GotaManager.gotm.countMoves);
+     void Load()
+    {
+        string saveString = SaveGame.Load();
+        if (saveString != null)
+        {
+            SaveData saveData = JsonUtility.FromJson<SaveData>(saveString);
+            CanvasManager.gm.numCoins = saveData._numCoins;
+            PlayerMovement.pm.transform.position = saveData._positionPlayer;
+            PlayerMovement.pm.transform.rotation = Quaternion.Euler(saveData._rotationPlayer);
+            CanvasManager.gm.boatCoin = saveData._boatCoin;
 
-            PlayerPrefs.SetInt("SavedGame", (true ? 1 : 0));
-            // PlayerPrefs.Save(); No hace falta
-            print("GAME SAVED");
+            BoatScript.bsm.gameObject.transform.position = saveData._positionBarco;
+            GotaManager.gotm.gameObject.transform.position = saveData._positionGota;
 
+            Amonite.am.start = saveData._startAmonite;
+            Amonite.am.amoniteList=saveData._amoniteList;
+
+            for (int i = 0; i < saveData._numAmonites; i++)
+            {
+                Amonite.am.startedNum.Add(i);
+            }
+
+
+            print("LOADED");
         }
     }
-
-
-
 }
+
+
+    /* void SaveGame()
+         {
+             if (!PlayerMovement.pm.platform)
+             {
+
+                 PlayerPrefs.SetInt("numCoins", CanvasManager.gm.numCoins);
+                 PlayerPrefs.SetFloat("PositionX", PlayerMovement.pm.transform.position.x);
+                 PlayerPrefs.SetFloat("PositionY", PlayerMovement.pm.transform.position.y);
+                 PlayerPrefs.SetFloat("PositionZ", PlayerMovement.pm.transform.position.z);
+                 PlayerPrefs.SetFloat("RotX", PlayerMovement.pm.transform.rotation.eulerAngles.x);
+                 PlayerPrefs.SetFloat("RotY", PlayerMovement.pm.transform.rotation.eulerAngles.y);
+                 PlayerPrefs.SetFloat("RotZ", PlayerMovement.pm.transform.rotation.eulerAngles.z);
+                 PlayerPrefs.SetInt("BoatBool", (CanvasManager.gm.boatCoin ? 1 : 0));
+
+                 PlayerPrefs.SetInt("AmonitesQMeSiguen", Amonite.am.startedNum.Count);
+
+                 // PlayerPrefs.SetInt("CountGota", GotaManager.gotm.countMoves);
+
+                 PlayerPrefs.SetInt("SavedGame", (true ? 1 : 0));
+                 // PlayerPrefs.Save(); No hace falta
+                 print("GAME SAVED");
+
+             }
+         }*/

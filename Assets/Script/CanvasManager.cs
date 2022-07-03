@@ -42,7 +42,7 @@ public class CanvasManager : MonoBehaviour
         //print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
 
         // Si he guardado partida y tengo almacenado el numero de coins
-        if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded == true)
+       /* if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded == true)
         {
             numCoins = PlayerPrefs.GetInt("numCoins"); // Cuando abrimos partida nueva recuperamos
             textCoins.text = "S coins: " + numCoins.ToString();
@@ -53,7 +53,7 @@ public class CanvasManager : MonoBehaviour
         {
             boatCoin = (PlayerPrefs.GetInt("BoatBool") != 0);
         }
-
+       */
     }
 
     
