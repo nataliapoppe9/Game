@@ -35,7 +35,7 @@ public class TyRscript : MonoBehaviour
         
         print("destroy");
         ItemManager.itemMan.disabled.Add(gameObject);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
     }
 

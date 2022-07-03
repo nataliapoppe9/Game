@@ -14,6 +14,7 @@ public class FFCineManager : MonoBehaviour
 
     public void DestroySphere()
     {
-        Destroy(sphere.gameObject);
+        sphere.gameObject.SetActive(false);
+        ItemManager.itemMan.disabled.Add(sphere.gameObject);
     }
 }

@@ -54,6 +54,14 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public void DisableObjects()
+    {
+        foreach(GameObject gameObj in disabled)
+        {
+            gameObj.SetActive(false);
+        }
+    }
+
     public void SpriteCreator(int i)
     {
         GameObject ItemClone = Instantiate(itemPrefab, container);

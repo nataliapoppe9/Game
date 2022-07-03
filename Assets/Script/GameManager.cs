@@ -237,8 +237,7 @@ public class GameManager : MonoBehaviour
            _numAmonites = Amonite.am.startedNum.Count,
 
            _disabled=ItemManager.itemMan.disabled,
-           _obtainedSprites=ItemManager.itemMan.obtainedSprites,
-           _obtainedItems=ItemManager.itemMan.obtainedItems
+           _obtainedSprites=ItemManager.itemMan.obtainedSprites
             
         };
         string json = JsonUtility.ToJson(saveData);
@@ -258,13 +257,12 @@ public class GameManager : MonoBehaviour
             PlayerMovement.pm.transform.rotation = Quaternion.Euler(saveData._rotationPlayer);
             CanvasManager.gm.boatCoin = saveData._boatCoin;
 
-           // ItemManager.itemMan.obtainedItems = saveData._obtainedItems;
             ItemManager.itemMan.obtainedSprites = saveData._obtainedSprites;
             ItemManager.itemMan.RestartSprites();
 
-            GotaManager.gotm.used = true;
-
-            //ItemManager.itemMan.disabled = saveData._disabled;
+            
+            ItemManager.itemMan.disabled = saveData._disabled;
+            ItemManager.itemMan.DisableObjects();
 
             //print(ItemManager.itemMan.obtainedItems.Count);
             
