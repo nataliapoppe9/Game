@@ -297,8 +297,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadLastSave()
     {
-        DesactivarPanel(panelGameOver);
-        Load();
+        NewGame("SampleScene");
+        ChangeScene.cs.loaded = true;
     }
    
 }

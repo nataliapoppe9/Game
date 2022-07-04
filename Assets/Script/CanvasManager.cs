@@ -112,7 +112,8 @@ public class CanvasManager : MonoBehaviour
 
     public void GameOverPanel()
     {
-        
+        float addMass = 20;
+        float mass;
         print("activo panel pause : " + panelGameOver.name);
         panelGameOver.SetActive(true);
         mochilaButton.SetActive(false);
@@ -121,13 +122,15 @@ public class CanvasManager : MonoBehaviour
 
         for (int i = 0; i < 15; i++)
         {
-            offset = new Vector3(Random.Range(-200, 200), 120 + Random.Range(0, 30), 0);
+            offset = new Vector3(Random.Range(-200, 200), 200 + Random.Range(-200, 200), 0);
 
 
             //newSnowflakes = Instantiate(snowflakes, transform.position, transform.rotation);
             newSnowFlakes[i] = Instantiate(snowflakes, panelGameOver.transform.position + offset, panelGameOver.transform.rotation, panelGameOver.transform);
             rbSF = newSnowFlakes[i].GetComponent<Rigidbody2D>();
-            rbSF.velocity = Random.Range(5, 10) * (-Vector3.up);
+            mass = rbSF.mass;
+            rbSF.mass = mass + addMass;
+            
             if (newSnowFlakes[i] != null) { print("okay"); }
         }
 
