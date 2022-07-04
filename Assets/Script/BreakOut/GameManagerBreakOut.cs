@@ -8,9 +8,13 @@ public class GameManagerBreakOut : MonoBehaviour
     [SerializeField] byte bricksOnLevel;
     float gameTime;
 
-    public void CargarEscena(string _scene)
+  
+
+    public void CloseMiniGame(string myScene)
     {
-        SceneManager.LoadScene(_scene);
+        ChangeScene.cs.loaded = true;
+        SceneManager.LoadScene(myScene);
+        
     }
     public byte BricksOnLevel
     {

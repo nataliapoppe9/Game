@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour
     public static ItemManager itemMan;
 
     public List<int> obtainedSprites;
-    public List<GameObject> disabled;
+    public List<string> disabled;
 
     [SerializeField] GameObject gamesGadgetPanel;
 
@@ -56,9 +56,9 @@ public class ItemManager : MonoBehaviour
 
     public void DisableObjects()
     {
-        foreach(GameObject gameObj in disabled)
+        foreach(string nameGameObj in disabled)
         {
-            gameObj.SetActive(false);
+            GameObject.Find(nameGameObj).SetActive(false);
         }
     }
 

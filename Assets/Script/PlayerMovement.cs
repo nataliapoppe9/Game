@@ -266,13 +266,9 @@ public class PlayerMovement : MonoBehaviour
         // ademas añado un impulso para llegar a la moneda
         else if (hit.collider.name.Contains("Seta"))
         {
-
-            
-
-            // activar animación seta(HELPPP)
             animSeta = hit.collider.GetComponent<Animator>();
             animSeta.SetTrigger("GrowSeta");
-           // CameraController.cc.CameraJump();
+        
         }
         else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && !usingParachute)
         {
@@ -282,7 +278,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && usingParachute && distancia<66)
         {
-            print(distancia);
             dead = true;
             OnGameOverPlayer();
         }
@@ -333,12 +328,8 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = false;
 
-       
+       if(usingParachute)
         Physics.gravity = new Vector3(0, -9.81f, 0);
-        //if (GameObject.Find("Cinematic TimeLine"))
-        //{
-        //    GameObject.Find("Cinematic TimeLine").SetActive(false);
-        //}
 
     }
 
@@ -351,18 +342,18 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Animator>().SetBool("IsWalking", false);//
         GetComponent<Animator>().SetTrigger("Drown");
         CanvasManager.gm.GameOverPanel();
-       
+
+        //panelGameOver.SetActive(true);
+        //mochilaButton.SetActive(false);
         StartCoroutine(DestroyCharacter());
-       
+
     }
 
     IEnumerator DestroyCharacter()
     {
-        
-        print("destroy");
         yield return new WaitForSeconds(5);
-        print("destroy");
-        Destroy(this.gameObject);
+        print("destroy" + gameObject.name);
+        Destroy(gameObject);
     }
 
 }

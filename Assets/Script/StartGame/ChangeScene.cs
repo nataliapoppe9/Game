@@ -19,9 +19,16 @@ public class ChangeScene : MonoBehaviour
     
 
 
-    private void Start()
+    private void Awake()
     {
-        cs = this;
+        if (cs == null)
+        {
+            cs = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+        
     }
 
     public void CheckSaved()
@@ -48,10 +55,6 @@ public class ChangeScene : MonoBehaviour
     }
 
 
-    public void OpenGame(string myGame)
-    {
-        SceneManager.LoadScene(myGame);
-    }
 
 
 }

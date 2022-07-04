@@ -4759,7 +4759,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1955294553}
         m_TargetAssemblyTypeName: GameManagerBreakOut, Assembly-CSharp
-        m_MethodName: CargarEscena
+        m_MethodName: CloseMiniGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

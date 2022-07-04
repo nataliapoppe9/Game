@@ -112,11 +112,13 @@ public class CanvasManager : MonoBehaviour
 
     public void GameOverPanel()
     {
-        GameObject[] newSnowFlakes = new GameObject[15];
+        
+        print("activo panel pause : " + panelGameOver.name);
         panelGameOver.SetActive(true);
         mochilaButton.SetActive(false);
 
-        
+        GameObject[] newSnowFlakes = new GameObject[15];
+
         for (int i = 0; i < 15; i++)
         {
             offset = new Vector3(Random.Range(-200, 200), 120 + Random.Range(0, 30), 0);

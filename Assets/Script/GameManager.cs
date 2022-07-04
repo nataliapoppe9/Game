@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static bool gameIsPaused;
 
 
-    [SerializeField] GameObject panelPause, panelSaved, panelBoat;
+    [SerializeField] GameObject panelPause, panelSaved, panelBoat, panelGameOver;
     public GameObject parachuteInfo;
     public GameObject canvasPantalla;
     [SerializeField] GameObject hint;
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
             print("start Loading");
             Load();
             ExitEntryTL();
+            ChangeScene.cs.loaded = false;
         }
         else { print("not started Loading"); }
 
@@ -69,9 +70,10 @@ public class GameManager : MonoBehaviour
     public void ExitEntryTL()
     {
         print("escape");
-
+        IntroManager.introMan.ChangeAudio();
         timeLineEntry.Stop();
         timeLineEntry.enabled = false;
+        
     }
 
     private void Update()
@@ -79,27 +81,14 @@ public class GameManager : MonoBehaviour
         if (timeLineEntry.enabled == true && Input.anyKey)
         { ExitEntryTL(); }
 
-        if(Input.GetKeyDown(KeyCode.L)) {
+      /*  if(Input.GetKeyDown(KeyCode.L)) {
 
            
             Load();
-            
-            //print(ItemManager.itemMan.obtainedSprites.Count);
            
-            
-            // ItemManager.itemMan.RestartSprites();
-
-            /*foreach (GameObject gameObj in ItemManager.itemMan.disabled)
-            {
-                gameObj.SetActive(false);
-            }*/
-        }
+        }*/
 
     }
-
-
-
-
 
     public void ChangeHint()
     {
@@ -214,7 +203,7 @@ public class GameManager : MonoBehaviour
         public List<GameObject> _amoniteList;
         public int _numAmonites;
 
-        public List<GameObject> _disabled;
+        public List<string> _disabled;
         public List<int> _obtainedSprites;
         public List<ItemSprite> _obtainedItems;
 
@@ -239,13 +228,15 @@ public class GameManager : MonoBehaviour
            _disabled=ItemManager.itemMan.disabled,
            _obtainedSprites=ItemManager.itemMan.obtainedSprites
             
+          
         };
         string json = JsonUtility.ToJson(saveData);
         SaveGame.Save(json);
         print("SAVED");
+        
     }
 
-    void Load()
+    public void Load()
     {
         string saveString = SaveGame.Load();
         if (saveString != null)
@@ -290,6 +281,26 @@ public class GameManager : MonoBehaviour
             print("LOADED");
         }
     }
+
+
+    public void OpenMiniGame(string myGame)
+    {
+        SaveIt();
+        SceneManager.LoadScene(myGame);
+    }
+
+    public void NewGame(string newScene)
+    {
+        DesactivarPanel(panelGameOver);
+        SceneManager.LoadScene(newScene);
+    }
+
+    public void LoadLastSave()
+    {
+        DesactivarPanel(panelGameOver);
+        Load();
+    }
+   
 }
 
 

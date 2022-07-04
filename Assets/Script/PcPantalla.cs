@@ -33,7 +33,7 @@ public class PcPantalla : MonoBehaviour
 
 
         print("destroy");
-        ItemManager.itemMan.disabled.Add(gameObject);
+        ItemManager.itemMan.disabled.Add(gameObject.name);
         gameObject.SetActive(false);
 
     }
