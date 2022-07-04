@@ -33,6 +33,13 @@ public class CanvasManager : MonoBehaviour
         //cojo este script para poder ser accedido desde otro
         gm = this;
 
+        if (PlayerPrefs.GetInt("AddCoinsGame") != 0)
+        {
+            numCoins += PlayerPrefs.GetInt("AddCoinsGame");
+            PlayerPrefs.SetInt("AddCoinsGame", 0);
+        }
+
+
         //inicializo textCoins y audiosource
         textCoins = GameObject.Find("TextScore").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();

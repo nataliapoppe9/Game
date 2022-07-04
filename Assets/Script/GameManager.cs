@@ -113,8 +113,8 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        //if (Time.timeScale == 1)
-        //{
+        if (Time.timeScale == 1)
+        {
             print("paused");
             panelPause.SetActive(true);
             
@@ -122,8 +122,8 @@ public class GameManager : MonoBehaviour
             canvasPantalla.SetActive(false);
 
             gameIsPaused = true;
-           // Time.timeScale = 0f;
-       // }
+            Time.timeScale = 0f;
+        }
     }
 
     public void ParachuteYes()
