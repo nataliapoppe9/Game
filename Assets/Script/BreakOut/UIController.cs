@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour
     {
       //  ChangeScene.cs.LoadMyScene("SampleScene");
         SceneManager.LoadScene("SampleScene");
+        ChangeScene.cs.loaded = true;
         
     }
 
