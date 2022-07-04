@@ -28,7 +28,7 @@ public class GameManagerBreakOut : MonoBehaviour
                 Destroy(GameObject.Find("Ball"));
                 gameTime = Time.time * gameTime;
                 FindObjectOfType<UIController>().ActivarWinPanel(gameTime);
-
+                // SUMAR MONEDAS A PARTIDA
             }
 
         }
