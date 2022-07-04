@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
 
 
-
+        hints.Add("3 Pc components missing");
         hints.Add("Jump on mushrooms");
         hints.Add("Save Game from Time 2 Time");
         hints.Add("S-Coins will take you far");
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         hints.Add("Check backpack");
         hints.Add("Amonites seem friendly, don't they?");
         hints.Add("Is that a boat light?");
-        hints.Add("Win Coins on Gadget");
+        hints.Add("Win Coins Playing GadgetGames");
 
 
 

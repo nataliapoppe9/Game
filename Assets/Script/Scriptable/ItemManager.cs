@@ -69,7 +69,6 @@ public class ItemManager : MonoBehaviour
         ItemClone.transform.GetChild(0).GetComponent<Image>().sprite = items[i].imageGadget;
         ItemClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
         ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
-        ItemClone.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = items[i].priceGadget.ToString();
        
         if (!obtainedSprites.Contains(i))
         {

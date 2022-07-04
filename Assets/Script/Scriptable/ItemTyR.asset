@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ItemTyR
   m_EditorClassIdentifier: 
   nombreGadget: KeyBoard
-  detailsGadget: 
+  detailsGadget: 1.
   priceGadget: 0
   imageGadget: {fileID: 21300000, guid: bf8656a567c7f2b40afd49b5f9e14ead, type: 3}

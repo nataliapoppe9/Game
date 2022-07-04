@@ -14,8 +14,6 @@ public class GameManagerBJ : MonoBehaviour
     public Button standBtn;
     public Button betBtn;
 
-    public int addCoinsBJ=0;
-
     private int standClicks = 0;
 
     // Access the player and dealer's script
@@ -130,9 +128,6 @@ public class GameManagerBJ : MonoBehaviour
         {
             mainText.text = "You win!";
             playerScript.AdjustMoney(pot);
-            addCoinsBJ += 5;
-            PlayerPrefs.SetInt("AddCoinsBJ", addCoinsBJ);
-
         }
         //Check for tie, return bets
         else if (playerScript.handValue == dealerScript.handValue)
@@ -157,13 +152,9 @@ public class GameManagerBJ : MonoBehaviour
             standClicks = 0;
         }
     }
-   
-
-    public void CloseMiniGame(string myScene)
+    public void CargarEscena(string _scene)
     {
-        ChangeScene.cs.loaded = true;
-        SceneManager.LoadScene(myScene);
-
+        SceneManager.LoadScene(_scene);
     }
     // Add money to pot if bet clicked
     public void BetClicked()
