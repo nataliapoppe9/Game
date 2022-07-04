@@ -38,10 +38,16 @@ public class CanvasManager : MonoBehaviour
             numCoins += PlayerPrefs.GetInt("AddCoinsGame");
             PlayerPrefs.SetInt("AddCoinsGame", 0);
         }
+        
+        if (PlayerPrefs.GetInt("AddCoinsBJ") != 0)
+        {
+            numCoins += PlayerPrefs.GetInt("AddCoinsBJ");
+            PlayerPrefs.SetInt("AddCoinsBJ", 0);
+        }
 
 
-        //inicializo textCoins y audiosource
-        textCoins = GameObject.Find("TextScore").GetComponent<Text>();
+            //inicializo textCoins y audiosource
+            textCoins = GameObject.Find("TextScore").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
         textCoins.text = "S coins: " + numCoins.ToString();
 
