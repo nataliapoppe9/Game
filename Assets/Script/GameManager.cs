@@ -41,6 +41,20 @@ public class GameManager : MonoBehaviour
             Load();
             ExitEntryTL();
             ChangeScene.cs.loaded = false;
+
+            if (PlayerPrefs.GetInt("AddCoinsGame") != 0)
+            {
+               CanvasManager.gm.numCoins += PlayerPrefs.GetInt("AddCoinsGame");
+                print("Tengo coins:" +CanvasManager.gm.numCoins);
+               CanvasManager.gm.textCoins.text = "S coins: " + CanvasManager.gm.numCoins.ToString();
+
+            }
+
+            if (PlayerPrefs.GetInt("AddCoinsBJ") != 0)
+            {
+                CanvasManager.gm.numCoins += PlayerPrefs.GetInt("AddCoinsBJ");
+               
+            }
         }
         else { print("not started Loading"); }
 

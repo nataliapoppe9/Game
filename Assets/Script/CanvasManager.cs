@@ -23,9 +23,9 @@ public class CanvasManager : MonoBehaviour
     bool closedBag = true;
 
     public int amoniteCount;
-    public int numCoins = 0;
+    public int numCoins;
     public bool boatCoin = false;
-    Text textCoins;
+    public Text textCoins;
 
     [SerializeField] Transform particles, boat;
     private void Start()
@@ -33,23 +33,16 @@ public class CanvasManager : MonoBehaviour
         //cojo este script para poder ser accedido desde otro
         gm = this;
 
-        if (PlayerPrefs.GetInt("AddCoinsGame") != 0)
-        {
-            numCoins += PlayerPrefs.GetInt("AddCoinsGame");
-            PlayerPrefs.SetInt("AddCoinsGame", 0);
-        }
-        
-        if (PlayerPrefs.GetInt("AddCoinsBJ") != 0)
-        {
-            numCoins += PlayerPrefs.GetInt("AddCoinsBJ");
-            PlayerPrefs.SetInt("AddCoinsBJ", 0);
-        }
-
-
-            //inicializo textCoins y audiosource
-            textCoins = GameObject.Find("TextScore").GetComponent<Text>();
+        //inicializo textCoins y audiosource
+        textCoins = GameObject.Find("TextScore").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
         textCoins.text = "S coins: " + numCoins.ToString();
+
+       
+
+        
+        
+           
 
 
         //print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
