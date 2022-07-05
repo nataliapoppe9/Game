@@ -7,11 +7,9 @@ public class PlayerMovement : MonoBehaviour
     // variable estática para acceder al script
     public static PlayerMovement pm;
 
-
-    [SerializeField] int newGravity;
-    //GameOver
-    // public delegate void PlayerDelegate();
-    //public static event PlayerDelegate OnPlayerDie;
+   
+[SerializeField] int newGravity;
+   
     bool once = false;
 
     //Movement
@@ -48,9 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         camera1.SetActive(true);
 
-        //NO SE HACER SINGLETON PARA QUE SE COMUNIQUE SOLO CON EL OTRO SCRIPT
-        //Resquicio de intento anterior
-        //GameOver.OnGameOver += OnGameOverPlayer;
     }
     private void Start()
     {
@@ -58,30 +53,10 @@ public class PlayerMovement : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         //Inicializo el script para que sea acesible por CanvasManager
         pm = this;
-
-        RecuperarPosicion();
-   
-      
         
     }
 
-    void RecuperarPosicion()
-    {
-
-        //Recuperar posicion cuando Load Game 
-
-
-        if (ChangeScene.cs.loaded)
-        {
-            print("positionLoad");
-            if (PlayerPrefs.HasKey("PositionX") && PlayerPrefs.HasKey("PositionY") && PlayerPrefs.HasKey("PositionZ"))
-            {
-               // print(PlayerPrefs.GetFloat("PositionX") + " " + PlayerPrefs.GetFloat("PositionY") + " " + PlayerPrefs.GetFloat("PositionZ"));
-                transform.position = new Vector3(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"), PlayerPrefs.GetFloat("PositionZ"));
-                transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("RotX"), PlayerPrefs.GetFloat("RotY"), PlayerPrefs.GetFloat("RotZ"));
-            }
-        }
-    }
+   
 
     private void Update() // cada frame. Atento a los imput
     {
@@ -118,26 +93,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    /*
-    //Funcion que se activa desde GotaManager
-    //Cuando la gota colisiona conmigo se activa esta función en su update
-    //Con esto me muevo a la vez que el plano de la gota
-    public void MoveWithWater()
-    {
-        print("movewithwater");
-        //Para que cambie su posición en Z HASTA 80
-        if (i < 80)
-        {
-            //Vector con mi posición +1 en Z en cada update ( Para que se mueva a la vez q el suelo)
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-
-            //Instruccion de cambiar mi posicion a +1 en z. Se ejecuta dentro de update 80 veces y deja de ejecutarse
-            i++;
-        }
-        
-    }*/
-
-  
 
     public void MovePlayerWithPlat()
     {
@@ -311,13 +266,9 @@ public class PlayerMovement : MonoBehaviour
         // ademas añado un impulso para llegar a la moneda
         else if (hit.collider.name.Contains("Seta"))
         {
-
-            
-
-            // activar animación seta(HELPPP)
             animSeta = hit.collider.GetComponent<Animator>();
             animSeta.SetTrigger("GrowSeta");
-           // CameraController.cc.CameraJump();
+        
         }
         else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && !usingParachute)
         {
@@ -327,7 +278,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (hit.collider.isTrigger && hit.collider.name.Contains("Agua") && usingParachute && distancia<66)
         {
-            print(distancia);
             dead = true;
             OnGameOverPlayer();
         }
@@ -370,7 +320,8 @@ public class PlayerMovement : MonoBehaviour
         if (usingParachute)
         {
             gameObject.transform.GetChild(14).gameObject.SetActive(false);
-         
+
+        
         }
     }
 
@@ -378,12 +329,8 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = false;
 
-       
+       if(usingParachute)
         Physics.gravity = new Vector3(0, -9.81f, 0);
-        //if (GameObject.Find("Cinematic TimeLine"))
-        //{
-        //    GameObject.Find("Cinematic TimeLine").SetActive(false);
-        //}
 
     }
 
@@ -396,18 +343,18 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Animator>().SetBool("IsWalking", false);//
         GetComponent<Animator>().SetTrigger("Drown");
         CanvasManager.gm.GameOverPanel();
-       
+
+        //panelGameOver.SetActive(true);
+        //mochilaButton.SetActive(false);
         StartCoroutine(DestroyCharacter());
-       
+
     }
 
     IEnumerator DestroyCharacter()
     {
-        
-        print("destroy");
         yield return new WaitForSeconds(5);
-        print("destroy");
-        Destroy(this.gameObject);
+        print("destroy" + gameObject.name);
+        Destroy(gameObject);
     }
 
 }

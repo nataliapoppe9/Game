@@ -10,6 +10,7 @@ public class ParachutePrefab : MonoBehaviour
     
     PlayerMovement parachutePM;
     GameObject player;
+    
 
     private void Start()
     {
@@ -49,7 +50,6 @@ public class ParachutePrefab : MonoBehaviour
             GameManager.gm.parachuteInfo.transform.GetChild(4).GetComponent<Text>().color = Color.white;
 
             GameManager.gm.parachuteInfo.SetActive(true);
-            GameManager.gm.canvasPantalla.SetActive(false);
             
         }
     }

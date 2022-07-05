@@ -62,10 +62,10 @@ public class Nintendo : MonoBehaviour
     {
         stopAnim = true;
         //Save as Disabled for next load
-        ItemManager.itemMan.disabled.Add(gameObject);
+        ItemManager.itemMan.disabled.Add(gameObject.name);
 
         //Delete
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void ParticulasGadget()

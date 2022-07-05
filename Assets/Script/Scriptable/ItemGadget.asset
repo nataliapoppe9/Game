@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ItemGadget
   m_EditorClassIdentifier: 
   nombreGadget: Gadget
-  detailsGadget: 
+  detailsGadget: PLAY
   priceGadget: 0
   imageGadget: {fileID: 21300000, guid: 37776a8e7b37c0b4c8e19a76de933673, type: 3}

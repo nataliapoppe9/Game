@@ -19,15 +19,7 @@ public class BoatScript : MonoBehaviour
     bool startGo=false;
 
 
-    private void Start()
-    {
-        if(PlayerPrefs.HasKey("BoatX") && PlayerPrefs.HasKey("Boaty") && PlayerPrefs.HasKey("Boatz") && ChangeScene.cs.loaded)
-        {
-            print("positionBoatLoaded");
-            transform.position = new Vector3(PlayerPrefs.GetFloat("BoatX"),PlayerPrefs.GetFloat("BoatY"), PlayerPrefs.GetFloat("BoatZ"));
-               
-        }
-    }
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -67,7 +59,15 @@ public class BoatScript : MonoBehaviour
 
         
     }
-    
+     private void Start()
+    {
+        if(PlayerPrefs.HasKey("BoatX") && PlayerPrefs.HasKey("Boaty") && PlayerPrefs.HasKey("Boatz") && ChangeScene.cs.loaded)
+        {
+            print("positionBoatLoaded");
+            transform.position = new Vector3(PlayerPrefs.GetFloat("BoatX"),PlayerPrefs.GetFloat("BoatY"), PlayerPrefs.GetFloat("BoatZ"));
+               
+        }
+    }
     public void SaveBoat(GameObject boat)
     {
         print("saved Boat");

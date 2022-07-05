@@ -6,6 +6,5 @@ public class ItemSprite : ScriptableObject
 {
     public string nombreGadget;
     public string detailsGadget;
-    public int priceGadget;
     public Sprite imageGadget;
 }

@@ -23,9 +23,9 @@ public class CanvasManager : MonoBehaviour
     bool closedBag = true;
 
     public int amoniteCount;
-    public int numCoins = 0;
+    public int numCoins;
     public bool boatCoin = false;
-    Text textCoins;
+    public Text textCoins;
 
     [SerializeField] Transform particles, boat;
     private void Start()
@@ -38,11 +38,17 @@ public class CanvasManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         textCoins.text = "S coins: " + numCoins.ToString();
 
+       
+
+        
+        
+           
+
 
         //print(ChangeScene.cs.loaded + "CARGARON LOS COINS");
 
         // Si he guardado partida y tengo almacenado el numero de coins
-        if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded == true)
+       /* if (PlayerPrefs.HasKey("numCoins") && ChangeScene.cs.loaded == true)
         {
             numCoins = PlayerPrefs.GetInt("numCoins"); // Cuando abrimos partida nueva recuperamos
             textCoins.text = "S coins: " + numCoins.ToString();
@@ -53,7 +59,7 @@ public class CanvasManager : MonoBehaviour
         {
             boatCoin = (PlayerPrefs.GetInt("BoatBool") != 0);
         }
-
+       */
     }
 
     
@@ -112,20 +118,25 @@ public class CanvasManager : MonoBehaviour
 
     public void GameOverPanel()
     {
-        GameObject[] newSnowFlakes = new GameObject[15];
+        float addMass = 20;
+        float mass;
+        print("activo panel pause : " + panelGameOver.name);
         panelGameOver.SetActive(true);
         mochilaButton.SetActive(false);
 
-        
+        GameObject[] newSnowFlakes = new GameObject[15];
+
         for (int i = 0; i < 15; i++)
         {
-            offset = new Vector3(Random.Range(-200, 200), 120 + Random.Range(0, 30), 0);
+            offset = new Vector3(Random.Range(-200, 200), 200 + Random.Range(-200, 200), 0);
 
 
             //newSnowflakes = Instantiate(snowflakes, transform.position, transform.rotation);
             newSnowFlakes[i] = Instantiate(snowflakes, panelGameOver.transform.position + offset, panelGameOver.transform.rotation, panelGameOver.transform);
             rbSF = newSnowFlakes[i].GetComponent<Rigidbody2D>();
-            rbSF.velocity = Random.Range(5, 10) * (-Vector3.up);
+            mass = rbSF.mass;
+            rbSF.mass = mass + addMass;
+            
             if (newSnowFlakes[i] != null) { print("okay"); }
         }
 

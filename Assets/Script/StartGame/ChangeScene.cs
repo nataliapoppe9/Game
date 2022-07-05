@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
@@ -9,41 +10,51 @@ public class ChangeScene : MonoBehaviour
 
     // Funcion que llamo desde el panel de inicio con NewGame
     //Cuando llamo a la funcion en el boton del canvas, INTRODUZCO PARAMETRO nameScene alli
-    public bool loaded;
+    public bool saved=false;
+    public bool loaded=false;
+
+  //  public GameObject vid;
+   
+    
     
 
 
-    private void Start()
+    private void Awake()
     {
-        cs = this;
-       
-    }
-
-    public void CheckLoad()
-    {
-        print(PlayerPrefs.GetInt("SavedGame"));
-
-        if (PlayerPrefs.GetInt("SavedGame") ==0)
+        if (cs == null)
         {
-            loaded = false;
-            print("NO HAY PARTIDA");
+            cs = this;
+            DontDestroyOnLoad(gameObject);
         }
-        else { loaded = true; }
-
-        print(loaded);
+        else
+            Destroy(gameObject);
+        
     }
+
+    public void CheckSaved()
+    {
+        if (saved) { print("saved");  }
+        else if (!saved) { print("no saved Game");  }
+    }
+
 
     public void NewScene(string nameScene)
     {
-        loaded = false;
+        
         SceneManager.LoadScene(nameScene); // cargar escena
+       // vid.GetComponent<VideoPlayer>().Stop();
     }
 
-    public void LoadMyScene(string nameMyScene)
+    public void LoadedScene(string nameMyScene)
     {
-        CheckLoad();
+        loaded = true;
+        // NOO LO PONGAS MAS!! GameManager.gm.Load(); 
+        // con load controlo si hago load en start de game manager
         SceneManager.LoadScene(nameMyScene);
-
         
     }
+
+
+
+
 }

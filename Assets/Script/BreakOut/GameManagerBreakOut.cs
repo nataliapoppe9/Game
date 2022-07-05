@@ -8,9 +8,19 @@ public class GameManagerBreakOut : MonoBehaviour
     [SerializeField] byte bricksOnLevel;
     float gameTime;
 
-    public void CargarEscena(string _scene)
+    public int addCoins=0;
+
+    public static GameManagerBreakOut gmBO;
+
+    private void Start()
     {
-        SceneManager.LoadScene(_scene);
+        gmBO = this;
+    }
+    public void CloseMiniGame(string myScene)
+    {
+        ChangeScene.cs.loaded = true;
+        SceneManager.LoadScene(myScene);
+        
     }
     public byte BricksOnLevel
     {
@@ -24,7 +34,10 @@ public class GameManagerBreakOut : MonoBehaviour
                 Destroy(GameObject.Find("Ball"));
                 gameTime = Time.time * gameTime;
                 FindObjectOfType<UIController>().ActivarWinPanel(gameTime);
-
+                
+                // SUMAR MONEDAS A PARTIDA
+                addCoins += 5;
+                PlayerPrefs.SetInt("AddCoinsGame", addCoins);
             }
 
         }
@@ -42,7 +55,7 @@ public class GameManagerBreakOut : MonoBehaviour
                 Debug.Log("Has muerto");
                 Destroy(GameObject.Find("Ball"));
                 FindObjectOfType<UIController>().ActivarLosePanel();
-                
+                addCoins = 0;
             }
             else
             {
