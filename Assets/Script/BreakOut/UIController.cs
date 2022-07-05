@@ -27,13 +27,7 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    public void GoToMainMenu()
-    {
-      //  ChangeScene.cs.LoadMyScene("SampleScene");
-        SceneManager.LoadScene("SampleScene");
-        ChangeScene.cs.loaded = true;
-        
-    }
+  
 
     public void UpdateUILives(byte currentLives)
     {

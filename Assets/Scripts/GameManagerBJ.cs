@@ -28,6 +28,8 @@ public class GameManagerBJ : MonoBehaviour
     public Text mainText;
     public Text standBtnText;
 
+    public int addCoinsBJ;
+
     // Card hiding dealer's 2nd card
     public GameObject hideCard;
     // How much is bet
@@ -122,12 +124,16 @@ public class GameManagerBJ : MonoBehaviour
         else if (playerBust || (!dealerBust && dealerScript.handValue > playerScript.handValue))
         {
             mainText.text = "Dealer wins!";
+            
         }
         // if dealer busts, player didnt, or player has more points, player wins
         else if (dealerBust || playerScript.handValue > dealerScript.handValue)
         {
             mainText.text = "You win!";
             playerScript.AdjustMoney(pot);
+            addCoinsBJ += 5;
+            PlayerPrefs.SetInt("AddCoinsBJ", addCoinsBJ);
+
         }
         //Check for tie, return bets
         else if (playerScript.handValue == dealerScript.handValue)
@@ -152,11 +158,12 @@ public class GameManagerBJ : MonoBehaviour
             standClicks = 0;
         }
     }
-    public void CargarEscena(string _scene)
+    public void CloseMiniGame(string myScene)
     {
-        SceneManager.LoadScene(_scene);
+        ChangeScene.cs.loaded = true;
+        SceneManager.LoadScene(myScene);
+
     }
-    // Add money to pot if bet clicked
     public void BetClicked()
     {
         Text newBet = betBtn.GetComponentInChildren(typeof(Text)) as Text;

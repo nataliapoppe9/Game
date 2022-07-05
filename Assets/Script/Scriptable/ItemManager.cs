@@ -11,7 +11,7 @@ public class ItemManager : MonoBehaviour
 
     public ItemSprite[] items;
 
-    public Transform container;
+    public Transform container,containerPc;
     public GameObject itemPrefab;
 
     public List<ItemSprite> obtainedItems;
@@ -64,21 +64,30 @@ public class ItemManager : MonoBehaviour
 
     public void SpriteCreator(int i)
     {
-        GameObject ItemClone = Instantiate(itemPrefab, container);
+        if (i == 0)
+        {
+            GameObject ItemClone = Instantiate(itemPrefab, container);
 
-        ItemClone.transform.GetChild(0).GetComponent<Image>().sprite = items[i].imageGadget;
-        ItemClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
-        ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
-       
+            ItemClone.transform.GetChild(0).GetComponent<Image>().sprite = items[i].imageGadget;
+            ItemClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
+            ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
+            ItemClone.GetComponent<Button>().onClick.AddListener(() => gamesGadgetPanel.SetActive(true));
+        }
+        else if (i != 0)
+        {
+            GameObject ItemClone = Instantiate(itemPrefab, containerPc);
+
+            ItemClone.transform.GetChild(0).GetComponent<Image>().sprite = items[i].imageGadget;
+            ItemClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
+            ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
+        }
+
         if (!obtainedSprites.Contains(i))
         {
             obtainedSprites.Add(i);
         }
 
-        if (i == 0)
-        {
-            ItemClone.GetComponent<Button>().onClick.AddListener(() => gamesGadgetPanel.SetActive(true)) ;
-        }
+        
 
     }
 }

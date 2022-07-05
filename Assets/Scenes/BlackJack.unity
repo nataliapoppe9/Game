@@ -1193,6 +1193,7 @@ MonoBehaviour:
   cashText: {fileID: 601535157}
   mainText: {fileID: 1006459300}
   standBtnText: {fileID: 584610447}
+  addCoinsBJ: 0
   hideCard: {fileID: 213205815}
 --- !u!4 &423562248
 Transform:

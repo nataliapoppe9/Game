@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     // variable estática para acceder al script
     public static PlayerMovement pm;
 
-
-    [SerializeField] int newGravity;
+   
+[SerializeField] int newGravity;
    
     bool once = false;
 
@@ -320,7 +320,8 @@ public class PlayerMovement : MonoBehaviour
         if (usingParachute)
         {
             gameObject.transform.GetChild(14).gameObject.SetActive(false);
-         
+
+        
         }
     }
 
