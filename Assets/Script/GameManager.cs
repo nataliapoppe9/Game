@@ -221,6 +221,8 @@ public class GameManager : MonoBehaviour
         public List<int> _obtainedSprites;
         public List<ItemSprite> _obtainedItems;
 
+        public bool _visibleP;
+
     }
 
    public void SaveIt()
@@ -231,16 +233,18 @@ public class GameManager : MonoBehaviour
             _positionPlayer = PlayerMovement.pm.transform.position,
             _rotationPlayer = PlayerMovement.pm.transform.rotation.eulerAngles,
             _boatCoin = CanvasManager.gm.boatCoin,
-            
-           //_positionBarco = BoatScript.bsm.gameObject.transform.position,
+
+            //_positionBarco = BoatScript.bsm.gameObject.transform.position,
             //_positionGota = GotaManager.gotm.gameObject.transform.position,
 
-           _startAmonite = Amonite.am.start,
-           _amoniteList = Amonite.am.amoniteList,
-           _numAmonites = Amonite.am.startedNum.Count,
+            _startAmonite = Amonite.am.start,
+            _amoniteList = Amonite.am.amoniteList,
+            _numAmonites = Amonite.am.startedNum.Count,
 
-           _disabled=ItemManager.itemMan.disabled,
-           _obtainedSprites=ItemManager.itemMan.obtainedSprites
+            _disabled = ItemManager.itemMan.disabled,
+            _obtainedSprites = ItemManager.itemMan.obtainedSprites,
+
+           // _visibleP = ParachutePrefab.ppm.visibleP
             
           
         };
@@ -269,8 +273,15 @@ public class GameManager : MonoBehaviour
             ItemManager.itemMan.disabled = saveData._disabled;
             ItemManager.itemMan.DisableObjects();
 
+            //
+            //Esto no consigo que funcione :(
+
+
+            //ParachutePrefab.ppm.visibleP = saveData._visibleP;
+
+
             //print(ItemManager.itemMan.obtainedItems.Count);
-            
+
 
             // BoatScript.bsm.gameObject.transform.position = saveData._positionBarco;
             // GotaManager.gotm.gameObject.transform.position = saveData._positionGota;
@@ -289,8 +300,8 @@ public class GameManager : MonoBehaviour
             //_obtainedItems = ItemManager.itemMan.obtainedItems
 
             //print("disable destroyed Items" + saveData._disabled.Count);
-            
-            
+
+
 
             print("LOADED");
         }

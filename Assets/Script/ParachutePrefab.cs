@@ -10,7 +10,8 @@ public class ParachutePrefab : MonoBehaviour
     
     PlayerMovement parachutePM;
     GameObject player;
-    
+
+   
 
     private void Start()
     {
@@ -20,29 +21,16 @@ public class ParachutePrefab : MonoBehaviour
         //2 : teclado y raton
         //3 : Pantalla
 
-       
-
     }
 
-    public void ParachuteCheck()
-    {
-        if (ItemManager.itemMan.obtainedSprites.Contains(1) && ItemManager.itemMan.obtainedSprites.Contains(2) && ItemManager.itemMan.obtainedSprites.Contains(3))
-        {
-            print(" You have 3 pieces");
-            GetComponent<GameObject>().SetActive(true);
-        }
-        else { GetComponent<GameObject>().SetActive(false); print("no pieces"); }
-    }
+  
+
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
 
-           
-
-            /*parachutePM = PlayerMovement.pm;
-            player = parachutePM.gameObject;
-            UseParachute();*/
 
             GameManager.gm.parachuteInfo.transform.GetChild(3).GetComponent<Text>().text = "Buy parachute";
 
@@ -54,11 +42,4 @@ public class ParachutePrefab : MonoBehaviour
         }
     }
 
-   /* public void UseParachute()
-    {
-        parachutePM.usingParachute = true;
-
-        Destroy(gameObject);
-    }
-   */
 }

@@ -17,7 +17,11 @@ public class ItemManager : MonoBehaviour
     public List<ItemSprite> obtainedItems;
 
     [SerializeField] GameObject FF;
-    
+
+    public bool visibleP = false;
+
+    [SerializeField] GameObject parachute;
+
 
     public static ItemManager itemMan;
 
@@ -32,17 +36,10 @@ public class ItemManager : MonoBehaviour
        
         itemMan = this;
 
-
-        /* if (ChangeScene.cs.saved)
-         {
-
-
-             if (PlayerPrefs.GetInt("FFDesact")==1)
-             {
-                 FF.SetActive(false);
-             }
-
-        */
+       /* if (PlayerPrefs.GetInt("FFDesact")==1)
+        {
+        FF.SetActive(false);
+        }*/
      
     }
 
@@ -80,6 +77,7 @@ public class ItemManager : MonoBehaviour
             ItemClone.transform.GetChild(0).GetComponent<Image>().sprite = items[i].imageGadget;
             ItemClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].nombreGadget;
             ItemClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = items[i].detailsGadget;
+          
         }
 
         if (!obtainedSprites.Contains(i))
@@ -87,7 +85,19 @@ public class ItemManager : MonoBehaviour
             obtainedSprites.Add(i);
         }
 
-        
+        ParachuteCheck();
 
+
+    }
+
+    public void ParachuteCheck()
+    {
+        if (ItemManager.itemMan.obtainedSprites.Contains(1) && ItemManager.itemMan.obtainedSprites.Contains(2) && ItemManager.itemMan.obtainedSprites.Contains(3))
+        {
+            print(" You have 3 pieces");
+            parachute.SetActive(true);
+            visibleP = true;
+        }
+        else { parachute.SetActive(false); print("no pieces"); }
     }
 }
